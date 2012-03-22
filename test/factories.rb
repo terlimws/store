@@ -26,4 +26,25 @@ FactoryGirl.define do
     end_date 1.month.ago.to_date
     pay_level 1
   end
+  
+  factory :job do
+    name "Clean the toilet"
+    description "Wash the toilet bowl"
+    active true
+  end
+  
+  factory :shift do
+    association :assignment
+    date 1.week.from_now.to_date
+    start_time Time.now
+    end_time nil
+    notes nil
+  end
+  
+  factory :shiftjob do
+    association :job
+    association :shift
+  end  
+
+
 end
