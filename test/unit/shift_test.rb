@@ -4,8 +4,8 @@ class ShiftTest < ActiveSupport::TestCase
   
   # Relationship macros...
   should belong_to(:assignment)
-  #should have_many(:shift_jobs)
-  #should have_many(:jobs).through(:shift_jobs)
+  should have_many(:shift_jobs)
+  should have_many(:jobs).through(:shift_jobs)
 
   
   # Validation macros...
@@ -24,6 +24,7 @@ class ShiftTest < ActiveSupport::TestCase
       @assignment1 = Factory(:assignment, :store => @cmu, :employee => @ed)
       @shift1 = Factory(:shift, :assignment => @assignment1, :date => Date.today, :start_time => Time.now, :end_time => nil, :notes => nil)
     end
+    
     # and provide a teardown method as well
     teardown do
       @ed.destroy

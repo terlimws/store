@@ -24,12 +24,6 @@ class Shift < ActiveRecord::Base
   # orders shifts by start_time
   scope :by_start_time, order('start_time')
   
-  # returns all the shifts that are considered current
-  #scope :current, where("? > Time.now", end_time)
-
-  # returns all the past/expired shifts for auditing purposes
-  #scope :expired, where("? < Time.now", end_time)
-  
   
   # Methods
   # -----------------------------
