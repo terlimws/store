@@ -19,10 +19,12 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(params[:employee])
     if @employee.save
+      puts "\n\n\n\n\n\n\n\n\nSuccesss!"
       # if saved to database
       flash[:notice] = "Successfully created #{@employee.name}."
       redirect_to @employee # go to show employee page
     else
+      puts "\n\n\n\n\n\n\n\n\nFailed!"
       # return to the 'new' form
       render :action => 'new'
     end

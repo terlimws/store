@@ -2,6 +2,7 @@ class Employee < ActiveRecord::Base
   # Callbacks
   before_save :reformat_phone
   before_validation :reformat_ssn
+  before_validation :parse_date
   
   # Relationships
   has_many :assignments
@@ -62,9 +63,14 @@ class Employee < ActiveRecord::Base
      phone.gsub!(/[^0-9]/,"") # strip all non-digits
      self.phone = phone       # reset self.phone to new string
    end
+   
    def reformat_ssn
      ssn = self.ssn.to_s      # change to string in case input as all numbers 
      ssn.gsub!(/[^0-9]/,"")   # strip all non-digits
      self.ssn = ssn           # reset self.ssn to new string
+   end
+   
+   def parse_date
+     self.date_of_birth = Chronic.parse(self.date_of_birth_before_type_cast) unless self.date_of_birth.blank?
    end
 end

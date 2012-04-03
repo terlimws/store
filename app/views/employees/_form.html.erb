@@ -1,59 +1,19 @@
-<%= form_for @employee, :html => { :class => 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Employee</legend>
+<%= bootstrap_form_for @employee, :html => { :class => 'form-horizontal' } do |f| %>
 
-    <div class="control-group">
-      <%= f.label :first_name, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :first_name, :class => 'text_field' %>
-      </div>
-    </div>
+  <%= f.text_field :first_name, :label => 'Twitter', :prepend => "@" %>
+  
+  <%= f.text_field :last_name %>
 
-    <div class="control-group">
-      <%= f.label :last_name, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :last_name, :class => 'text_field' %>
-      </div>
-    </div>
+  <%= f.text_field :ssn %>
 
-    <div class="control-group">
-      <%= f.label :ssn, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :ssn, :class => 'text_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :date_of_birth, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.date_select :date_of_birth, :class => 'date_select' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :phone, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :phone, :class => 'text_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :role, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :role, :class => 'text_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :active, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.check_box :active, :class => 'check_box' %>
-      </div>
-    </div>
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', employees_path, :class => 'btn' %>
-    </div>
-  </fieldset>
+  <%= f.text_field :date_of_birth, :start_year => 1980, :end_year => (14.years.ago.year) %>
+  
+  <%= f.text_field :phone %>
+  
+  <%= f.text_field :role %>
+  
+  <%= f.check_box :active %>
+  
+  <%= f.submit %>
+  
 <% end %>
