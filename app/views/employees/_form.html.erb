@@ -1,0 +1,19 @@
+<%= bootstrap_form_for @employee, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <%= f.text_field :first_name, :label => 'Twitter', :prepend => "@" %>
+  
+  <%= f.text_field :last_name %>
+
+  <%= f.text_field :ssn %>
+
+  <%= f.text_field :date_of_birth, :start_year => 1980, :end_year => (14.years.ago.year) %>
+  
+  <%= f.text_field :phone %>
+  
+  <%= f.text_field :role %>
+  
+  <%= f.check_box :active %>
+  
+  <%= f.submit %>
+  
+<% end %>

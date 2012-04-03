@@ -12,5 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+<<<<<<< HEAD
+=======
+//= require jquery_nested_form
+>>>>>>> temp
 //= require twitter/bootstrap
 //= require_tree .

@@ -1,0 +1,30 @@
+<h1>Stores</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Phone</th>
+      <th>Active</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stores.each do |store| %>
+      <tr>
+        <td><%= link_to store.name, store_path(store) %></td>
+        <td><%= store.city %></td>
+        <td><%= store.state %></td>
+        <td><%= store.phone %></td>
+        <td><%= store.active %></td>
+        <td>
+          <%= link_to 'Edit', edit_store_path(store), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', store_path(store), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New', new_store_path, :class => 'btn btn-primary' %>

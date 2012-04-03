@@ -1,0 +1,34 @@
+<h1>Employees</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date of birth</th>
+      <th>Phone</th>
+      <th>Role</th>
+      <th>Active</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.proper_name %></td>
+        <td><%= employee.date_of_birth %></td>
+        <td><%= employee.phone %></td>
+        <td><%= employee.role %></td>
+        <td><%= employee.active %></td>
+
+
+
+        <td>
+          <%= link_to 'View', employee_path(employee), :class => 'btn btn-mini' %>
+          <%= link_to 'Edit', edit_employee_path(employee), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', employee_path(employee), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New', new_employee_path, :class => 'btn btn-primary' %>
