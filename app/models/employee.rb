@@ -16,6 +16,7 @@ class Employee < ActiveRecord::Base
   validates_inclusion_of :role, :in => %w[admin manager employee], :message => "is not an option"
   validates_uniqueness_of :ssn
   
+  
   # Scopes
   scope :younger_than_18, where('date_of_birth > ?', 18.years.ago.to_date)
   scope :is_18_or_older, where('date_of_birth <= ?', 18.years.ago.to_date)

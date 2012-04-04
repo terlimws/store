@@ -23,6 +23,9 @@ class Assignment < ActiveRecord::Base
   scope :for_employee, lambda {|employee_id| where("employee_id = ?", employee_id) }
   scope :for_pay_level, lambda {|pay_level| where("pay_level = ?", pay_level) }
   scope :for_role, lambda {|role| joins(:employee).where("role = ?", role) }
+  
+  # Misc Constants
+  PAYS_LIST = [['1', 1],['2', 2],['3', 3], ['4', 4], ['5', 5], ['6', 6]]
 
   # Private methods for callbacks and custom validations
   private  

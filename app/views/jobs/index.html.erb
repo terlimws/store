@@ -3,6 +3,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Description</th>
       <th>Active</th>
       <th>Actions</th>
     </tr>
@@ -11,6 +12,8 @@
     <% @jobs.each do |job| %>
       <tr>
         <td><%= link_to job.name, job_path(job) %></td>
+        <td><%= job.description %></td>
+
         <td><%= job.active %></td>
         <td>
           <%= link_to 'Edit', edit_job_path(job), :class => 'btn btn-mini' %>
@@ -20,5 +23,7 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @jobs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+
 
 <%= link_to 'New', new_job_path, :class => 'btn btn-primary' %>
