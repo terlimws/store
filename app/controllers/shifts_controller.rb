@@ -17,10 +17,10 @@ class ShiftsController < ApplicationController
   end
 
   def create
-    @shift = Shift.new(params[:store])
+    @shift = Shift.new(params[:shift])
     if @shift.save
       # if saved to database
-      flash[:notice] = "Successfully created #{@shift.name}."
+      flash[:notice] = "Successfully created shift for #{@shift.id}."
       redirect_to @shift # go to show shift page
     else
       # return to the 'new' form
@@ -32,7 +32,7 @@ class ShiftsController < ApplicationController
   def update
     @shift = Shift.find(params[:id])
     if @shift.update_attributes(params[:shift])
-      flash[:notice] = "Successfully updated #{@shift.name}."
+      flash[:notice] = "Successfully updated #{@shift.id}."
       redirect_to @shift
     else
       render :action => 'edit'
@@ -42,7 +42,7 @@ class ShiftsController < ApplicationController
   def destroy
       @shift = Shift.find(params[:id])
       @shift.destroy
-      flash[:notice] = "Successfully removed #{@shift.name} from the Creamery system."
+      flash[:notice] = "Successfully removed #{@shift.id} from the Creamery system."
       redirect_to shifts_url
   end
   
