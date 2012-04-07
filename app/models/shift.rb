@@ -4,6 +4,8 @@ class Shift < ActiveRecord::Base
   belongs_to :assignment
   has_many :shift_jobs
   has_many :jobs, :through => :shift_jobs
+  has_one :store, :through => :assignment
+  has_one :employee, :through => :assignment
   
   
   # Validations

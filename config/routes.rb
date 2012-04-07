@@ -5,6 +5,8 @@ Creamery2012::Application.routes.draw do
   resources :assignments
   resources :jobs
   resources :shifts
+  resources :users
+  resources :sessions
   
   # Authentication routes
   match 'user/edit' => 'users#edit', :as => :edit_current_user
