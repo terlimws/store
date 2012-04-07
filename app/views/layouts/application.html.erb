@@ -25,12 +25,21 @@
                           <li><%= link_to "Assignments", assignments_path %></li>
                           <li><%= link_to "Stores", stores_path %></li>
                           <li><%= link_to "Jobs", jobs_path %></li>
-
+                          <li><%= link_to "Users", users_path %></li>
+                          <% if logged_in? %> 
+                            <li><%= link_to 'Logout', logout_path %></li>
+                          <% else %><li><%= link_to 'Login', login_path %></li>
+                          <% end %>
 		        </ul>
 		      </div>
+
+                      
 		    </div>
 		  </div>
 		</div>
+                
+                
+
 
 		<!-- MAIN CONTENT -->
 		<div class="container">
@@ -51,7 +60,7 @@
 
 		<!-- FOOTER -->
 		<footer id="footer">
-	    <div class="container">
+	    <div class="container" align='center'>
 				<%= render :partial => "partials/footer" %>
 	    </div>
 	  </footer>
