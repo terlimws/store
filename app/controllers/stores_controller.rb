@@ -4,7 +4,7 @@ class StoresController < ApplicationController
   authorize_resource
 
   def index
-    @stores = Store.alphabetical.paginate(:page => params[:page]).per_page(10)
+    @stores = Store.active.alphabetical.paginate(:page => params[:page]).per_page(10)
   end
 
   def show

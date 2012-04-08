@@ -1,12 +1,10 @@
-<br>
-<h1>Current Assignments</h1>
+<h1>Assignments</h1>
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Employee</th>
       <th>Store</th>
-      <th>Pay Level</th>
-      <th>Start Date</th>
+      <th>Active</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -15,11 +13,10 @@
       <tr>
         <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
         <td><%= link_to assignment.store.name, store_path(assignment.store) %></td>
-        <td><%= assignment.pay_level %></td>
-        <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
+        <td><%= assignment.is_active? %></td>
         <td>
           <%= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini' %>
-          <%= link_to 'View Past Assignments', employee_path(assignment.employee), :class => 'btn btn-mini btn-mini' %>
+          <%= link_to 'Destroy', assignment_path(assignment), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <% end %>

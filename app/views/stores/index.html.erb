@@ -1,4 +1,4 @@
-<h1>Stores</h1>
+<h1>Current Stores</h1>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -6,7 +6,6 @@
       <th>City</th>
       <th>State</th>
       <th>Phone</th>
-      <th>Active</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -17,7 +16,6 @@
         <td><%= store.city %></td>
         <td><%= store.state %></td>
         <td><%= store.phone %></td>
-        <td><%= store.active %></td>
         <td>
           <%= link_to 'Edit', edit_store_path(store), :class => 'btn btn-mini' %>
           <%= link_to 'Destroy', store_path(store), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>

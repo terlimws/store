@@ -1,4 +1,4 @@
-<h1>Assignment</h1>
+<h1>Assignment Details</h1>
 
 <p>
   <b>Store</b><br>
@@ -12,12 +12,12 @@
 
 <p>
   <b>Start date</b><br>
-  <%= @assignment.start_date %>
+  <%= @assignment.start_date.strftime("%m/%d/%y") %>
 </p>
 
 <p>
   <b>End date</b><br>
-  <%= @assignment.end_date %>
+  <%= @assignment.end_date.strftime("%m/%d/%y") %>
 </p>
 
 <p>
