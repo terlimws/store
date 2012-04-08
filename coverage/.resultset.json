@@ -2,6 +2,11 @@
   "Unit Tests": {
     "coverage": {
     },
-    "timestamp": 1333904971
+    "timestamp": 1333908739
+  },
+  "Functional Tests": {
+    "coverage": {
+    },
+    "timestamp": 1333908750
   }
 }

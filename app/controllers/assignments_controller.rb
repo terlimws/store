@@ -5,6 +5,7 @@ class AssignmentsController < ApplicationController
   
   def index
     @assignments = Assignment.current.paginate(:page => params[:page]).per_page(10)
+    @past_assignments = Assignment.past.paginate(:page => params[:page]).per_page(10)
   end
 
   def show

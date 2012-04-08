@@ -1,0 +1,25 @@
+<br>
+<h3>Current Employees</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @store.assignments.current.each do |assignment| %>
+      <tr>
+        <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
+        <td><%= assignment.employee.phone.insert(3,"-").insert(7,"-") %></td>
+        <td><%= assignment.employee.role.capitalize %></td>
+        <td>
+          <%= link_to 'Edit', edit_employee_path(assignment.employee), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', employee_path(assignment.employee), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

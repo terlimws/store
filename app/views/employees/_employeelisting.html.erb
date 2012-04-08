@@ -1,0 +1,32 @@
+<h1>Employees</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Currently Assigned</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Employee.alphabetical.each do |employee| %>
+      <tr>
+        <td><%= link_to employee.name, employee_path(employee) %></td>
+        <td><%= employee.phone.insert(3,"-").insert(7,"-") %></td>
+        <td><%= link_to employee.current_assignment.try{|a| a.store.name} || "Not Assigned to Any Store", store_path(employee.current_assignment.try{|a| a.store} || "") %></td>
+        <td><%= employee.role.capitalize %></td>
+        <td>
+          <%= link_to 'Edit', edit_employee_path(employee), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!-- Add the pagination using will_paginate gem -->
+<span class="smtext">
+<%= will_paginate @employees, :previous_label => "&larr;&nbsp;Previous&nbsp;", :next_label => "&nbsp;Next&nbsp;&rarr;" %>
+</span>
+<br />
+<p><%= link_to "New Employee", new_employee_path %></p>
+

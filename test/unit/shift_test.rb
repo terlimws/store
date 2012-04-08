@@ -49,28 +49,28 @@ class ShiftTest < ActiveSupport::TestCase
 
   # ---------------------------------
   # Testing other methods with a context
-  #context "test" do
-  #  # create the objects I want with factories
-  #  setup do 
-  #    @ed = Factory(:employee)
-  #    @cmu = Factory(:store)
-  #    @assignment1 = Factory(:assignment, :store => @cmu, :employee => @ed)
-  #    @shift1 = Factory(:shift, :assignment => @assignment1, :date => Date.today, :start_time => Time.now, :end_time => nil, :notes => nil)
-  #  end
-  #  
-  #  # and provide a teardown method as well
-  #  teardown do
-  #    @ed.destroy
-  #    @cmu.destroy
-  #    @assignment1.destroy
-  #    @shift1.destroy
-  #  end
-  #
-  #  #test the scope 'for_employee'
-  #  should "show that the shift for employee 1 is shift1" do
-  #    s =  Shift.for_employee(1).map{|o| o}
-  #    assert_equal @shift1, s[0]
-  #  end
+  context "test" do
+    # create the objects I want with factories
+    setup do 
+      @ed = Factory(:employee)
+      @cmu = Factory(:store)
+      @assignment1 = Factory(:assignment, :store => @cmu, :employee => @ed)
+      @shift1 = Factory(:shift, :assignment => @assignment1, :date => Date.today, :start_time => Time.now, :end_time => nil, :notes => nil)
+    end
     
-  #end
+    # and provide a teardown method as well
+    teardown do
+      @ed.destroy
+      @cmu.destroy
+      @assignment1.destroy
+      @shift1.destroy
+    end
+  
+    #test the scope 'for_employee'
+    should "show that the shift for employee 1 is shift1" do
+      s =  Shift.for_employee(1).map{|o| o}
+      assert_equal @shift1, s[0]
+    end
+    
+  end
 end
