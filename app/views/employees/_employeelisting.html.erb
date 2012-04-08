@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <% Employee.alphabetical.each do |employee| %>
+    <% @employees.each do |employee| %>
       <tr>
         <td><%= link_to employee.name, employee_path(employee) %></td>
         <td><%= employee.phone.insert(3,"-").insert(7,"-") %></td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120407195950) do
+ActiveRecord::Schema.define(:version => 20120408220431) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "store_id"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20120407195950) do
     t.boolean  "active",     :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "users", :force => true do |t|

@@ -2,22 +2,22 @@
 <br>
 <p>
   <b>Name:</b>
-  <br><%= @store.name %>
+  <%= @store.name %>
   
-<p><br>
+<p>
   <b>Address:</b>
-  <br><%= @store.street %><br>
+  <%= @store.street %>
             <%= @store.city %>,
             <%= @store.state %>
             <%= @store.zip %>
 </p>
 
-<p><br>
+<p>
   <b>Phone: </b>
   <%= @store.phone.insert(3,"-").insert(7,"-")%>
 </p>
 
-<p><br>
+<p>
   <b>Active: </b>
   <%= "#{(@store.active==true)? 'Yes' : 'No'}" %>
 </p>

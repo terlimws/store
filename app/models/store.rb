@@ -1,10 +1,12 @@
 class Store < ActiveRecord::Base
   # Callbacks
   before_save :reformat_phone
+  before_save :find_store_coordinates
   
   # Relationships
   has_many :assignments
   has_many :employees, :through => :assignments
+  has_many :shifts, :through => :assignments
   
   
   # Validations
@@ -37,5 +39,14 @@ class Store < ActiveRecord::Base
      phone.gsub!(/[^0-9]/,"") # strip all non-digits
      self.phone = phone       # reset self.phone to new string
    end
+   
+  def find_store_coordinates
+    coord = Geokit::Geocoders::GoogleGeocoder.geocode "#{street}, #{city}, #{state}, #{zip}"
+    if coord.success
+      self.latitude, self.longitude = coord.ll.split(',')
+    else
+      errors.add :base, "Error with geocoding"
+    end
+  end
 
 end

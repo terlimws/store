@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   
   # Validations
   # -----------------------------
+  validates_uniqueness_of :email
   
   
   def self.authentication(email, password)
