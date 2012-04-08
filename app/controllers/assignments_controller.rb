@@ -1,5 +1,8 @@
 class AssignmentsController < ApplicationController
   
+  before_filter :check_login
+  authorize_resource  
+  
   def index
     @assignments = Assignment.current.paginate(:page => params[:page]).per_page(10)
   end

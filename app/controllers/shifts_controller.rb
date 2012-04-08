@@ -1,6 +1,7 @@
 class ShiftsController < ApplicationController
   
   before_filter :check_login
+  authorize_resource
   
   def index
     @shifts = Shift.paginate(:page => params[:page]).per_page(10)

@@ -28,5 +28,6 @@
 </table>
 <%= will_paginate @stores, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 
-
+<% if can? :create, Store %>
 <%= link_to 'New', new_store_path, :class => 'btn btn-primary' %>
+<% end %>

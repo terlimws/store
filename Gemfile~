@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap_forms'
+gem 'chronic'
 gem 'rails', '3.2.1'
 gem 'sqlite3'
 gem 'will_paginate'
@@ -10,6 +12,8 @@ gem 'validates_timeliness'
 gem 'geokit'
 gem 'jquery-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
+gem "nested_form", :git => "git://github.com/ryanb/nested_form.git"
+
 
 # Gems used only in development
 group :development do
@@ -31,7 +35,7 @@ group :test do
 	gem 'launchy'
 	gem 'email_spec'
 	gem 'nokogiri'
-	gem 'simplecov'
+#	gem 'simplecov'
 	gem 'tconsole', '1.1.1'
 end
 

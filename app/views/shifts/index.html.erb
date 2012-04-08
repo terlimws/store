@@ -22,5 +22,6 @@
     <% end %>
   </tbody>
 </table>
-
+<% if can? :create, Shift %>
 <%= link_to 'New', new_shift_path, :class => 'btn btn-primary' %>
+<% end %>

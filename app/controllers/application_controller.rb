@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "You are not authorized to view this page, and have been redirected back to the home page."
+    redirect_to root_url
+  end
+  
   private
   
   def current_user

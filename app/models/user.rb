@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   
-  attr_accessible :email, :password, :password_confirmation, :employee_id
+  attr_accessible :email, :password, :password_confirmation, :employee_id, :role
 #  require 'bcrypt'
   
   # Relationships
@@ -19,5 +19,6 @@ class User < ActiveRecord::Base
   def self.authentication(email, password)
     find_by_email(email).try(:authenticate, password)
   end
+  
   
 end

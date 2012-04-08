@@ -35,7 +35,7 @@ FactoryGirl.define do
   
   factory :shift do
     association :assignment
-    date 1.week.from_now.to_date
+    date Time.now.to_date
     start_time Time.now
     end_time nil
     notes nil

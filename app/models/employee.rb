@@ -49,13 +49,27 @@ class Employee < ActiveRecord::Base
     date_of_birth < 18.years.ago.to_date
   end
   
+  # Professor's code
+  #def age
+  #  (Time.now.to_s(:number).to_i - date_of_birth.to_time.to_s(:number).to_i)/10e9.to_i
+  #end
+
+  # returns the employee's current age
   def age
-    (Time.now.to_s(:number).to_i - date_of_birth.to_time.to_s(:number).to_i)/10e9.to_i
+    #((Time.now - Time.parse(self.date_of_birth)) / 60 / 60 / 24 / 365.25).to_i
+    now = Time.now.utc.to_date
+    return now.year - self.date_of_birth.year - (self.date_of_birth.to_date.change(:year => now.year) > now ? 1 : 0)
   end
-  
+
+
   # Misc Constants
   ROLES_LIST = [['Employee', 'employee'],['Manager', 'manager'],['Administrator', 'admin']]
+
   
+  def role?(authorized_role)
+    return false if role.nil?
+    role.to_sym == authorized_role
+  end
   
   # Callback code  (NOT DRY!!!)
   # -----------------------------

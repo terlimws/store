@@ -9,11 +9,18 @@ class Shift < ActiveRecord::Base
   
   
   # Validations
-  # -----------------------------
-  # make sure required fields are present. Shifts have an assignment_id, date and start_time
+  # -------------------
+  # make sure required fields are present
   validates_presence_of :assignment_id, :date, :start_time
   
+  # make sure assignment id is a positive integer
+  validates_numericality_of :assignment_id, :only_integer => true, :greater_than => 0
   
+  # ensure start time is before end time and not nil
+  validates_time :start_time, :allow_nil => false
+  
+  # ensure end time is after start time
+  validates_time :end_time, :after => :start_time, :allow_nil => true
   
   # Scopes
   # -----------------------------
