@@ -22,4 +22,11 @@
   <%= "#{(@store.active==true)? 'Yes' : 'No'}" %>
 </p>
 
+<p>
+  <b>Map: </b><br>
+  <%= image_tag @store.create_map_link %>
+</p>
+
+
+
 <%= render :partial => "employeelisting" %>

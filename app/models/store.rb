@@ -30,6 +30,11 @@ class Store < ActiveRecord::Base
   # Misc Constants
   STATES_LIST = [['Ohio', 'OH'],['Pennsylvania', 'PA'],['West Virginia', 'WV']]
   
+  def create_map_link
+    map = "http://maps.google.com/maps/api/staticmap?center=#{latitude},#{longitude}&zoom=13&size=400x400&maptype=roadmap&markers=color:red%7Ccolor:red%7C#{latitude},#{longitude}&sensor=false"
+  end
+  
+  
   # Callback code
   # -----------------------------
    private
