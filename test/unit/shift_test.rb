@@ -37,10 +37,6 @@ class ShiftTest < ActiveSupport::TestCase
   should_not allow_value(nil).for(:date)
   
   ## for start time
-  should allow_value(Time.now).for(:start_time)
-  should allow_value(4.hours.ago).for(:start_time)
-  should allow_value(3.hours.ago).for(:start_time)
-  should allow_value(1.hour.from_now).for(:start_time)
   should_not allow_value(nil).for(:start_time)
   
   # for end time
@@ -49,13 +45,15 @@ class ShiftTest < ActiveSupport::TestCase
 
   # ---------------------------------
   # Testing other methods with a context
-  context "test" do
+  context "Shift Tests" do
     # create the objects I want with factories
     setup do 
       @ed = Factory(:employee)
       @cmu = Factory(:store)
       @assignment1 = Factory(:assignment, :store => @cmu, :employee => @ed)
-      @shift1 = Factory(:shift, :assignment => @assignment1, :date => Date.today, :start_time => Time.now, :end_time => nil, :notes => nil)
+      @job1 = Factory(:job)
+      @shift1 = Factory(:shift, :assignment => @assignment1, :date => Time.local(2000,11,11,11,11,11).to_date, :start_time => Time.local(2000,11,11,11,11,11), :end_time => nil, :notes => nil)
+      @shift_job = Factory(:shift_job, :job => @job1, :shift => @shift1)
     end
     
     # and provide a teardown method as well
@@ -63,14 +61,28 @@ class ShiftTest < ActiveSupport::TestCase
       @ed.destroy
       @cmu.destroy
       @assignment1.destroy
+      @job1.destroy
       @shift1.destroy
-    end
-  
-    #test the scope 'for_employee'
-    should "show that the shift for employee 1 is shift1" do
-      s =  Shift.for_employee(1).map{|o| o}
-      assert_equal @shift1, s[0]
+      @shift_job.destroy
     end
     
+    #test the scope 'for_employee'
+    should "show that the shift for employee 1 is shift1" do
+      s =  Shift.for_employee(@ed.id).map{|o| o}
+      assert_equal 1, s.size
+      assert_equal @shift1, s.first
+    end
+    
+    #test the scope completed
+    should "show that the shift for employee 1 is completed" do
+      s =  Shift.completed.map{|o| o}
+      assert_equal 1, s.size
+    end
+    
+    #test the scope incomplete
+    should "show that no shifts for incomplete" do
+      s =  Shift.incomplete.map{|o| o}
+      assert_equal 0, s.size
+    end
   end
 end

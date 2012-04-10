@@ -7,6 +7,8 @@ FactoryGirl.define do
     zip "15213"
     phone { rand(10 ** 10).to_s.rjust(10,'0') }
     active true
+    latitude 12.235
+    longitude 52.325
   end
   
   factory :employee do
@@ -35,13 +37,13 @@ FactoryGirl.define do
   
   factory :shift do
     association :assignment
-    date Time.now.to_date
-    start_time Time.now
+    date Time.local(2000,11,11,11,11,11).to_date
+    start_time Time.local(2000,11,11,11,11,11)
     end_time nil
     notes nil
   end
   
-  factory :shiftjob do
+  factory :shift_job do
     association :job
     association :shift
   end  

@@ -26,16 +26,19 @@ class Shift < ActiveRecord::Base
   # -----------------------------
   
   # returns all shifts in the system that have at least one job associated with them
-  scope :completed, Shift.all.collect{|x| x if x.jobs.count >= 1}
+  scope :completed, where(:id => ShiftJob.select('shift_id'))
   
   # returns all shifts in the sysem that do not have at least one job associated with them
-  scope :incomplete, Shift.all.collect{|x| x if x.jobs.count < 1}
+  scope :incomplete, where('shifts.id NOT IN (SELECT shift_id FROM shift_jobs)')
   
   # returns all shifts that are associated with a given store
-  scope :for_store, lambda {|store_id| (Assignment.for_store(store_id).collect {|x| x.shifts}).flatten }
+  scope :for_store, lambda {|store_id| joins(:assignment).where('store_id = ?', store_id) }
  
   # returns all shifts that are associated with a given employee
-  scope :for_employee, lambda { |employee_id| Assignment.for_employee(employee_id).collect {|x| x.shifts}.flatten }
+  scope :for_employee, lambda { |employee_id| joins(:assignment).where('employee_id = ?', employee_id) }
+  
+  # returns all shifts that are associated with a given assignment
+  scope :for_assignment, lambda {|assignment_id| where("assignment_id = ?", assignment_id) }
     
   # returns all shifts which have a date in the past
   scope :past, where('start_time < ?', Time.now.to_date)
@@ -53,26 +56,24 @@ class Shift < ActiveRecord::Base
   scope :chronological, order('start_time, end_time')
 
   # returns shifts which orders values by store
-  scope :by_store, (Assignment.by_store.collect {|x| x.shifts }).flatten
+  scope :by_store, joins(:store).order('name')
 
-  
   # returns shifts which orders values by employee's last, first names
-  #scope :by_employee, 
+  scope :by_employee, joins(:employee).order('last_name, first_name')
   
   
   # Methods
   # -----------------------------
   
-  # returns true if the shift is currently active
-  #def is_current
-  #  return Time.now > start_time
-  #end  
-  
-  # returns true if the shift has already ended
-  #def has_ended
-  #  return end_time < Time.now
-  #end
-  
+  def completed?
+    # get an array of all shifts in the shiftjob table
+    possible_shift_ids = ShiftJob.all.shift_id.map{|s| s.id}.compact!
+    # return true if shift id is in the array
+    if possible_shift_ids.contains(self.id)
+      return true
+    end
+  end
+
 
   
 end

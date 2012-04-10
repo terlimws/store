@@ -29,10 +29,10 @@ ActiveRecord::Schema.define(:version => 20120408220431) do
     t.string   "ssn"
     t.date     "date_of_birth"
     t.string   "phone"
-    t.string   "role"
+    t.string   "role",          :default => "employee"
     t.boolean  "active",        :default => true
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "jobs", :force => true do |t|

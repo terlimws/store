@@ -1,7 +1,7 @@
 class Store < ActiveRecord::Base
   # Callbacks
   before_save :reformat_phone
-  before_save :find_store_coordinates
+  #before_save :find_store_coordinates
   
   # Relationships
   has_many :assignments
@@ -10,16 +10,29 @@ class Store < ActiveRecord::Base
   
   
   # Validations
-  # make sure required fields are present
-  validates_presence_of :name, :street, :city
-  # if state is given, must be one of the choices given (no hacking this field)
-  validates_inclusion_of :state, :in => %w[PA OH WV], :message => "is not an option"
+  # -----------------------------
+  # make sure required fields are present. stores must have a name, street, and zip code
+  validates_presence_of :name, :street, :zip
+  
+  # make sure stores have values which are the proper data type and within proper ranges
   # if zip included, it must be 5 digits only
   validates_format_of :zip, :with => /^\d{5}$/, :message => "should be five digits long"
+  
+  #validates_format_of :city, :with => /[a-zA-Z]/, :message => "should be only alphabets", :allow_nil => true, :allow_blank => true
+  
+  # if state is given, must be one of the choices given (no hacking this field)
+  validates_inclusion_of :state, :in => %w[PA OH WV], :message => "is not an option", :allow_nil => true, :allow_blank => true
+  
   # phone can have dashes, spaces, dots and parens, but must be 10 digits
-  validates_format_of :phone, :with => /^\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}$/, :message => "should be 10 digits (area code needed) and delimited with dashes only"
-  # make sure stores have unique names
+  # stores have phone values that are saved in the system as a string of digits (no other characters allowed in db, but user may input values with dashes)
+  #validates_format_of :phone, :with => /^(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})$/, :message => "should be 10 digits (area code needed) and delimited with dashes only", :allow_blank => true
+  validates_format_of :phone, :with => /^\d{3}[- ]?\d{3}[- ]?\d{4}$/, :message => "should be 10 digits (area code needed) and delimited with dashes only", :allow_blank => true
+  
+  # stores have store names which are unique in the system
   validates_uniqueness_of :name
+  
+  # stores have phone numbers which are unique in the system
+  validates_uniqueness_of :phone
   
   # Scopes
   scope :alphabetical, order('name')
