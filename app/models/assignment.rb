@@ -28,6 +28,16 @@ class Assignment < ActiveRecord::Base
   # Misc Constants
   PAYS_LIST = [['1', 1],['2', 2],['3', 3], ['4', 4], ['5', 5], ['6', 6]]
 
+
+  def active?
+    if self.end_date == nil
+      return 'active'
+    else
+      return 'inactive'
+    end
+  end
+
+
   # Private methods for callbacks and custom validations
   private  
   

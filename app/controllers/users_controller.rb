@@ -9,19 +9,35 @@ class UsersController < ApplicationController
   end
 
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
 
   def create
-    session[:user_id] = @user.id
-    redirect_to home_path
+    if current_user.employee.role? :admin
+      @user = User.new(params[:user])
+      if @user.save
+        # if saved to database
+        flash[:notice] = "Successfully created #{@user.employee.name}."
+        redirect_to @user # go to show employee page
+      else
+        # return to the 'new' form
+        render :action => 'new'
+      end
+    else
+      session[:user_id] = @user.id
+      redirect_to home_path
+    end
   end
 
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated #{@user.id}."
       redirect_to @user
@@ -33,7 +49,7 @@ class UsersController < ApplicationController
   def destroy
       @user = User.find(params[:id])
       @user.destroy
-      flash[:notice] = "Successfully removed #{@user.name} from the Creamery system."
+      flash[:notice] = "Successfully removed #{@user.employee.name} from the Creamery system."
       redirect_to users_url
   end
   

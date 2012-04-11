@@ -37,10 +37,10 @@ FactoryGirl.define do
   
   factory :shift do
     association :assignment
-    date Time.local(2000,11,11,11,11,11).to_date
-    start_time Time.local(2000,11,11,11,11,11)
-    end_time nil
-    notes nil
+    date 3.days.ago
+    start_time Time.local(2000,1,1,11,0,0)
+    end_time Time.local(2000,1,1,14,0,0)
+    notes "Great Shift!"
   end
   
   factory :shift_job do
@@ -48,5 +48,11 @@ FactoryGirl.define do
     association :shift
   end  
 
+  factory :user do
+    email "terencelim@cmu.edu"
+    password_digest "$2a$10$LIrUdZ8mM74EOAaKOyPhduJwx4zahfgemrNEXtGLo7k49Qe4lvsYm"
+    association :employee
+    
+  end
 
 end

@@ -7,6 +7,7 @@ class Employee < ActiveRecord::Base
   # Relationships
   has_many :assignments
   has_many :stores, :through => :assignments
+  has_many :shifts, :through => :assignments
   belongs_to :user
   
   # Validations

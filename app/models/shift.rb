@@ -41,25 +41,28 @@ class Shift < ActiveRecord::Base
   scope :for_assignment, lambda {|assignment_id| where("assignment_id = ?", assignment_id) }
     
   # returns all shifts which have a date in the past
-  scope :past, where('start_time < ?', Time.now.to_date)
+  scope :past, where('date < ?', Date.today)
 
   # returns all shifts which have a date in the present or future
-  scope :upcoming, where('start_time >= ?', Time.now.to_date)
+  scope :upcoming, where('date >= ?', Date.today)
   
   # returns all shifts in the next 'x' days
-  scope :for_next_days, lambda { |x|  Shift.find(:all, :conditions => [ "date <= ?", Date.today + x] ) }
+  scope :for_next_days, lambda { |x| where('date BETWEEN :start_date AND :end_date', start_date:DateTime.now, end_date:x.days.from_now) }
     
   # returns all shifts in the previous 'x' days
-  scope :for_past_days, lambda { |x|  Shift.find(:all, :conditions => [ "date <= ?", Date.today + x] ) }
+  scope :for_past_days, lambda { |x| where('date BETWEEN :start_date AND :end_date', start_date:x.days.ago-1.day, end_date:DateTime.now-1.day) }
   
   # returns all shifts chronologically
-  scope :chronological, order('start_time, end_time')
+  scope :chronological, order('date, start_time, end_time')
 
   # returns shifts which orders values by store
   scope :by_store, joins(:store).order('name')
 
   # returns shifts which orders values by employee's last, first names
   scope :by_employee, joins(:employee).order('last_name, first_name')
+
+  # return all shifts that has ended
+  scope :ended_shifts, where('end_time < ?', Time.now)
   
   
   # Methods
@@ -74,6 +77,30 @@ class Shift < ActiveRecord::Base
     end
   end
 
+  def active?
+    return self.end_time == nil?
+  end
 
+  # returns true if the shift is currently active
+  def is_current
+    date == Date.today && end_time > Time.now
+  end  
   
+  # returns true if the shift has already ended
+  def has_ended
+    if date < Date.today
+      return true
+    else
+      return end_time < Time.now
+    end
+  end
+  
+  private
+  #check if assignment is current
+  def assignment_is_current
+    current_assignments_id = Assignment.current.all.map{|x| x.id}
+    unless assignment_is_current.include?(self.assignment_id)
+      errors.add(:assignment_id, "is not current")
+    end
+  end
 end
