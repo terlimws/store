@@ -8,7 +8,7 @@ class Employee < ActiveRecord::Base
   has_many :assignments
   has_many :stores, :through => :assignments
   has_many :shifts, :through => :assignments
-  belongs_to :user
+  has_one :user
   
   # Validations
   validates_presence_of :first_name, :last_name
@@ -28,6 +28,7 @@ class Employee < ActiveRecord::Base
   scope :managers, where('role = ?', 'manager')
   scope :admins, where('role = ?', 'admin')
   scope :alphabetical, order('last_name, first_name')
+  scope :for_store, lambda { |x| joins(:assignments).where("store_id = ?", x) }
   
   # Other methods
   def name
@@ -61,6 +62,10 @@ class Employee < ActiveRecord::Base
     now = Time.now.utc.to_date
     return now.year - self.date_of_birth.year - (self.date_of_birth.to_date.change(:year => now.year) > now ? 1 : 0)
   end
+
+  
+  #def already_has_user_account?
+  #end
 
 
   # Misc Constants

@@ -1,4 +1,7 @@
 class Store < ActiveRecord::Base
+  
+  attr_accessible :create_active_stores_map_link
+  
   # Callbacks
   before_save :reformat_phone
   #before_save :find_store_coordinates
@@ -43,10 +46,19 @@ class Store < ActiveRecord::Base
   # Misc Constants
   STATES_LIST = [['Ohio', 'OH'],['Pennsylvania', 'PA'],['West Virginia', 'WV']]
   
-  def create_map_link
-    map = "http://maps.google.com/maps/api/staticmap?center=#{latitude},#{longitude}&zoom=13&size=400x400&maptype=roadmap&markers=color:red%7Ccolor:red%7C#{latitude},#{longitude}&sensor=false"
+  def create_map_link(zoom=13,width=400,height=400)
+    map = "http://maps.google.com/maps/api/staticmap?center=#{latitude},#{longitude}&zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap&markers=color:red%7Ccolor:red%7C#{latitude},#{longitude}&sensor=false"
   end
   
+  def create_active_stores_map_link(zoom=13,width=400,height=400)
+    markers = ''
+    i = 1
+    Store.active.each do |store|
+      markers += "&markers=color:red%7Ccolor:red%7Clabel:#{i}%7C#{store.latitude},#{store.longitude}"
+      i += 1
+    end
+    map = "http://maps.google.com/maps/api/staticmap?zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap#{markers}&sensor=false"
+  end
   
   # Callback code
   # -----------------------------

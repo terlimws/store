@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
 
-  before_filter :check_login
+  before_filter :check_login, :except => [:index]
   authorize_resource
 
   def index

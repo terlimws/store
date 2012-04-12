@@ -1,7 +1,129 @@
-<h1>Welcome to Creamery</h1>
+<% if logged_in? %>
+  
+  <h1>Welcome to Creamery, <%= current_user.employee.first_name %></h1><p>
+  
+  <% if current_user.employee.role == 'admin' %>
+    
+  <h3>Administrator Dashboard</h3><p><br>
+  
+  
+  <%= render :partial => "admin_store_summary" %>
+  
 
-<p>If you have yet to try our ice cream, head down to
-one of our shops ASAP and fall in love with our exclusive
-ice cream flavors!
+  <!-- ends admin view -->
+  <% elsif current_user.employee.role == 'manager' %>
+  
+  <h3>Manager Dashboard</h3><p><br>
+ 
+  <%= render :partial => "manager_employees_summary" %>
+  
+  <!-- ends manager view -->
+  <% elsif current_user.employee.role == 'employee' %>
+  
+  <h3>Employee Dashboard</h3><p><br>
+  
+  <h4>Demographic Records</h4><br>
+  <table class="table table-bordered table-striped">
+  <tr>
+    <td width="200"><b>Name:</b></td>
+    <td><%= current_user.employee.name %></td>
+  </tr>
+  <tr>
+    <td><b>SSN:</b></td>
+    <td><%= current_user.employee.ssn.insert(3,"-").insert(7,"-") %></td>
+  </tr>
+  <tr>
+    <td><b>Date of Birth:</b></td>
+    <td><%= current_user.employee.date_of_birth.strftime('%d %b %Y') %></td>
+  </tr>
+  <tr>
+    <td><b>Phone:</b></td>
+    <td><%= current_user.employee.phone.insert(0,"(").insert(4, ") ").insert(9,"-") %></td>
+  </tr>
+  <tr>
+    <td><b>Joined Date:</b></td>
+    <td><%= current_user.employee.created_at.strftime('%d %b %Y') %></td>
+  </tr>  
 
-</p>
+  </table><p><br>
+
+  <h4>Previous Shifts</h4><br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th width="200">Store Name</th>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    <% if Shift.by_employee(current_user.employee.id).past.size == 0 %>
+      <tr><td colspan="5">No Upcoming Shifts Found</td></tr>
+      
+    <% else %>
+      
+      <% Shift.by_employee(current_user.employee.id).past.each do |shift| %>
+        <tr>
+          <td><%= shift.store.name %></td>
+          <td><%= shift.date.strftime('%d %b %Y') %></td>
+          <td><%= shift.start_time.strftime('%I:%M %p') %></td>
+          <td><%= shift.end_time.strftime('%I:%M %p') unless shift.end_time.nil? %></td>
+          <td><%= link_to 'Details', shift_path(shift), :class => 'btn btn-mini' %></td>
+          
+        </tr>
+      <% end %>
+    <% end %>
+  
+    </tbody>
+  </table><p><br>
+
+  <h4>Upcoming Shifts in next 2 weeks</h4><br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th width="200">Store Name</th>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    <% if Shift.by_employee(current_user.employee.id).for_next_days(14).size == 0 %>
+      <tr><td colspan="4">No Upcoming Shifts Found</td></tr>
+      
+    <% else %>
+     
+      <% Shift.by_employee(current_user.employee.id).for_next_days(14).each do |shift| %>
+        <tr>
+          <td><%= shift.store.name %></td>
+          <td><%= shift.date.strftime('%d %b %Y') %></td>
+          <td><%= shift.start_time.strftime('%I:%M %p') %></td>
+          <td><%= link_to 'Details', shift_path(shift), :class => 'btn btn-mini' %></td>
+          
+        </tr>
+      <% end %>
+    <% end %>
+  
+    </tbody>
+  </table><p><br>
+
+
+  <!-- ends employee view --!>
+  <% end %>
+
+<% else %>
+
+  
+  <h1>Welcome to Creamery</h1>
+  
+  <p>If you have yet to try our ice cream, head down to
+  one of our shops ASAP and fall in love with our exclusive
+  ice cream flavors!
+  
+  </p>
+
+<% end %>

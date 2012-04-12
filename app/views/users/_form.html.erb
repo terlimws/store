@@ -27,7 +27,9 @@
     <div class="control-group">
       <%= f.label :employee_id, :class => 'control-label' %>
       <div class="controls">
-        <%= f.collection_select :employee_id, Employee.active.all, :id, :proper_name, :prompt => "Select ..." %>
+        <%= f.collection_select :employee_id, Employee.active.all, :id, :proper_name, :prompt => "Select ..."
+        #collection_select(:post, :category_id, Category.all, :id, :name, {:disabled => lambda{|category| category.archived? }})
+        %>
       </div>
     </div>
     

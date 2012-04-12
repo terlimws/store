@@ -1,2 +1,0 @@
-class ShiftjobController < ApplicationController
-end

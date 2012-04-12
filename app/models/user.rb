@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   # Relationships
   # -----------------------------
   belongs_to :employee
-  #has_one :employee
   
   # Scopes
   # -----------------------------

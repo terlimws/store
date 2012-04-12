@@ -1,4 +1,7 @@
 class Shift < ActiveRecord::Base
+  # callbacks
+  before_create :generate_end_time
+  
   # Relationships
   # -----------------------------
   belongs_to :assignment
@@ -102,5 +105,9 @@ class Shift < ActiveRecord::Base
     unless assignment_is_current.include?(self.assignment_id)
       errors.add(:assignment_id, "is not current")
     end
+  end
+  
+  def generate_end_time
+    self.end_time = self.start_time + 3.hours if self.end_time.blank?
   end
 end

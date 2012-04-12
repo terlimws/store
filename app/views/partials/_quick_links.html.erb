@@ -1,6 +1,29 @@
+
+
+
+<% if logged_in? and (current_user.employee.role == 'admin' or current_user.employee.role == 'manager') %>
+<div class="well">
+	<h2>Control Panel</h2>
+		        <ul class="nav">
+		          <li><%= link_to "Employees", employees_path %></li>
+                          <li><%= link_to "Assignments", assignments_path %></li>
+                          <li><%= link_to "Stores", stores_path %></li>
+                          <li><%= link_to "Jobs", jobs_path %></li>
+                          <li><%= link_to "Users", users_path %></li>
+		        </ul>
+
+</div>
+
+
+<% else %>
+
+
 <div class="well">
 	<h2>Quick Links</h2>
+		        <ul class="nav">
 		<%= link_to image_tag("Follow-us-Twitter-icon.jpg", :alt => "rss feed"), "https://twitter.com/#!/terlimws" %>
 		<%= link_to image_tag("facebook.png", :alt => "rss feed"), "http://www.facebook.com/islandcreamery" %>
-	</ul>
+		        </ul>
 </div>
+
+<% end %>

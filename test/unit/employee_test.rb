@@ -84,7 +84,7 @@ class EmployeeTest < ActiveSupport::TestCase
       assert_equal ["Crawford", "Wilson"], Employee.younger_than_18.alphabetical.map{|e| e.last_name}
     end
     
-    # test scope younger_than_18
+    # test scope is_18_or_older
     should "show there are four employees over 18" do
       assert_equal 4, Employee.is_18_or_older.size
       assert_equal ["Gruberman", "Heimann", "Janeway", "Sisko"], Employee.is_18_or_older.alphabetical.map{|e| e.last_name}
@@ -118,6 +118,12 @@ class EmployeeTest < ActiveSupport::TestCase
     should "shows that there is one admin: Alex" do
       assert_equal 1, Employee.admins.size
       assert_equal ["Heimann"], Employee.admins.alphabetical.map{|e| e.last_name}
+    end
+
+    # test the scope 'for_store'
+    should "shows that there are two person for store id = 1" do
+      assert_equal 2, Employee.for_store(1).size
+      assert_equal ["Gruberman", "Crawford"], Employee.for_store(1).map{|e| e.last_name}
     end
     
     # test the method 'name'

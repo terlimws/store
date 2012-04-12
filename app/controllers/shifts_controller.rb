@@ -21,6 +21,7 @@ class ShiftsController < ApplicationController
 
   def create
     @shift = Shift.new(params[:shift])
+    
     if @shift.save
       # if saved to database
       flash[:notice] = "Successfully created shift for #{@shift.id}."
