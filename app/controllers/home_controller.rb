@@ -19,8 +19,21 @@ class HomeController < ApplicationController
         else
           @employees = Employee.for_store(current_user.employee.current_assignment.store_id).where("end_date IS NULL").paginate(:page => params[:page]).per_page(10)
           @shifts = Shift.for_store(current_user.employee.current_assignment.store_id).for_next_days(0).chronological
+          @incomplete_shifts = Shift.past.incomplete
         end
       end
+    end
+  end
+  
+  def search
+    @query = params[:query]
+    if logged_in?
+      if current_user.employee.role? :admin
+        @employees = Employee.search(@query)
+      else current_user.employee.role? :manager
+        @employees = Employee.for_store(current_user.employee.current_assignment.store_id).search(@query)
+      end
+    @totalhits = @employees.size
     end
   end
   

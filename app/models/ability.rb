@@ -22,7 +22,7 @@ class Ability
           end
           
         elsif user.employee.role? :employee
-          can :read, :all
+          can :read, Store
         end
       end
         

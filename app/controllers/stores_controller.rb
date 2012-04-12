@@ -9,6 +9,7 @@ class StoresController < ApplicationController
 
   def show
     @store = Store.find(params[:id])
+    authorize! :read, @store
   end
 
   def new
