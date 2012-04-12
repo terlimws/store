@@ -20,9 +20,9 @@ class ShiftJobTest < ActiveSupport::TestCase
       @cmu = FactoryGirl.create(:store)
       @assignment1 = FactoryGirl.create(:assignment, :store => @cmu, :end_date => nil, :employee => @ed)
       @assignment2 = FactoryGirl.create(:assignment, :store => @cmu, :end_date => nil, :employee => @cindy)
-      @shift1 = FactoryGirl.create(:shift, :date => Date.today, :assignment => @assignment1, :end_time => Time.local(2012,12,8,23,0,0))
-      @shift2 = FactoryGirl.create(:shift, :assignment => @assignment2, :date => Date.today, :end_time => Time.local(2000,1,1,11,0,1))
-      @sweepfloor = FactoryGirl.create(:job)
+      @shift1 = FactoryGirl.create(:shift, :date => Date.today, :assignment => @assignment1, :end_time => Time.local(2012,12,8,23,59,0))
+      @shift2 = FactoryGirl.create(:shift, :assignment => @assignment2, :date => Date.today, :start_time => Time.local(2012,1,1,0,0,0), :end_time => Time.local(2000,1,1,0,0,1))
+      @cleantoilet = FactoryGirl.create(:job)
     end
     
     # and provide a teardown method as well
@@ -34,7 +34,7 @@ class ShiftJobTest < ActiveSupport::TestCase
       @assignment2.destroy
       @shift1.destroy
       @shift2.destroy
-      @sweepfloor.destroy
+      @cleantoilet.destroy
     end
   
     # now run the tests:
@@ -47,13 +47,13 @@ class ShiftJobTest < ActiveSupport::TestCase
       assert @assignment2.active?
       assert @shift1.is_current
       assert @shift2.has_ended
-      assert_equal "Clean the toilet", @sweepfloor.name
+      assert_equal "Clean the toilet", @cleantoilet.name
     end
   
     # test shift_id cannot be empty
     should "not allow shift_id to be empty" do
       sweepfloor = FactoryGirl.build(:job)
-      shiftjob1 = FactoryGirl.build(:shift_job, :job => @sweepfloor, :shift => nil)
+      shiftjob1 = FactoryGirl.build(:shift_job, :job => @cleantoilet, :shift => nil)
       deny shiftjob1.valid?
     end
   
@@ -65,14 +65,14 @@ class ShiftJobTest < ActiveSupport::TestCase
     
     # test jobs cannot be added to shifts until shift end time has past
     should "not allow jobs to be added to shift until shift is over" do
-      sweepfloor = FactoryGirl.build(:job)
-      shiftjob1 = FactoryGirl.build(:shift_job, :job => @sweepfloor, :shift => @shift1)
-      completed_shifts_id = Shift.all.map {|x| x.id if x.end_time < Time.now}
+      clean_toilet = FactoryGirl.build(:job)
+      shiftjob1 = FactoryGirl.build(:shift_job, :job => @clean_toilet, :shift => @shift1)
+      completed_shifts_id = Shift.all.map {|x| x.id if x.is_current==false}
       deny shiftjob1.valid?
     end
   
     should "allow jobs to be added to shift when shift is over" do
-      testshiftjob = FactoryGirl.build(:shift_job, :job => @sweepfloor, :shift => @shift2)
+      testshiftjob = FactoryGirl.build(:shift_job, :job => @cleantoilet, :shift => @shift2)
       assert testshiftjob.valid?
     end
   end

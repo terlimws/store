@@ -6,11 +6,11 @@
 	<h2>Control Panel</h2>
 		        <ul class="nav">
 		          <li><%= link_to "Employees", employees_path %></li>
-                          <li><%= link_to "Assignments", assignments_path %></li>
-                          <li><%= link_to "Stores", stores_path %></li>
-                          <li><%= link_to "Jobs", jobs_path %></li>
-			  <li><%= link_to "Shifts", shifts_path %></li>
-                          <li><%= link_to "Users", users_path %></li>
+                          <% if can? :manage, Assignment %> <li><%= link_to "Assignments", assignments_path %></li><% end %>
+                          <% if can? :manage, Store %><li><%= link_to "Stores", stores_path %></li><% end %>
+                          <% if can? :manage, Job %><li><%= link_to "Jobs", jobs_path %></li><% end %>
+			  <% if can? :manage, Shift %><li><%= link_to "Shifts", shifts_path %></li><% end %>
+                          <% if can? :manage, User %><li><%= link_to "Users", users_path %></li><% end %>
 		        </ul>
 
 </div>

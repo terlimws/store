@@ -24,7 +24,10 @@ class Shift < ActiveRecord::Base
   
   # ensure end time is after start time
   validates_time :end_time, :on => :create, :allow_nil => true, :allow_blank => true
-  validates_time :end_time, :on => :update, :after => :start_time, :before => Time.now
+  validates_time :end_time, :on => :update, :after => :start_time, :before => Date.current
+  #validates_time :end_time, :on => :update, :after => :start_time, :after_message => "cannot be before start time", :before_message => "cannot be in the future", :before => Time.now
+  
+  validate :assignment_is_current
   
   # Scopes
   # -----------------------------
@@ -111,15 +114,6 @@ class Shift < ActiveRecord::Base
   def assignment_is_current
     current_assignments_id = Assignment.current.all.map{|x| x.id}
     unless current_assignments_id.include?(self.assignment_id)
-      errors.add(:assignment_id, "is not current")
-    end
-  end
-  
-  private
-  #check if assignment is current
-  def assignment_is_current
-    current_assignments_id = Assignment.current.all.map{|x| x.id}
-    unless assignment_is_current.include?(self.assignment_id)
       errors.add(:assignment_id, "is not current")
     end
   end

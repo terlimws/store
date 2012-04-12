@@ -13,16 +13,19 @@ class Ability
       
         if user.employee.role? :admin
           can :manage, :all
+          cannot :manage, User
           
         elsif user.employee.role? :manager
           can :manage, Shift
           can :read, Store
           can :read, Employee do |employee|
             employee.current_assignment.store_id == user.employee.current_assignment.store_id
+          cannot :manage, User
           end
           
         elsif user.employee.role? :employee
           can :read, Store
+          cannot :manage, User
         end
       end
         

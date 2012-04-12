@@ -44,9 +44,9 @@ class ShiftTest < ActiveSupport::TestCase
       @assignment3 = FactoryGirl.create(:assignment, :store => @cmu, :end_date => nil, :employee => @ralph)
       @assignment4 = FactoryGirl.create(:assignment, :store => @upitts, :end_date => nil)
       @shift1 = FactoryGirl.create(:shift, :assignment => @assignment1)
-      @shift2 = FactoryGirl.create(:shift, :assignment => @assignment2, :date => 2.days.from_now, :end_time => Time.local(2000,1,1,11,0,1))
+      @shift2 = FactoryGirl.create(:shift, :assignment => @assignment2, :date => 4.days.from_now.to_date, :end_time => Time.local(2000,1,1,11,0,1))
       @shift3 = FactoryGirl.create(:shift, :assignment => @assignment3, :date => 1.day.ago.to_date)
-      @shift4 = FactoryGirl.create(:shift, :assignment => @assignment4, :date => 1.day.ago.to_date, :end_time => nil)
+      @shift4 = FactoryGirl.create(:shift, :assignment => @assignment4, :date => Date.today, :end_time => nil)
       @sweepfloor = FactoryGirl.create(:job)
       @mopfloor = FactoryGirl.create(:job, :name => "Mopped the floor")
       @shiftjob1 = FactoryGirl.create(:shift_job, :shift => @shift2, :job => @sweepfloor)
@@ -63,12 +63,15 @@ class ShiftTest < ActiveSupport::TestCase
       @assignment1.destroy
       @assignment2.destroy
       @assignment3.destroy
+      @assignment4.destroy
       @shift1.destroy
       @shift2.destroy
       @shift3.destroy
       @shift4.destroy
       @sweepfloor.destroy
       @mopfloor.destroy
+      @shiftjob1.destroy
+      @shiftjob2.destroy
     end
   
     # now run the tests:
@@ -125,26 +128,27 @@ class ShiftTest < ActiveSupport::TestCase
     
     #test scope for past
     should "return shifts that have a date in the past" do
-      assert_equal 3, Shift.past.size
-      assert_equal [1,3, 4], Shift.past.chronological.map{|s| s.id}
+      assert_equal 2, Shift.past.size
+      assert_equal [1,3], Shift.past.chronological.map{|s| s.id}
     end 
     
     #test scope for upcoming
     should "return shifts that have a date in the future" do
-      assert_equal 1, Shift.upcoming.size
-      assert_equal [2], Shift.upcoming.map{|s| s.id}
+      assert_equal 2, Shift.upcoming.size
+      assert_equal [2, 4], Shift.upcoming.map{|s| s.id}
     end
     
     #test scope for the next * days
     should "return shifts that are in the next x days" do
       assert_equal 1, Shift.for_next_days(2).size
-      assert_equal [2], Shift.for_next_days(2).map{|s| s.id}
+      assert_equal [4], Shift.for_next_days(0).chronological.map{|s| s.id}
+      assert_equal [4], Shift.for_next_days(2).chronological.map{|s| s.id}
     end
 
     #test scope for the past * days
     should "return shifts that were in the past x days" do
-      assert_equal 3, Shift.for_past_days(10).size
-      assert_equal [1,3,4], Shift.for_past_days(3).map{|s| s.id}
+      assert_equal 2, Shift.for_past_days(10).size
+      assert_equal [1,3], Shift.for_past_days(3).map{|s| s.id}
     end
 
     #test scope for chronological

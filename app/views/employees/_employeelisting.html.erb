@@ -14,7 +14,7 @@
       <tr>
         <td><%= link_to employee.name, employee_path(employee) %></td>
         <td><%= employee.phone.insert(3,"-").insert(7,"-") %></td>
-        <td><%= link_to employee.current_assignment.try{|a| a.store.name} || "Not Assigned to Any Store", store_path(employee.current_assignment.try{|a| a.store} || "") %></td>
+        <td><%= link_to employee.current_assignment.try{|a| a.store.name} || "No Current Assignment", store_path(employee.current_assignment.try{|a| a.store} || "") %></td>
         <td><%= employee.role.capitalize %></td>
         <td>
           <%= link_to 'Edit', edit_employee_path(employee), :class => 'btn btn-mini' %>
@@ -28,5 +28,5 @@
 <%= will_paginate @employees, :previous_label => "&larr;&nbsp;Previous&nbsp;", :next_label => "&nbsp;Next&nbsp;&rarr;" %>
 </span>
 <br />
-<p><%= link_to "New Employee", new_employee_path %></p>
+<%= link_to 'New Employee', new_assignment_path, :class => 'btn btn-primary' %>
 

@@ -23,10 +23,6 @@ class ShiftsController < ApplicationController
       @shift = Shift.new
     end
     authorize! :create, @shift
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json:@shift }
-    end
   end
 
   def edit
@@ -38,7 +34,7 @@ class ShiftsController < ApplicationController
     
     if @shift.save
       # if saved to database
-      flash[:notice] = "Successfully created shift for #{@shift.id}."
+      flash[:notice] = "Successfully created shift for #{@shift.employee.name}."
       redirect_to @shift # go to show shift page
     else
       # return to the 'new' form

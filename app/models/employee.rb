@@ -30,7 +30,7 @@ class Employee < ActiveRecord::Base
   scope :alphabetical, order('last_name, first_name')
   scope :for_store, lambda { |x| joins(:assignments).where("store_id = ?", x) }
   scope :search, lambda { |term| where('employees.first_name LIKE ? OR employees.last_name LIKE ?', "#{term}%", "#{term}%").order("first_name, last_name") }
-  
+
   # Other methods
   def name
     "#{last_name}, #{first_name}"

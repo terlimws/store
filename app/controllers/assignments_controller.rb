@@ -13,7 +13,12 @@ class AssignmentsController < ApplicationController
   end
 
   def new
-    @assignment = Assignment.new
+    if params[:store_id]
+      @assignment = Assignment.new(:store_id => params[:store_id])
+    else
+      @assignment = Assignment.new
+    end
+    authorize! :create, @assignment
   end
 
   def edit

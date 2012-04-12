@@ -9,7 +9,7 @@ class ShiftJob < ActiveRecord::Base
 
   private
   def shift_ended
-    completed_shifts_id = Shift.ended_shifts.all.map {|x| x.id}
+    completed_shifts_id = Shift.all.map {|x| x.id if x.is_current==false}
     unless completed_shifts_id.include?(self.shift_id)
       errors.add(:shift_id, "has not ended")
     end

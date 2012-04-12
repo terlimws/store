@@ -19,7 +19,8 @@
         <td><%= Assignment.current.for_store(store.id).count %></td>
         <td><%= store.total_hours_in_x_days(days=14) %></td>
         <td>
-          <%= link_to 'Assign Employee', edit_store_path(store), :class => 'btn btn-mini' %>
+          <%= link_to 'Assign Employee', new_assignment_path(:store_id => store.id), :class => 'btn btn-mini' %>
+          
         </td>
       </tr>
     <% end %>

@@ -15,12 +15,12 @@
 
 <p>
   <b>Date of Birth: </b>
-  <%= @employee.date_of_birth.strftime("%m/%d/%y") %>
+  <%= @employee.date_of_birth.strftime('%d %b %Y') %>
 </p>
 
 <p>
   <b>SSN: </b>
-  <%= @employee.ssn %>
+  <%= @employee.ssn.insert(3,"-").insert(7,"-") %>
 </p>
 
 <p>
