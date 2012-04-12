@@ -19,7 +19,7 @@
     <div class="control-group">
       <%= f.label :assignment_id, :class => 'control-label' %>
       <div class="controls">
-        <%= f.number_field :assignment_id, :class => 'number_field' %>
+        <%= f.collection_select :assignment_id, Assignment.current, :id, :name, :prompt => "Select ..." %>
       </div>
     </div>
 

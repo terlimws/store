@@ -64,8 +64,11 @@ class Employee < ActiveRecord::Base
   end
 
   
-  #def already_has_user_account?
-  #end
+  def total_hours_in_x_days(days=14)
+    hours = 0
+    self.shifts.for_next_days(days).each {|shift| hours += shift.total_hours}
+    return hours
+  end
 
 
   # Misc Constants

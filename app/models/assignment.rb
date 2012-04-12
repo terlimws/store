@@ -36,6 +36,10 @@ class Assignment < ActiveRecord::Base
       return 'inactive'
     end
   end
+  
+  def name
+    "#{self.employee.name} @ #{self.store.name}"
+  end
 
 
   # Private methods for callbacks and custom validations

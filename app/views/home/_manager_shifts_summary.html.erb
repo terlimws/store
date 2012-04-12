@@ -1,0 +1,36 @@
+
+
+<h4>Employees in your store</h4><p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Employee</th>
+      <th>Number of shift-hours worked</th>
+      <th>Date of last shift</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= link_to employee.name, employee_path(employee) %></td>
+        <td><%= employee.total_hours_in_x_days(days=14) %></td>
+        
+        <% if employee.shifts.past.last == nil %>
+         <td>Nothing to show</td>
+        
+        <% else %>
+        <td><%= employee.shifts.past.last.date.strftime('%d %b %Y') %></td>
+      <% end %>
+        <td>
+          <%= link_to 'Create New Shift', edit_employee_path(employee), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!-- Add the pagination using will_paginate gem -->
+<span class="smtext">
+<%= will_paginate @employees, :previous_label => "&larr;&nbsp;Previous&nbsp;", :next_label => "&nbsp;Next&nbsp;&rarr;" %>
+</span>
+<br />

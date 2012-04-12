@@ -60,6 +60,12 @@ class Store < ActiveRecord::Base
     map = "http://maps.google.com/maps/api/staticmap?zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap#{markers}&sensor=false"
   end
   
+  def total_hours_in_x_days(days=14)
+    hours = 0
+    self.shifts.for_next_days(days).each {|shift| hours += shift.total_hours}
+    return hours
+  end
+  
   # Callback code
   # -----------------------------
    private

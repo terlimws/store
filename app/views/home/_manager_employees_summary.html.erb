@@ -1,30 +1,30 @@
-
-
-<h4>Active Stores</h4><p>
+<h4>Shifts today for your store</h4><p>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Store</th>
-      <th>Phone Number</th>
-      <th>Employee Count</th>
+      <th>Employee</th>
+      <th>Start Time</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <% @stores.each do |store| %>
-      <tr>
-        <td><%= link_to store.name, store_path(store) %></td>
-        <td><%= store.phone.insert(3,"-").insert(7,"-") %></td>
-        <td><%= Assignment.current.for_store(store.id).count %></td>
-        <td>
-          <%= link_to 'Assign Employee', edit_store_path(store), :class => 'btn btn-mini' %>
-        </td>
-      </tr>
+    
+    <% if Shift.by_employee(current_user.employee.id).past.size == 0 %>
+      <tr><td colspan="4">No Upcoming Shifts Found</td></tr>
+    
+    <% else %>
+      
+      <% @shifts.each do |shift| %>
+        <tr>
+          <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
+          <td><%=  shift.id %></td>
+          <td>
+            <%= link_to 'Create New Shift', edit_shift_path(shift), :class => 'btn btn-mini' %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
-<!-- Add the pagination using will_paginate gem -->
-<span class="smtext">
-<%= will_paginate @stores, :previous_label => "&larr;&nbsp;Previous&nbsp;", :next_label => "&nbsp;Next&nbsp;&rarr;" %>
-</span>
+
 <br />

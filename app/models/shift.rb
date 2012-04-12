@@ -50,7 +50,9 @@ class Shift < ActiveRecord::Base
   scope :upcoming, where('date >= ?', Date.today)
   
   # returns all shifts in the next 'x' days
-  scope :for_next_days, lambda { |x| where('date BETWEEN :start_date AND :end_date', start_date:DateTime.now, end_date:x.days.from_now) }
+  #scope :for_next_days, lambda { |x| where('date BETWEEN ? AND ?', Date.current, x.days.from_now.to_date) }
+  # scope :for_next_days, lambda { |x| where('date BETWEEN ? AND ?', DateTime.now, x.days.from_now) }
+  scope :for_next_days, lambda {|num| where('date >= ? AND date <= ?', Date.current-1.day, num.days.from_now.to_date-1.day)}
     
   # returns all shifts in the previous 'x' days
   scope :for_past_days, lambda { |x| where('date BETWEEN :start_date AND :end_date', start_date:x.days.ago-1.day, end_date:DateTime.now-1.day) }
@@ -65,7 +67,7 @@ class Shift < ActiveRecord::Base
   scope :by_employee, joins(:employee).order('last_name, first_name')
 
   # return all shifts that has ended
-  scope :ended_shifts, where('end_time < ?', Time.now)
+  scope :ended_shifts, where('date < ?', Time.now)
   
   
   # Methods
@@ -78,6 +80,11 @@ class Shift < ActiveRecord::Base
     if possible_shift_ids.contains(self.id)
       return true
     end
+  end
+  
+  def total_hours
+    return 0 if self.end_time == nil
+    return ((self.end_time.hour * 60 + self.end_time.min) - (self.start_time.hour * 60 + self.start_time.min)) / 60
   end
 
   def active?
@@ -95,6 +102,15 @@ class Shift < ActiveRecord::Base
       return true
     else
       return end_time < Time.now
+    end
+  end
+  
+  private
+  #check if assignment is current
+  def assignment_is_current
+    current_assignments_id = Assignment.current.all.map{|x| x.id}
+    unless current_assignments_id.include?(self.assignment_id)
+      errors.add(:assignment_id, "is not current")
     end
   end
   

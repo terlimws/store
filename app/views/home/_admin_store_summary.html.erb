@@ -7,6 +7,7 @@
       <th>Store</th>
       <th>Phone Number</th>
       <th>Employee Count</th>
+      <th>No. of shift hours</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
         <td><%= link_to store.name, store_path(store) %></td>
         <td><%= store.phone.insert(3,"-").insert(7,"-") %></td>
         <td><%= Assignment.current.for_store(store.id).count %></td>
+        <td><%= store.total_hours_in_x_days(days=14) %></td>
         <td>
           <%= link_to 'Assign Employee', edit_store_path(store), :class => 'btn btn-mini' %>
         </td>

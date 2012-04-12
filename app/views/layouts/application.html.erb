@@ -29,7 +29,8 @@
 
 		        </ul>
 			<ul class="nav pull-right">
-			  <% if logged_in? %>
+			  <% if logged_in? %><li><%= #link_to current_user.employee.name, employee_path(current_user.employee)
+			  %></li>
                             <li><%= link_to 'Logout', logout_path %></li>
                           <% else %><li><%= link_to 'Login', login_path %></li>
                           <% end %>

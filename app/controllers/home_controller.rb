@@ -13,8 +13,13 @@ class HomeController < ApplicationController
       if current_user.employee.role? :admin
         @stores = Store.paginate(:page => params[:page]).per_page(10)
       elsif current_user.employee.role? :manager
-        #@employees = Employee.all
-        @stores = Store.paginate(:page => params[:page]).per_page(10)
+        if current_user.employee.current_assignment == nil
+          @employees = nil
+          @shifts = nil
+        else
+          @employees = Employee.for_store(current_user.employee.current_assignment.store_id).paginate(:page => params[:page]).per_page(10)
+          @shifts = Shift.for_store(current_user.employee.current_assignment.store_id).for_next_days(0).chronological
+        end
       end
     end
   end
