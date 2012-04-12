@@ -8,12 +8,12 @@ class Ability
       
       if user.employee.nil?
         can :read, Store
+        cannot :manage, User
       
       else
       
         if user.employee.role? :admin
           can :manage, :all
-          cannot :manage, User
           
         elsif user.employee.role? :manager
           can :manage, Shift

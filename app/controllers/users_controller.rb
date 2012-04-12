@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   def create
     if current_user.employee.role? :admin
       @user = User.new(params[:user])
+      @user.password = params[:password]
       if @user.save
         # if saved to database
         flash[:notice] = "Successfully created #{@user.employee.name}."

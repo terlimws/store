@@ -1,8 +1,11 @@
+require 'bcrypt'
+
 class User < ActiveRecord::Base
   has_secure_password
   
-  #attr_accessible :email, :password, :password_confirmation, :employee_id, :role
-#  require 'bcrypt'
+  # attr_accessible :email, :password, :password_confirmation
+  #:employee_id, :role
+  include BCrypt
   
   # Relationships
   # -----------------------------
@@ -27,6 +30,7 @@ class User < ActiveRecord::Base
   def self.authentication(email, password)
     find_by_email(email).try(:authenticate, password)
   end
+
   
   private
   def employee_is_active_in_system

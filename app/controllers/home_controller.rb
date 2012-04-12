@@ -12,7 +12,7 @@ class HomeController < ApplicationController
     if logged_in?
       if current_user.employee.role? :admin
         @stores = Store.paginate(:page => params[:page]).per_page(10)
-        @top_5_employees = Employee.active.sort{|a,b| a.total_hours_in_x_days(14) <=> b.total_hours_in_x_days(14)}.first(5)
+        @top_5_employees = Employee.active.sort{|a,b| b.total_hours_in_x_days(14) <=> a.total_hours_in_x_days(14)}.first(5)
       elsif current_user.employee.role? :manager
         if current_user.employee.current_assignment == nil
           @employees = nil

@@ -1,11 +1,11 @@
 <% if logged_in? %>
   
-  <h1>Welcome to Creamery, <%= current_user.employee.name %></h1><p>
+  <h1>Welcome to Creamery</h1><p>
   
   <% if current_user.employee.role == 'admin' %>
     
   <h3>Administrator Dashboard</h3><p><br>
-  
+  Good day, <%= current_user.employee.first_name + "." %>
   
   <%= render :partial => "admin_store_summary" %>
   
@@ -16,6 +16,7 @@
   <% elsif current_user.employee.role == 'manager' %>
   
   <h3>Manager Dashboard</h3>
+  Good day, <%= current_user.employee.first_name + "." %>
   <%= "You have no current assignment." if current_user.employee.current_assignment == nil %>
   <%= "You are currently assigned Store Manager of #{current_user.employee.current_assignment.store.name}." if current_user.employee.current_assignment != nil %>
   <p><br>
@@ -28,6 +29,7 @@
   <% elsif current_user.employee.role == 'employee' %>
   
   <h3>Employee Dashboard</h3>
+  Good day, <%= current_user.employee.first_name + "." %>
   <%= "You have no current assignment." if current_user.employee.current_assignment == nil %>
   <%= "You are currently assigned an Employee of #{current_user.employee.current_assignment.store.name}." if current_user.employee.current_assignment != nil %>
   <p><br>
