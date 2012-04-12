@@ -17,7 +17,7 @@ class HomeController < ApplicationController
           @employees = nil
           @shifts = nil
         else
-          @employees = Employee.for_store(current_user.employee.current_assignment.store_id).paginate(:page => params[:page]).per_page(10)
+          @employees = Employee.for_store(current_user.employee.current_assignment.store_id).where("end_date IS NULL").paginate(:page => params[:page]).per_page(10)
           @shifts = Shift.for_store(current_user.employee.current_assignment.store_id).for_next_days(0).chronological
         end
       end

@@ -4,15 +4,29 @@ class ShiftsController < ApplicationController
   authorize_resource
   
   def index
-    @shifts = Shift.paginate(:page => params[:page]).per_page(10)
+    if current_user.employee.role == 'manager'
+      @shifts = Shift.for_store(current_user.employee.current_assignment.store_id).paginate(:page => params[:page]).per_page(10)
+    else
+      @shifts = Shift.paginate(:page => params[:page]).per_page(10)
+    end
   end
 
   def show
     @shift = Shift.find(params[:id])
   end
 
+
   def new
-    @shift = Shift.new
+    if params[:assignment_id]
+      @shift = Shift.new(:assignment_id => params[:assignment_id])
+    else
+      @shift = Shift.new
+    end
+    authorize! :create, @shift
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json:@shift }
+    end
   end
 
   def edit

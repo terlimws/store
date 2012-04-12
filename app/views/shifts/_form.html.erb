@@ -19,9 +19,15 @@
     <div class="control-group">
       <%= f.label :assignment_id, :class => 'control-label' %>
       <div class="controls">
-        <%= f.collection_select :assignment_id, Assignment.current, :id, :name, :prompt => "Select ..." %>
+        <% if current_user.employee.role == 'manager' %>
+          <%= f.collection_select :assignment_id, Assignment.for_store(current_user.employee.current_assignment.store.id).current, :id, :name, :prompt => "Select ..." %>
+          <% else %>
+            <%= f.collection_select :assignment_id, Assignment.current, :id, :name, :prompt => "Select ..." %>
+            <% end %>
       </div>
     </div>
+    
+
 
     <div class="control-group">
       <%= f.label :date, :class => 'control-label' %>

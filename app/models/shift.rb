@@ -23,7 +23,8 @@ class Shift < ActiveRecord::Base
   validates_time :start_time, :allow_nil => false
   
   # ensure end time is after start time
-  validates_time :end_time, :after => :start_time, :allow_nil => true
+  validates_time :end_time, :on => :create, :allow_nil => true, :allow_blank => true
+  validates_time :end_time, :on => :update, :after => :start_time, :before => Time.now
   
   # Scopes
   # -----------------------------
@@ -52,10 +53,10 @@ class Shift < ActiveRecord::Base
   # returns all shifts in the next 'x' days
   #scope :for_next_days, lambda { |x| where('date BETWEEN ? AND ?', Date.current, x.days.from_now.to_date) }
   # scope :for_next_days, lambda { |x| where('date BETWEEN ? AND ?', DateTime.now, x.days.from_now) }
-  scope :for_next_days, lambda {|num| where('date >= ? AND date <= ?', Date.current-1.day, num.days.from_now.to_date-1.day)}
+  scope :for_next_days, lambda {|num| where('date >= ? AND date <= ?', Date.current, num.days.from_now.to_date)}
     
   # returns all shifts in the previous 'x' days
-  scope :for_past_days, lambda { |x| where('date BETWEEN :start_date AND :end_date', start_date:x.days.ago-1.day, end_date:DateTime.now-1.day) }
+  scope :for_past_days, lambda {|num| where('date >= ? AND date < ?', num.days.ago.to_date, Date.current)}
   
   # returns all shifts chronologically
   scope :chronological, order('date, start_time, end_time')

@@ -1,36 +1,65 @@
-
-
-<h4>Employees in your store</h4><p>
+<h4>Shifts today for your store</h4><p>
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Employee</th>
-      <th>Number of shift-hours worked</th>
-      <th>Date of last shift</th>
+      <th>Start Time</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <% @employees.each do |employee| %>
-      <tr>
-        <td><%= link_to employee.name, employee_path(employee) %></td>
-        <td><%= employee.total_hours_in_x_days(days=14) %></td>
-        
-        <% if employee.shifts.past.last == nil %>
-         <td>Nothing to show</td>
-        
-        <% else %>
-        <td><%= employee.shifts.past.last.date.strftime('%d %b %Y') %></td>
+    
+    <% if Shift.for_store(current_user.employee.current_assignment.store_id).for_next_days(0).size == 0 %>
+      
+      <tr><td colspan="4">No Upcoming Shifts Found</td></tr>
+    
+    <% else %>
+      
+      <% @shifts.each do |shift| %>
+        <tr>
+          <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
+          <td><%=  shift.start_time.strftime('%I:%M %p') %></td>
+          <td>
+            <%= link_to 'Create New Shift', edit_shift_path(shift), :class => 'btn btn-mini' %>
+          </td>
+        </tr>
       <% end %>
-        <td>
-          <%= link_to 'Create New Shift', edit_employee_path(employee), :class => 'btn btn-mini' %>
-        </td>
-      </tr>
     <% end %>
   </tbody>
 </table>
-<!-- Add the pagination using will_paginate gem -->
-<span class="smtext">
-<%= will_paginate @employees, :previous_label => "&larr;&nbsp;Previous&nbsp;", :next_label => "&nbsp;Next&nbsp;&rarr;" %>
-</span>
+
+<br />
+
+
+
+
+<h4>Incomplete Shifts</h4><p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Employee</th>
+      <th>Shift Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <% if Shift.by_employee(current_user.employee.id).past.size == 0 %>
+      <tr><td colspan="4">No Incomplete Shifts Found</td></tr>
+    
+    <% else %>
+      
+      <% @shifts.each do |shift| %>
+        <tr>
+          <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
+          <td><%=  shift.start_time.strftime('%I:%M %p') %></td>
+          <td>
+            <%= link_to 'Create New Shift', edit_shift_path(shift), :class => 'btn btn-mini' %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
 <br />

@@ -27,6 +27,8 @@
   <%= image_tag @store.create_map_link(zoom=13,width=400,height=400) %>
 </p>
 
-
+<% if can? :manage, Employee %>
 
 <%= render :partial => "employeelisting" %>
+
+<% end %>

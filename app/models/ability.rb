@@ -15,10 +15,11 @@ class Ability
           can :manage, :all
           
         elsif user.employee.role? :manager
-          can :manage, Store do |store|
-            store.id = user.employee.assignment.store_id
+          can :manage, Shift
+          can :read, Store
+          can :read, Employee do |employee|
+            employee.current_assignment.store_id == user.employee.current_assignment.store_id
           end
-          can :read, :all
           
         elsif user.employee.role? :employee
           can :read, :all

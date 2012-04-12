@@ -5,10 +5,12 @@ class EmployeesController < ApplicationController
   
   def index
     @employees = Employee.alphabetical.paginate(:page => params[:page]).per_page(10)
+    authorize! :manage, @employees
   end
 
   def show
     @employee = Employee.find(params[:id])
+    authorize! :read, @employee
   end
 
   def new
@@ -22,12 +24,10 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(params[:employee])
     if @employee.save
-      puts "\n\n\n\n\n\n\n\n\nSuccesss!"
       # if saved to database
       flash[:notice] = "Successfully created #{@employee.name}."
       redirect_to @employee # go to show employee page
     else
-      puts "\n\n\n\n\n\n\n\n\nFailed!"
       # return to the 'new' form
       render :action => 'new'
     end
