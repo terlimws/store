@@ -3,13 +3,36 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Employee</th>
+      <th width="30%">Employee</th>
       <th>Store</th>
       <th>No. of shift hours</th>
     </tr>
   </thead>
   <tbody>
     <% @top_5_employees.each do |employee| %>
+      <% if employee.current_assignment != nil %>
+      <tr>
+        <td><%= link_to employee.name, employee_path(employee) %></td>
+        <td><%= employee.current_assignment.store.name %></td>
+        <td><%= employee.total_hours_in_x_days(14) %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<h4>Lowest Employee-hours</h4><p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th width="30%">Employee</th>
+      <th>Store</th>
+      <th>No. of shift hours</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bottom_5_employees.each do |employee| %>
       <% if employee.current_assignment != nil %>
       <tr>
         <td><%= link_to employee.name, employee_path(employee) %></td>

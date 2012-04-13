@@ -4,8 +4,8 @@
   
   <% if current_user.employee.role == 'admin' %>
     
-  <h3>Administrator Dashboard</h3><p><br>
-  Good day, <%= current_user.employee.first_name + "." %>
+  <h3>Administrator Dashboard</h3>
+  Good day, <%= current_user.employee.first_name + "." %><p><br>
   
   <%= render :partial => "admin_store_summary" %>
   
