@@ -1,72 +1,35 @@
-<%= form_for @shift, :html => { :class => 'form-horizontal' } do |f| %>
-
-  <% if @shift.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@shift.errors.count, "error") %> prohibited this assignment from being saved:</h2>
-
-      <ul>
-      <% @shift.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= nested_form_for @shift, :html => { :class => 'form-horizontal' } do |shift_form| %>
 
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Shift</legend>
 
-    <div class="control-group">
-      <%= f.label :assignment_id, :class => 'control-label' %>
-      <div class="controls">
-        <% if current_user.employee.role == 'manager' %>
-          <%= f.collection_select :assignment_id, Assignment.for_store(current_user.employee.current_assignment.store.id).current, :id, :name, :prompt => "Select ..." %>
-          <% else %>
-            <%= f.collection_select :assignment_id, Assignment.current, :id, :name, :prompt => "Select ..." %>
-            <% end %>
-      </div>
-    </div>
-    
-
-
-    <div class="control-group">
-      <%= f.label :date, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.date_select :date, :class => 'date_select' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :start_time, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.time_select :start_time, :class => 'time_select' %>
-      </div>
-    </div>
-
-  
-    <% if controller.action_name != 'new' %>
-    <div class="control-group">
-      <%= f.label :end_time, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.time_select :end_time, :class => 'time_select', :minute_step => 15 %>
-        <br>End time should be rounded up to the next 15-minute increment</br>
-      </div>
-    </div>
-  
-    <% end %>
-
-    <div class="control-group">
-      <%= f.label :notes, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_area :notes, :class => 'text_area' %>
-      </div>
-    </div>
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', shifts_path, :class => 'btn' %>
-    </div>
-    
+      <!-- Add partial for town form details here -->
+      <%= render :partial => 'shift_fields', :locals => { :f => shift_form } %>
     
   </fieldset>
+  
+		<legend>Add some jobs to this shift</legend>
+		<div>
+			
+			<%= shift_form.simple_fields_for :shift_jobs do |shift_jobs_form| %>
+				
+				<!-- Add partial for attractions form here -->
+				<%= render :partial => 'shiftjobs_fields', :locals => { :f => shift_jobs_form } %>
+				
+			<% end %> 
+			<p>
+				<br />
+				<!-- if you are using bootstrap, choose the first option... -->
+				<%#= shift_form.link_to_add(raw("<i class='icon-plus icon-white'></i> Add Job To Shift"), :shift_jobs, :class => 'btn btn-mini btn-primary') %>
+                                <%= shift_form.link_to_add("Add Shift", :shift_jobs) %>
+                              
+			</p>
+			
+		</div> 
+	</div>
+</div>
+<div class="form-actions">
+  <%= shift_form.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', shifts_path, :class => 'btn' %>
+</div>
 <% end %>

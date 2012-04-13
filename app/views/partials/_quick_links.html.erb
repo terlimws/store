@@ -5,15 +5,18 @@
 <div class="well">
 	<h2>Control Panel</h2>
 		        <ul class="nav">
-		          <li><%= link_to "Employees", employees_path %></li>
-                          <% if can? :manage, Assignment %> <li><%= link_to "Assignments", assignments_path %></li><% end %>
-                          <% if can? :manage, Store %><li><%= link_to "Stores", stores_path %></li><% end %>
-                          <% if can? :manage, Job %><li><%= link_to "Jobs", jobs_path %></li><% end %>
-			  <% if can? :manage, Shift %><li><%= link_to "Shifts", shifts_path %></li><% end %>
-                          <% if can? :manage, User %><li><%= link_to "Users", users_path %></li><% end %>
+		          <li><%= link_to (raw("<i class=\"icon-user\"></i> Employees")), employees_path %></li>
+                          <% if can? :manage, Assignment %> <li><%= link_to (raw("<i class=\"icon-calendar\"></i> Assignment")), assignments_path %></li><% end %>
+                          <% if can? :manage, Store %><li><%= link_to (raw("<i class=\"icon-home\"></i> Stores")), stores_path %></li><% end %>
+                          <% if can? :manage, Job %><li><%= link_to (raw("<i class=\"icon-pencil\"></i> Jobs")), jobs_path %></li><% end %>
+			  <% if can? :manage, Shift %><li><%= link_to (raw("<i class=\"icon-time\"></i> Shifts")), shifts_path %></li><% end %>
+                          <% if can? :manage, User %><li><%= link_to (raw("<i class=\"icon-user\"></i> Users")), users_path %></li><% end %>
 		        </ul>
 
 </div>
+
+
+
 Find Employee:
 			<%= form_tag(search_path) do %>
 				<%= text_field_tag('query', '', :size => 12) %>

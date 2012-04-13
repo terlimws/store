@@ -1,0 +1,45 @@
+    <div class="control-group">
+      <%= f.label :assignment_id, :class => 'control-label' %>
+      <div class="controls">
+        <% if current_user.employee.role == 'manager' %>
+          <%= f.collection_select :assignment_id, Assignment.for_store(current_user.employee.current_assignment.store.id).current, :id, :name, :prompt => "Select ..." %>
+          <% else %>
+            <%= f.collection_select :assignment_id, Assignment.current, :id, :name, :prompt => "Select ..." %>
+            <% end %>
+      </div>
+    </div>
+    
+
+
+    <div class="control-group">
+      <%= f.label :date, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.date_select :date, :class => 'date_select' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :start_time, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.time_select :start_time, :class => 'time_select' %>
+      </div>
+    </div>
+
+  
+    <% if controller.action_name != 'new' %>
+    <div class="control-group">
+      <%= f.label :end_time, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.time_select :end_time, :class => 'time_select', :minute_step => 15 %>
+        <br>End time should be rounded up to the next 15-minute increment</br>
+      </div>
+    </div>
+  
+    <% end %>
+
+    <div class="control-group">
+      <%= f.label :notes, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :notes, :class => 'text_area' %>
+      </div>
+    </div>

@@ -10,6 +10,7 @@ class Shift < ActiveRecord::Base
   has_one :store, :through => :assignment
   has_one :employee, :through => :assignment
   
+  accepts_nested_attributes_for :shift_jobs, :reject_if => lambda {|shiftjob| shiftjob[:job_id].blank?}
   
   # Validations
   # -------------------

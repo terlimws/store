@@ -1,0 +1,2 @@
+class ShiftJobsController < ApplicationController
+end

@@ -5,7 +5,10 @@
   <% if current_user.employee.role == 'admin' %>
     
   <h3>Administrator Dashboard</h3>
-  Good day, <%= current_user.employee.first_name + "." %><p><br>
+  Good <% if (0..11).include?(Time.now.hour) %> morning,
+  <% elsif (12..17).include?(Time.now.hour) %> afternoon,
+  <% elsif (18..23).include?(Time.now.hour) %> evening,
+  <% end %><%= current_user.employee.first_name + "." %><p><br>
   
   <%= render :partial => "admin_store_summary" %>
   

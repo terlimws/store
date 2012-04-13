@@ -19,6 +19,7 @@ class ShiftsController < ApplicationController
   def new
     if params[:assignment_id]
       @shift = Shift.new(:assignment_id => params[:assignment_id])
+      @shift.shift_jobs.build
     else
       @shift = Shift.new
     end

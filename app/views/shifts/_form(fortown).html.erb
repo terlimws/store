@@ -1,0 +1,39 @@
+<!-- NOTE THAT WE ARE USING BOTH SIMPLE_FORM AND NESTED_FORM (simple_nested_form_for) -->
+<!-- If you are not using both, adjust the simple_nested_form_for call accordingly -->
+
+<%= simple_nested_form_for @town, :html => { :class => 'form-horizontal' } do |town_form| %>
+<div class="row">
+	<div class="span6">
+		<fieldset>
+	    <legend><%= controller.action_name.capitalize %> Town</legend>
+				
+				<!-- Add partial for town form details here -->
+				<%= render :partial => 'town_fields', :locals => { :f => town_form } %>
+				
+	  </fieldset>
+	</div>
+	<div class="span6">
+		<legend>Add some attractions for this town</legend>
+		<div id="town_attractions">
+			
+			<%= town_form.simple_fields_for :attractions do |attraction_form| %>
+				
+				<!-- Add partial for attractions form here -->
+				<%= render :partial => 'attraction_fields', :locals => { :f => attraction_form } %>
+				
+			<% end %> 
+			<p>
+				<br />
+				<!-- if you are using bootstrap, choose the first option... -->
+				<%# town_form.link_to_add(raw("<i class='icon-plus icon-white'></i> Add Attraction"), :attractions, :class => 'btn btn-mini btn-primary') %>
+				<%= town_form.link_to_add("Add Attraction", :attractions) %>
+			</p>
+			
+		</div> 
+	</div>
+</div>
+<div class="form-actions">
+  <%= town_form.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', towns_path, :class => 'btn' %>
+</div>
+<% end %>
