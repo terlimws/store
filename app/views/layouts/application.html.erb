@@ -31,6 +31,12 @@
 
 		        </ul>
 		
+				<% if logged_in? && (current_user.employee.role?(:admin) or current_user.employee.role?(:manager)) %>
+				<%= form_tag(search_path, :class => 'navbar-search pull-left') do %>
+					<%= text_field_tag('query', '', :size => 12, :placeholder => 'Search Employee...', :class => 'search-query') %>
+					<%= submit_tag('Find', :class => 'search-query') %>
+				<% end %><% end %>
+		
 			<ul class="nav pull-right"><% if logged_in? %><li>
 				<% if current_user.employee.role?(:employee) %><a href ="#"><%= current_user.employee.name %></a>
 				<% else %>
