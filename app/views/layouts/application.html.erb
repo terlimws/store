@@ -21,13 +21,16 @@
                       <a class="brand" href="<%= home_path %>">Creamery</a>
 		      <div class="nav-collapse">
 		        <ul class="nav">
-                          <li><%= link_to 'Home', home_path %></li>
-		          <li><%= link_to 'About Us', about_path %></li>
-                          <li><%= link_to 'Contact Us', contact_path %></li>
-			  <li><%= link_to 'Our Stores', stores_path %></li>
-			  <li><%= link_to 'Privacy Policy', privacy_path %></li>
+                          <% if controller.action_name == 'home' %><li class="active"><% else %><li><% end %><%= link_to 'Home', home_path %></li>
+
+
+		          <% if controller.action_name == 'about' %><li class="active"><% else %><li><% end %><%= link_to 'About Us', about_path %></li>
+                          <% if controller.action_name == 'contact' %><li class="active"><% else %><li><% end %><%= link_to 'Contact Us', contact_path %></li>
+			  <% if controller.controller_name == 'stores' %><li class="active"><% else %><li><% end %><%= link_to 'Our Stores', stores_path %></li>
+			  <% if controller.action_name == 'privacy' %><li class="active"><% else %><li><% end %><%= link_to 'Privacy Policy', privacy_path %></li>
 
 		        </ul>
+
 			<ul class="nav pull-right">
 			  <% if logged_in? %><li><%= #link_to current_user.employee.name, employee_path(current_user.employee)
 			  %></li>

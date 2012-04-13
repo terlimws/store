@@ -1,6 +1,6 @@
 class Store < ActiveRecord::Base
   
-  attr_accessible :create_active_stores_map_link
+  attr_accessible :create_active_stores_map_link, :name, :street, :city, :state, :zip, :phone, :active
   
   # Callbacks
   before_save :reformat_phone

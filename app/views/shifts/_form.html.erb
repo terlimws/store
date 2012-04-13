@@ -1,33 +1,44 @@
 <%= nested_form_for @shift, :html => { :class => 'form-horizontal' } do |shift_form| %>
 
+<% if @shift.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@shift.errors.count, "error") %> prohibited this shift from being saved:</h2>
+
+    <ul>
+    <% @shift.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Shift</legend>
 
-      <!-- Add partial for town form details here -->
       <%= render :partial => 'shift_fields', :locals => { :f => shift_form } %>
     
   </fieldset>
+
+
+
+	
   
-		<legend>Add some jobs to this shift</legend>
+	<% if controller.action_name == 'edit' or controller.action_name == 'update' %>
+		<legend>Add Jobs to this Shift</legend>
 		<div>
 			
 			<%= shift_form.simple_fields_for :shift_jobs do |shift_jobs_form| %>
-				
-				<!-- Add partial for attractions form here -->
 				<%= render :partial => 'shiftjobs_fields', :locals => { :f => shift_jobs_form } %>
 				
 			<% end %> 
 			<p>
 				<br />
-				<!-- if you are using bootstrap, choose the first option... -->
-				<%#= shift_form.link_to_add(raw("<i class='icon-plus icon-white'></i> Add Job To Shift"), :shift_jobs, :class => 'btn btn-mini btn-primary') %>
-                                <%= shift_form.link_to_add("Add Shift", :shift_jobs) %>
+				<%= shift_form.link_to_add(raw("<i class='icon-plus icon-white'></i> Add Job To Shift"), :shift_jobs, :class => 'btn btn-mini btn-primary') %>
                               
 			</p>
-			
-		</div> 
-	</div>
+
 </div>
+	<% end %>
 <div class="form-actions">
   <%= shift_form.submit nil, :class => 'btn btn-primary' %>
   <%= link_to 'Cancel', shifts_path, :class => 'btn' %>

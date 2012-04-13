@@ -1,4 +1,4 @@
-<h1>Job</h1>
+<h1>Job</h1><br>
 
 <p>
   <b>Name</b><br>
@@ -11,8 +11,8 @@
 </p>
 
 <p>
-  <b>Active</b><br>
-  <%= @job.active %>
+  <b>Status</b><br>
+  <% if @job.active %><span class="label label-success">Active</span><% else %><span class="label label-warning">In-active</span><% end %>
 </p>
 
 <div class="form-actions">

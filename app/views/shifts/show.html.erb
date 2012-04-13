@@ -1,5 +1,5 @@
 <h1>Shift Details</h1>
-
+<br>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -14,7 +14,7 @@
           <td><%= @shift.employee.name %></td>
           <td><%= @shift.date.strftime('%d %b %Y') %></td>
           <td><%= @shift.start_time.strftime('%I:%M %p') %></td>
-          <td><%= @shift.end_time.strftime('%I:%M %p') unless @shift.end_time.nil? %></td>
+          <td><%= @shift.end_time.nil? ? "Ongoing" : @shift.end_time.strftime("%I:%M %p") %></td>
         </tr>
   
     </tbody>

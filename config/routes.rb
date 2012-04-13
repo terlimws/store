@@ -7,12 +7,16 @@ Creamery2012::Application.routes.draw do
   resources :shifts
   resources :users
   resources :sessions
+  resources :password_resets
   
   # Authentication routes
   match 'user/edit' => 'users#edit', :as => :edit_current_user
   match 'signup' => 'users#new', :as => :signup
   match 'logout' => 'sessions#destroy', :as => :logout
   match 'login' => 'sessions#new', :as => :login
+  
+  # Inactive and past routes
+  match 'inactive_employees' => 'employees#inactive', :as => :inactive_employees
 
   # Semi-static page routes
   match 'home' => 'home#home', :as => :home

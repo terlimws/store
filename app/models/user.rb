@@ -2,6 +2,7 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
   has_secure_password
+  before_create { generate_token(:auth_token) }
   
   # attr_accessible :email, :password, :password_confirmation
   #:employee_id, :role
@@ -30,8 +31,22 @@ class User < ActiveRecord::Base
   def self.authentication(email, password)
     find_by_email(email).try(:authenticate, password)
   end
-
   
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+
+  def send_password_reset
+    generate_token(:password_reset_token)
+    #self.password_reset_token = 1234
+    self.password_reset_sent_at = Time.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
+
+
   private
   def employee_is_active_in_system
     all_active_employees = Employee.active.all.map{|e| e.id}

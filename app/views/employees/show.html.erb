@@ -1,32 +1,37 @@
 <h1>Employee Details:</h1>
 <br>
 <p>
-  <b>Name:</b>
-  <%= @employee.name %>
-<p>
-  <b>Phone:</b>
-  <%= @employee.phone.insert(3,"-").insert(7,"-")%>
-</p>
-
-<p>
-  <b>Role: </b>
-  <%= @employee.role.capitalize %>
-</p>
-
-<p>
-  <b>Date of Birth: </b>
-  <%= @employee.date_of_birth.strftime('%d %b %Y') %>
-</p>
-
-<p>
-  <b>SSN: </b>
-  <%= @employee.ssn.insert(3,"-").insert(7,"-") %>
-</p>
-
-<p>
-  <b>Active: </b>
-  <%= "#{(@employee.active==true)? 'Yes' : 'No'}" %>
-</p>
+	
+  <table class="table table-bordered table-striped">
+  <tr>
+    <td width="200"><b>Name:</b></td>
+    <td><%= @employee.name %></td>
+  </tr>
+  <tr>
+    <td><b>SSN:</b></td>
+    <td><%= @employee.ssn.insert(3,"-").insert(7,"-") %></td>
+  </tr>
+  <tr>
+    <td><b>Date of Birth:</b></td>
+    <td><%= @employee.date_of_birth.strftime('%d %b %Y') %></td>
+  </tr>
+  <tr>
+    <td><b>Phone:</b></td>
+    <td><%= @employee.phone.insert(0,"(").insert(4, ") ").insert(9,"-") %></td>
+  </tr>
+  <tr>
+    <td><b>Role:</b></td>
+    <td><%= @employee.role.capitalize %></td>
+  </tr>	
+  <tr>
+    <td><b>Joined Date:</b></td>
+    <td><%= @employee.created_at.strftime('%d %b %Y') %></td>
+  </tr>
+  <tr>
+    <td><b>Status:</b></td>
+    <td>  <% if @employee.active %><span class="label label-success">Active</span><% else %><span class="label label-warning">In-active</span><% end %></td>
+  </tr>
+</table>
 
 <br>
 <br>
@@ -45,11 +50,11 @@
   </thead>
   <tbody
   </tr>
-<% @employee.assignments.each do|assignment| %>
+<% @employee.assignments.each do |assignment| %>
   <tr>
     <td><%= link_to assignment.store.name, store_path(assignment.store) %></td>
-    <td><%= assignment.start_date %></td>
-    <td><%= assignment.end_date %></td>
+    <td><%= assignment.start_date.strftime('%d %b %Y') %></td>
+    <td><% if assignment.end_date != nil %><%= assignment.end_date.strftime('%d %b %Y') %><% else %> <span class="label">N.A.</span><% end %></td>
     <td><%= assignment.pay_level %></td>
     <td><%= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'  %></td>
   </tr>
@@ -57,4 +62,4 @@
 </tbody>
 </table>
 <br />
-<p><%= link_to 'New Assignment', new_assignment_path %></p>
+<p><%= link_to 'New Assignment', new_assignment_path, :class => 'btn btn-primary' %></p>

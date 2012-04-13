@@ -20,6 +20,7 @@ class Ability
           can :read, Store
           can :read, Employee do |employee|
             employee.current_assignment.store_id == user.employee.current_assignment.store_id
+            
           cannot :manage, User
           end
           
