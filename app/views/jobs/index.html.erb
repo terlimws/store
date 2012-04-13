@@ -1,29 +1,38 @@
-<h1>Jobs</h1>
+<h1>Current Jobs</h1>
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th>Active</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
+	
+	<% if @jobs.size == 0 %>
+
+    <tr>
+      <td colspan=4>There are no active jobs</td>
+    </tr>
+
+	<% else %>
+	
     <% @jobs.each do |job| %>
       <tr>
         <td><%= link_to job.name, job_path(job) %></td>
         <td><%= job.description %></td>
-
-        <td><%= job.active %></td>
         <td>
           <%= link_to 'Edit', edit_job_path(job), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', job_path(job), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <%= link_to raw("<i class='icon-home icon-white'></i> Make Inactive"), edit_job_path(job, :status => 'deactivate_job'), :class => 'btn btn-mini btn-warning' %>
+		<% if job.shifts.empty? %>       
+		<%= link_to raw("<i class='icon-trash icon-white'></i> Delete"), job_path(job), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %><% end %>
         </td>
       </tr>
+		<% end %>
     <% end %>
   </tbody>
 </table>
 <%= will_paginate @jobs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 
 
-<%= link_to 'New', new_job_path, :class => 'btn btn-primary' %>
+<%= link_to 'Add New Job', new_job_path, :class => 'btn btn-primary' %>

@@ -1,0 +1,33 @@
+<h1>Inactive Jobs</h1>
+
+<% if @jobs.empty? %>
+  <br>There are no inactive jobs.
+<% else %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+	
+    <% @jobs.each do |job| %>
+      <tr>
+        <td><%= link_to job.name, job_path(job) %></td>
+        <td><%= job.description %></td>
+        <td>
+          <%= link_to 'Edit', edit_job_path(job), :class => 'btn btn-mini' %>
+<%= link_to raw("<i class='icon-home icon-white'></i> Make Active"), edit_job_path(job, :status => 'activate_job'), :class => 'btn btn-mini btn-info' %>   
+<% if job.shifts.empty? %>       
+<%= link_to 'Destroy', job_path(job), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %><% end %>
+        </td>
+      </tr>
+<% end %>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @jobs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>

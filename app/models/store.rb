@@ -50,7 +50,7 @@ class Store < ActiveRecord::Base
     map = "http://maps.google.com/maps/api/staticmap?center=#{latitude},#{longitude}&zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap&markers=color:red%7Ccolor:red%7C#{latitude},#{longitude}&sensor=false"
   end
   
-  def create_active_stores_map_link(zoom=13,width=400,height=400)
+  def self.create_active_stores_map_link(zoom=13,width=400,height=400)
     markers = ''
     i = 1
     Store.active.each do |store|

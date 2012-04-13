@@ -17,6 +17,10 @@ Creamery2012::Application.routes.draw do
   
   # Inactive and past routes
   match 'inactive_employees' => 'employees#inactive', :as => :inactive_employees
+  match 'inactive_jobs' => 'jobs#inactive', :as => :inactive_jobs
+  match 'inactive_stores' => 'stores#inactive', :as => :inactive_stores
+  match 'inactive_assignments' => 'assignments#inactive', :as => :inactive_assignments
+
 
   # Semi-static page routes
   match 'home' => 'home#home', :as => :home

@@ -1,4 +1,4 @@
-<h1>Current Assignments</h1>
+<h1>Past Assignments</h1>
 
 
 <% # if current assignments are empty
@@ -13,6 +13,7 @@ if @assignments.empty? %>
       <th>Store</th>
       <th>Pay Level</th>
       <th>Start Date</th>
+      <th>End Date</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -23,6 +24,8 @@ if @assignments.empty? %>
         <td><%= link_to assignment.store.name, store_path(assignment.store) %></td>
         <td><%= assignment.pay_level %></td>
         <td><%= assignment.start_date.strftime('%d %b %Y') %></td>
+	<td><%= assignment.end_date.strftime('%d %b %Y') %></td>
+
         <td>
           <%= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini' %>
         </td>

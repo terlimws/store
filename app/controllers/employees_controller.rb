@@ -5,9 +5,9 @@ class EmployeesController < ApplicationController
   
   def index
     if current_user.employee.role? :admin
-      @employees = Employee.alphabetical.paginate(:page => params[:page]).per_page(10)
+      @employees = Employee.active.alphabetical.paginate(:page => params[:page]).per_page(10)
     elsif current_user.employee.role? :manager
-      @employees = Employee.for_store(current_user.employee.current_assignment.store.id).where('end_date IS NULL').paginate(:page => params[:page]).per_page(10)
+      @employees = Employee.active.for_store(current_user.employee.current_assignment.store.id).where('end_date IS NULL').paginate(:page => params[:page]).per_page(10)
     else
       @employees = nil
     end
@@ -33,6 +33,19 @@ class EmployeesController < ApplicationController
 
   def edit
     @employee = Employee.find(params[:id])
+    
+    # Handle shortcut deactivations
+    unless params[:status].nil?
+      if params[:status].match(/deactivate/) # == 'deactivate_prj' || params[:status] == 'deactivate_asgn'
+        @employee.update_attribute(:active, false)
+        flash[:notice] = "#{@employee.name} was made inactive."
+      elsif params[:status].match(/activate/) # == 'activate_prj' || params[:status] == 'activate_asgn'
+        @employee.update_attribute(:active, true)
+        flash[:notice] = "#{@employee.name} was made active."
+      end
+      redirect_to employees_path if params[:status].match(/_employee/)
+    end
+    
     authorize! :update, @employee
   end
 

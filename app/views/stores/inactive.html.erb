@@ -1,31 +1,35 @@
 
 <% if can? :manage, Store %>
-<h1>Current Stores</h1>
+<h1>Inactive Stores</h1>
+
+<% if @stores.empty? %>
+  <br>There are no inactive stores.
+<% else %>
+
 <table class="table table-striped">
   <thead>
     <tr>
-		<th width=12%>Map Label</th>
       <th>Store</th>
       <th>Phone Number</th>
       <th>Staff Count</th>
       <th>Actions</th>
     </tr>
   </thead>
-  <tbody><% marker = 1 %>
+  <tbody>
     <% @stores.each do |store| %>
       <tr>
-		<td width = 12%><%= marker %></td>
         <td><%= link_to store.name, store_path(store) %></td>
         <td><%= store.phone.insert(3,"-").insert(7,"-") %></td>
         <td><%= Assignment.current.for_store(store.id).count %></td>
         <td>
           <%= link_to 'Edit', edit_store_path(store), :class => 'btn btn-mini' %>
-          <%= link_to raw("<i class='icon-home icon-white'></i> Make Inactive"), edit_store_path(store, :status => 'deactivate_store'), :class => 'btn btn-mini btn-warning' %>
-		<% if store.shifts.empty? and store.employees.empty? %>       
-		<%= link_to raw("<i class='icon-trash icon-white'></i> Delete"), store_path(store), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %><% end %>
+ <%= link_to raw("<i class='icon-home icon-white'></i> Make Active"), edit_store_path(store, :status => 'activate_store'), :class => 'btn btn-mini btn-info' %>
+	<% if store.shifts.empty? and store.employees.empty? %>       
+	<%= link_to raw("<i class='icon-trash icon-white'></i> Delete"), store_path(store), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %><% end %>
         </td>
-      </tr><% marker = marker + 1 %>
+      </tr>
     <% end %>
+<% end %>
   </tbody>
 </table>
 <!-- Add the pagination using will_paginate gem -->
@@ -33,8 +37,6 @@
 <%= will_paginate @stores, :previous_label => "&larr;&nbsp;Previous&nbsp;", :next_label => "&nbsp;Next&nbsp;&rarr;" %>
 </span>
 <br />
-
-<%= link_to 'New Store', new_store_path, :class => 'btn btn-primary' %>
 
 <% else
 # Shows what Managers, Employees and Guests see
@@ -44,18 +46,16 @@
 <table class="table table-striped">
   <thead>
     <tr>
-	<th>Map Label</th>
       <th>Store Name</th>
       <th>Store Phone</th>
     </tr>
   </thead>
-  <tbody><% marker = 1 %>
+  <tbody>
     <% @stores.each do |store| %>
       <tr>
-		<td width = 12%><%= marker %></td>
         <td><%= link_to store.name, store_path(store) %></td>
         <td><%= store.phone.insert(3,"-").insert(7,"-") %></td>
-      </tr><% marker = marker + 1 %>
+      </tr>
     <% end %>
   </tbody>
 </table>
@@ -65,10 +65,7 @@
 </span>
 <br />
 
-<% end %>  <p><br><b>Map of our stores: </b><br>
-<p align="center">
-
-  <%= image_tag Store.create_active_stores_map_link(zoom=12,width=800,height=300)
-  %>
+<% end %>
+<p><p>
 
 </p>

@@ -7,6 +7,14 @@ class AssignmentsController < ApplicationController
     @assignments = Assignment.current.paginate(:page => params[:page]).per_page(10)
     @past_assignments = Assignment.past.paginate(:page => params[:page]).per_page(10)
   end
+  
+  def inactive
+    if current_user.employee.role? :admin
+      @assignments = Assignment.past.chronological.paginate(:page => params[:page]).per_page(10)
+    else
+      @assignments = nil
+    end
+  end
 
   def show
     @assignment = Assignment.find(params[:id])

@@ -4,7 +4,11 @@ class JobsController < ApplicationController
   authorize_resource
   
   def index
-    @jobs = Job.alphabetical.paginate(:page => params[:page]).per_page(10)
+    @jobs = Job.active.alphabetical.paginate(:page => params[:page]).per_page(10)
+  end
+
+  def inactive
+    @jobs = Job.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
   end
 
   def show
@@ -17,6 +21,18 @@ class JobsController < ApplicationController
 
   def edit
     @job = Job.find(params[:id])
+    
+    # Handle shortcut deactivations
+    unless params[:status].nil?
+      if params[:status].match(/deactivate/) # == 'deactivate_prj' || params[:status] == 'deactivate_asgn'
+        @job.update_attribute(:active, false)
+        flash[:notice] = "#{@job.name} was made inactive."
+      elsif params[:status].match(/activate/) # == 'activate_prj' || params[:status] == 'activate_asgn'
+        @job.update_attribute(:active, true)
+        flash[:notice] = "#{@job.name} was made active."
+      end
+      redirect_to jobs_path if params[:status].match(/_job/)
+    end
   end
 
   def create

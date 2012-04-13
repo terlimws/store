@@ -11,6 +11,10 @@ class StoresController < ApplicationController
     @store = Store.find(params[:id])
     authorize! :read, @store
   end
+  
+  def inactive
+    @stores = Store.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
+  end
 
   def new
     @store = Store.new
@@ -18,6 +22,18 @@ class StoresController < ApplicationController
 
   def edit
     @store = Store.find(params[:id])
+
+    # Handle shortcut deactivations
+    unless params[:status].nil?
+      if params[:status].match(/deactivate/) # == 'deactivate_prj' || params[:status] == 'deactivate_asgn'
+        @store.update_attribute(:active, false)
+        flash[:notice] = "#{@store.name} was made inactive."
+      elsif params[:status].match(/activate/) # == 'activate_prj' || params[:status] == 'activate_asgn'
+        @store.update_attribute(:active, true)
+        flash[:notice] = "#{@store.name} was made active."
+      end
+      redirect_to stores_path if params[:status].match(/_store/)
+    end
   end
 
   def create

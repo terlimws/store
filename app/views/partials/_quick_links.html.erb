@@ -12,17 +12,20 @@
 					<% if can? :manage, Assignment %> 
 					<li class='nav-header'><%= link_to (raw("<i class=\"icon-calendar\"></i> Assignment")), assignments_path %></li>
 					<% if can? :create, Assignment %> <li><%= link_to 'Add New Assignment', new_assignment_path %></li><% end %>
+					<% if can? :manage, Assignment %> <li><%= link_to 'Past Assignments', inactive_assignments_path %></li><% end %>
 					<br><% end %>
 
                     <% if can? :manage, Store %>
 					<li class='nav-header'><%= link_to (raw("<i class=\"icon-home\"></i> Stores")), stores_path %></li>
 					<% if can? :create, Store %> <li><%= link_to 'Add New Store', new_store_path %></li><% end %>
-					<br><% end %>
+					<% if can? :create, Store %> <li><%= link_to 'Inactive Stores', inactive_stores_path %></li><br><% end %>
+					<% end %>
 
                     <% if can? :manage, Job %>
 					<li class='nav-header'><%= link_to (raw("<i class=\"icon-pencil\"></i> Jobs")), jobs_path %></li>
 					<% if can? :create, Job %> <li><%= link_to 'Add New Job', new_job_path %></li><% end %>
-					<br><% end %>
+					<% if can? :create, Job %> <li><%= link_to 'Inactive Jobs', inactive_jobs_path %></li><br><% end %>
+					<% end %>
 					
 			  		<% if can? :manage, Shift %>
 					<li class='nav-header'><%= link_to (raw("<i class=\"icon-time\"></i> Shifts")), shifts_path %></li>

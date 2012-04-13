@@ -112,7 +112,7 @@ class StoreTest < ActiveSupport::TestCase
     
     # test the method create_active_stores_map_link'
     should "shows that the full stores map link is given" do
-      assert_equal "http://maps.google.com/maps/api/staticmap?zoom=13&size=400x400&maptype=roadmap&markers=color:red%7Ccolor:red%7Clabel:1%7C40.4435037,-79.9415706&markers=color:red%7Ccolor:red%7Clabel:2%7C12.235,52.325&sensor=false", @cmu.create_active_stores_map_link(13,400,400)
+      assert_equal "http://maps.google.com/maps/api/staticmap?zoom=13&size=400x400&maptype=roadmap&markers=color:red%7Ccolor:red%7Clabel:1%7C40.4435037,-79.9415706&markers=color:red%7Ccolor:red%7Clabel:2%7C12.235,52.325&sensor=false", Store.create_active_stores_map_link(13,400,400)
     end
     
     # test the callback is working 'reformat_phone'
