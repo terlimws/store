@@ -28,10 +28,12 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
+    authorize! :create, @employee
   end
 
   def edit
     @employee = Employee.find(params[:id])
+    authorize! :update, @employee
   end
 
   def create
@@ -43,6 +45,7 @@ class EmployeesController < ApplicationController
     else
       # return to the 'new' form
       render :action => 'new'
+    authorize! :create, @employee
     end
 
   end

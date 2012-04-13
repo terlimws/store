@@ -25,8 +25,7 @@ class UserTest < ActiveSupport::TestCase
       @ed = FactoryGirl.create(:employee)
       @cindy = FactoryGirl.create(:employee, :first_name => "Cindy", :last_name => "Crawford", :ssn => "084-35-9822", :active => false)
       @ralph = FactoryGirl.create(:employee, :first_name => "Ralph", :last_name => "Wilson", :date_of_birth => 16.years.ago.to_date)
-      @eduser = FactoryGirl.create(:user, :employee_id => @ed.id, :email => "wanxint@andrew.cmu.edu", :password_digest => "wanxin")
-      #puts @eduser.email
+      @eduser = FactoryGirl.create(:user, :employee_id => @ed.id, :email => "weishanl@andrew.cmu.edu", :password => "secret")
     end
     
     # and provide a teardown method as well
@@ -34,7 +33,7 @@ class UserTest < ActiveSupport::TestCase
       @ed.destroy
       @cindy.destroy
       @ralph.destroy
-      #@eduser.destroy
+      @eduser.destroy
     end
   
     # now run the tests:
@@ -48,7 +47,7 @@ class UserTest < ActiveSupport::TestCase
     
     # test employees must have unique email
     should "force employees to have unique email" do
-      repeat_email = FactoryGirl.build(:user, :employee => @ralph, :email => "wanxint@andrew.cmu.edu")
+      repeat_email = FactoryGirl.build(:user, :employee => @ralph, :email => "weishanl@andrew.cmu.edu")
       deny repeat_email.valid?
     end
     
@@ -57,6 +56,16 @@ class UserTest < ActiveSupport::TestCase
       inactive_cindy = FactoryGirl.build(:user, :employee => @cindy, :email => "jzf@andrew.cmu.edu", :password_digest => "werwer")
       deny inactive_cindy.valid?
     end
+    
+    # test the self.authentication method
+    should "show that the user email is correct if authenticated" do
+      user = User.authentication("a","a")
+      user2 = User.authentication("weishanl@andrew.cmu.edu","secret")
+      assert_equal nil, user
+      assert_equal "weishanl@andrew.cmu.edu", user2.email
+    end
+    
+    
   end
 
 end

@@ -129,6 +129,7 @@ class AssignmentTest < ActiveSupport::TestCase
      
      should "identify a non-active store as part of an invalid assignment" do
        inactive_store = FactoryGirl.build(:assignment, :store => @hazelwood, :employee => @ed, :start_date => 1.day.ago.to_date, :end_date => nil)
+       assert 'inactive', inactive_store.active?
        deny inactive_store.valid?
      end
      
@@ -142,6 +143,11 @@ class AssignmentTest < ActiveSupport::TestCase
        @promote_kathryn = FactoryGirl.create(:assignment, :employee => @kathryn, :store => @oakland, :start_date => 1.day.ago.to_date, :end_date => nil, :pay_level => 4)
        assert_equal 1.day.ago.to_date, @kathryn.assignments.first.end_date
        @promote_kathryn.destroy
+     end
+     
+     # Tests the name method
+     should "show that the name method returns Cindy Crawford @ Carnegie Mellon" do
+       assert_equal "Crawford, Cindy @ CMU",  @assign_cindy.name
      end
      
    end

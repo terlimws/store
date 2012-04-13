@@ -24,7 +24,7 @@
 	
   
 	<% if controller.action_name == 'edit' or controller.action_name == 'update' %>
-		<legend>Add Jobs to this Shift</legend>
+		<legend>Jobs assigned to this Shift</legend>
 		<div>
 			
 			<%= shift_form.simple_fields_for :shift_jobs do |shift_jobs_form| %>
