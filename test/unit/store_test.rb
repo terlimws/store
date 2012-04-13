@@ -47,7 +47,7 @@ class StoreTest < ActiveSupport::TestCase
   context "Creating three stores" do
     # create the objects I want with factories
     setup do
-      @cmu = Factory.create(:store)
+      @cmu = Factory.create(:store, :latitude => 40.4435037, :longitude => -79.9415706)
       @upitt = Factory.create(:store, :name => "UPitts", :street => "5002 Fifth Avenue", :city => "Pittsburgh", :state => "PA", :zip => "15210", :phone => "1234567289", :active => true)
       @chartham = Factory.create(:store, :name => "Chartham", :street => "5020 Fifth Avenue", :city => "Pittsburgh", :state => "PA", :zip => "15223", :phone => "193-553-2235", :active => false)
     end
@@ -100,10 +100,27 @@ class StoreTest < ActiveSupport::TestCase
       deny phone_again.valid?
     end    
     
+    # test the method total_hours_in_x_days'
+    should "shows that total hours in CMU store is 0" do
+      assert_equal 0, @cmu.total_hours_in_x_days(14)
+    end
+    
+    # test the method create_map_link'
+    should "shows that the map link is given" do
+      assert_equal "http://maps.google.com/maps/api/staticmap?center=40.4435037,-79.9415706&zoom=13&size=400x400&maptype=roadmap&markers=color:red%7Ccolor:red%7C40.4435037,-79.9415706&sensor=false", @cmu.create_map_link(13,400,400)
+    end
+    
+    # test the method create_active_stores_map_link'
+    should "shows that the full stores map link is given" do
+      assert_equal "http://maps.google.com/maps/api/staticmap?zoom=13&size=400x400&maptype=roadmap&markers=color:red%7Ccolor:red%7Clabel:1%7C40.4435037,-79.9415706&markers=color:red%7Ccolor:red%7Clabel:2%7C12.235,52.325&sensor=false", @cmu.create_active_stores_map_link(13,400,400)
+    end
+    
     # test the callback is working 'reformat_phone'
     should "shows that Chartham's phone is stripped of non-digits" do
       assert_equal "1935532235", @chartham.phone
     end
+    
+
   
   end
 end

@@ -65,6 +65,12 @@ class UserTest < ActiveSupport::TestCase
       assert_equal "weishanl@andrew.cmu.edu", user2.email
     end
     
+    # test the send_password_reset method
+#    should "show that the send_password_reset method works" do
+#      a = @eduser.send_password_reset
+#      assert_not_equal nil, a
+#    end
+    
     
   end
 

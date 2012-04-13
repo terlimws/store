@@ -150,5 +150,11 @@ class AssignmentTest < ActiveSupport::TestCase
        assert_equal "Crawford, Cindy @ CMU",  @assign_cindy.name
      end
      
+     # Tests the active? method
+     should "show that the ed's assignment is active and not inactive" do
+       assert_equal "inactive",  @assign_ed.active?
+       assert_equal "active", @assign_kathryn.active?
+     end
+     
    end
 end

@@ -155,6 +155,23 @@ class ShiftTest < ActiveSupport::TestCase
     should "return shifts in chronological order" do
       assert_equal [1,3, 4, 2], Shift.chronological.map{|s| s.id}
     end
+    
+    #tests the completed? method
+    should "show whether the shifts are completed is correct" do
+      assert_equal false, @shift1.completed?
+      assert_equal true, @shift2.completed?
+    end
+    
+    #tests the active? method
+    should "show whether the shifts are active is correct" do
+      assert_equal false, @shift1.active?
+      assert_equal false, @shift2.active?
+    end
+    
+    #tests the total_hours method
+    should "return show that the total hours worked are correct" do
+      assert_equal 3, @shift1.total_hours
+    end
 
     #test callback method for 
     should "have end time 3 hours after start time" do

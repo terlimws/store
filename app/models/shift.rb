@@ -79,12 +79,13 @@ class Shift < ActiveRecord::Base
   # -----------------------------
   
   def completed?
+    return false if ShiftJob.all.size == 0
     # get an array of all shifts in the shiftjob table
-    possible_shift_ids = ShiftJob.all.shift_id.map{|s| s.id}.compact!
+    possible_shift_ids = ShiftJob.all.map{|s| s.shift_id}
     # return true if shift id is in the array
-    if possible_shift_ids.contains(self.id)
-      return true
-    end
+    return false if possible_shift_ids.size == 0
+    return true if possible_shift_ids.include?(self.id)
+    return false
   end
   
   def total_hours

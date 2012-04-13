@@ -164,5 +164,17 @@ class EmployeeTest < ActiveSupport::TestCase
       assert_equal 17, @cindy.age
       assert_equal 30, @kathryn.age
     end
+    
+    # test the method 'total_hours_in_x_days'
+    should "shows that total hours is correct" do
+      assert_equal 0, @ed.total_hours_in_x_days
+    end   
+    
+    # test the method 'role?'
+    should "shows that employee's role are correct" do
+      assert_equal true, @ed.role?(:employee)
+      assert_equal false, @ed.role?(:manager)
+    end     
+    
   end
 end
