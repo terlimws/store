@@ -76,6 +76,10 @@
         1,
         null
       ],
+      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/shift_jobs_helper.rb": [
+        1,
+        null
+      ],
       "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/shiftjob_helper.rb": [
         1,
         null
@@ -428,6 +432,30 @@
         null,
         1,
         318,
+        null,
+        null
+      ],
+      "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/hift_jobs_controller.rb": [
+        1,
+        null
+      ],
+      "/Users/terencelim/Desktop/Phase 3/Creamery/app/models/shift_job.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        164,
+        36,
+        3,
+        null,
+        null,
         null,
         null
       ],
@@ -822,26 +850,6 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/models/shift_job.rb": [
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        1,
-        1,
-        164,
-        36,
-        3,
-        null,
-        null,
-        null,
-        null
-      ],
       "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/stores_controller.rb": [
         1,
         null,
@@ -1188,7 +1196,7 @@
         null
       ]
     },
-    "timestamp": 1334351632
+    "timestamp": 1334360375
   },
   "Functional Tests": {
     "coverage": {

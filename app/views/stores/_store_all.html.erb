@@ -47,6 +47,7 @@
 	<th>Map Label</th>
       <th>Store Name</th>
       <th>Store Phone</th>
+		<th>Store Address</th>
     </tr>
   </thead>
   <tbody><% marker = 1 %>
@@ -55,6 +56,7 @@
 		<td width = 12%><%= marker %></td>
         <td><%= link_to store.name, store_path(store) %></td>
         <td><%= store.phone.insert(3,"-").insert(7,"-") %></td>
+		<td><%= store.street %>, <%= store.city %>, <%= store.state %></td>
       </tr><% marker = marker + 1 %>
     <% end %>
   </tbody>

@@ -1,4 +1,6 @@
-<h1>Employee Details:</h1>
+
+
+<h1><%= @employee.role.capitalize %> Details:</h1>
 <br>
 <p>
 	
@@ -46,7 +48,7 @@
     <th>Start Date</th>
     <th>End Date</th>
     <th>Pay Level</th>
-    <th>Actions</th>
+    <% if current_user.employee.role?(:admin) %><th>Actions</th> <% end %>
   </thead>
   <tbody
   </tr>
@@ -56,10 +58,10 @@
     <td><%= assignment.start_date.strftime('%d %b %Y') %></td>
     <td><% if assignment.end_date != nil %><%= assignment.end_date.strftime('%d %b %Y') %><% else %> <span class="label">N.A.</span><% end %></td>
     <td><%= assignment.pay_level %></td>
-    <td><%= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'  %></td>
+    <% if current_user.employee.role?(:admin) %><td><%= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'  %></td><% end %>
   </tr>
 <% end %>
 </tbody>
 </table>
-<br />
-<p><%= link_to 'New Assignment', new_assignment_path, :class => 'btn btn-primary' %></p>
+<br /><% if current_user.employee.role?(:admin) %>
+<p><%= link_to 'New Assignment', new_assignment_path, :class => 'btn btn-primary' %></p><% end %>

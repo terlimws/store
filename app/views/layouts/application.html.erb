@@ -30,8 +30,13 @@
 			  <% if controller.action_name == 'privacy' %><li class="active"><% else %><li><% end %><%= link_to 'Privacy Policy', privacy_path %></li>
 
 		        </ul>
-
-			<ul class="nav pull-right">
+		
+			<ul class="nav pull-right"><% if logged_in? %><li>
+				<% if current_user.employee.role?(:employee) %><a href ="#"><%= current_user.employee.name %></a>
+				<% else %>
+				<%= link_to current_user.employee.name, employee_path(current_user.employee) %></li> 
+				<% end %>
+				<% end %><li class="divider-vertical"></li>
 			  <% if logged_in? %><li><%= #link_to current_user.employee.name, employee_path(current_user.employee)
 			  %></li>
                             <li><%= link_to 'Logout', logout_path %></li>

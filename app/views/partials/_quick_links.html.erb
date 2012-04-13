@@ -5,9 +5,10 @@
 <div class="well">
 	<h2>Control Panel</h2>
 		        <ul class="nav nav-list">
+					<li class='nav-header'><%= link_to (raw("<i class=\"icon-th\"></i> Dashboard")), home_path %></li>
 		          <li class='nav-header'><%= link_to (raw("<i class=\"icon-user\"></i> Employees")), employees_path %></li>
-					<% if can? :create, Employee %> <li><%= link_to 'Add New Employee', new_employee_path %></li><% end %>
-					<% if can? :create, Employee %> <li><%= link_to 'Inactive Employees', inactive_employees_path %></li><br><% end %>
+					<% if current_user.employee.role?(:admin) %> <li><%= link_to 'Add New Employee', new_employee_path %></li><% end %>
+					<% if current_user.employee.role?(:admin) %> <li><%= link_to 'Inactive Employees', inactive_employees_path %></li><br><% end %>
 					
 					<% if can? :manage, Assignment %> 
 					<li class='nav-header'><%= link_to (raw("<i class=\"icon-calendar\"></i> Assignment")), assignments_path %></li>
