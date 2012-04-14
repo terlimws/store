@@ -27,7 +27,7 @@ class Shift < ActiveRecord::Base
   validates_time :end_time, :on => :create, :allow_nil => true, :allow_blank => true
   validates_time :end_time, :on => :update, :after => :start_time, :before => Time.now
   #validates_time :end_time, :on => :update, :after => :start_time, :after_message => "cannot be before start time", :before_message => "cannot be in the future", :before => Time.now
-  
+    
   validate :assignment_is_current
   
   # Scopes
@@ -119,6 +119,7 @@ class Shift < ActiveRecord::Base
       errors.add(:assignment_id, "is not current")
     end
   end
+
   
   def generate_end_time
     self.end_time = self.start_time + 3.hours if self.end_time.blank?
