@@ -67,7 +67,7 @@ class Employee < ActiveRecord::Base
   
   def total_hours_in_x_days(days=14)
     hours = 0
-    self.shifts.for_next_days(days).each {|shift| hours += shift.total_hours}
+    self.shifts.for_past_days(days).each {|shift| hours += shift.total_hours}
     return hours
   end
 

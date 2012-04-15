@@ -1,3 +1,16 @@
-1) admin@admin.com
-2) manager@manager.com
-3) employee@employee.com
+This website is optimised for 1440 X 900 and 1024 X 768 screen resolutions. 
+
+Login for accounts:
+
+1) Administrator. Email: admin@creamery.com, Password: 1234
+2) Manager. Email: manager@creamery.com, Password: 1234
+3) Employee. Email: employee@creamery.com, Password: 1234
+
+Extra Stuff/Extra Credits:
+1) Greets the log in user with the appropriate greeting depending on the time of the day in the dashboard.
+2) Shows lowest employee-hours in the dashboard for Admins.
+3) For Stores created, if there are no shifts and employees yet assigned to store, stores can be deleted.
+4) For Jobs created and are not assigned to any shifts, they can be deleted.
+5) For Employees created, if the employee has never worked a shift, he can be deleted. If he has worked any, he can only be deactivated.
+6) Managers can only search for employees, view shifts for employees that are assigned to his/her store, while administrators can search for all, and both active/inactive employees.
+7) Included a favicon.

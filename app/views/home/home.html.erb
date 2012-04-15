@@ -75,12 +75,12 @@
     </thead>
     <tbody>
       
-    <% if Shift.by_employee(current_user.employee.id).past.size == 0 %>
+    <% if Shift.for_employee(current_user.employee.id).past.size == 0 %>
       <tr><td colspan="5">No Upcoming Shifts Found</td></tr>
       
     <% else %>
       
-      <% Shift.by_employee(current_user.employee.id).past.each do |shift| %>
+      <% Shift.for_employee(current_user.employee.id).past.each do |shift| %>
         <tr>
           <td><%= shift.store.name %></td>
           <td><%= shift.date.strftime('%d %b %Y') %></td>
@@ -107,12 +107,12 @@
     </thead>
     <tbody>
       
-    <% if Shift.by_employee(current_user.employee.id).for_next_days(14).size == 0 %>
+    <% if Shift.for_employee(current_user.employee.id).for_next_days(14).size == 0 %>
       <tr><td colspan="4">No Upcoming Shifts Found</td></tr>
       
     <% else %>
      
-      <% Shift.by_employee(current_user.employee.id).for_next_days(14).each do |shift| %>
+      <% Shift.for_employee(current_user.employee.id).for_next_days(14).each do |shift| %>
         <tr>
           <td><%= shift.store.name %></td>
           <td><%= shift.date.strftime('%d %b %Y') %></td>
@@ -136,11 +136,8 @@
   <h1>Welcome to Creamery</h1><p>
   
   <p>Creamery&copy; offers super-premium ice cream and sorbet, made fresh in every store, every day, and served up with your choice of mix-ins. Just how many different ways can you customize your ice cream treat? Over 11.5 million, to be exact.
-<p>
-Since opening our first store in 2012, Creamery has reinvented what people expect from their ice cream experience. By using only the finest ingredients to make our ice cream and mixing in your choice of fruit, nuts, chocolate or fresh cake (to name just a few!) on a frozen granite stone, Creamery delivers the best tasting ice cream, completely customized for you every time. And to make your perfect Creation™ complete, add a freshly made waffle cone or bowl – the smell alone is pure nirvana.
-<p>
-We are passionate about innovation and search the globe for premium ingredients and innovative new flavors. At Creamery, you can customize your own ice cream creations or choose from the list of Cold Stone Signature Creations, tried and true favorites developed by our team of award-winning Tastemasters™.  And if you're looking for a way to lighten things up, we offer Healthy Indulgences that are so good, you'll forget they're good for you.<p><br>
-  
+<br><p align="center">
+  <img src = "/assets/collage.jpg">
   </p>
 
 <% end %>

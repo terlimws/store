@@ -19,7 +19,7 @@
     <td><%= @store.phone.insert(3,"-").insert(7,"-") %></td>
   </tr>
   <tr>
-	<% if logged_in? && current_user.role?(:admin) %>
+	<% if logged_in? && current_user.employee.role?(:admin) %>
     <td><b>Active:</b></td>
     <td><%= "#{(@store.active==true)? 'Yes' : 'No'}" %> </td>
   </tr>

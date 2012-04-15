@@ -1,4 +1,5 @@
 @import "twitter/bootstrap/bootstrap";
+
 @import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths
@@ -16,13 +17,8 @@
 // Example:
 // @linkColor: #ff0000;
 
-@tableBackgroundAccent: green;
-
-.gap {
-float: left;
-padding: 0 14px;
-line-height: 34px;
-text-decoration: none;
-border: 1px solid #DDD;
-border-left-width: 0;
+.table-striped tbody tr:nth-child(2n+1) td, .table-striped tbody tr:nth-child(2n+1) th {
+    background-color: #effdfe;
 }
+
+.well { background-color: #effdfe }

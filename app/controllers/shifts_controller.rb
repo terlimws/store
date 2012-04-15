@@ -9,10 +9,12 @@ class ShiftsController < ApplicationController
     else
       @shifts = Shift.paginate(:page => params[:page]).per_page(10)
     end
+    #authorize! :read, @shift
   end
 
   def show
     @shift = Shift.find(params[:id])
+    authorize! :read, @shift
   end
 
 
@@ -47,7 +49,7 @@ class ShiftsController < ApplicationController
   def update
     @shift = Shift.find(params[:id])
     if @shift.update_attributes(params[:shift])
-      flash[:notice] = "Successfully updated #{@shift.id}."
+      flash[:notice] = "Successfully updated shift for #{@shift.employee.name}."
       redirect_to @shift
     else
       render :action => 'edit'
@@ -57,7 +59,7 @@ class ShiftsController < ApplicationController
   def destroy
       @shift = Shift.find(params[:id])
       @shift.destroy
-      flash[:notice] = "Successfully removed #{@shift.id} from the Creamery system."
+      flash[:notice] = "Successfully removed #{@shift.employee.name}'s shift from the Creamery system."
       redirect_to shifts_url
   end
   

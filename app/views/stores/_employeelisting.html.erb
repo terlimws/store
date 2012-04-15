@@ -17,7 +17,6 @@
         <td><%= assignment.employee.role.capitalize %></td>
         <td>
           <%= link_to 'Edit', edit_employee_path(assignment.employee), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', employee_path(assignment.employee), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <% end %>

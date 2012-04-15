@@ -5,7 +5,12 @@
 <div class="well">
 	<h2>Control Panel</h2>
 		        <ul class="nav nav-list">
-					<li class='nav-header'><%= link_to (raw("<i class=\"icon-th\"></i> Dashboard")), home_path %></li>
+			
+					<% if current_user.employee.role?(:admin) %> <li class='nav-header'><%= link_to (raw("<i class=\"icon-th\"></i> Admin Dashboard")), home_path %></li>
+					<% elsif current_user.employee.role?(:manager) %> <li class='nav-header'><%= link_to (raw("<i class=\"icon-th\"></i> Manager Dashboard")), home_path %></li>
+						
+						<% end %>
+					
 		          <li class='nav-header'><%= link_to (raw("<i class=\"icon-user\"></i> Employees")), employees_path %></li>
 					<% if current_user.employee.role?(:admin) %> <li><%= link_to 'Add New Employee', new_employee_path %></li><% end %>
 					<% if current_user.employee.role?(:admin) %> <li><%= link_to 'Inactive Employees', inactive_employees_path %></li><br><% end %>
@@ -45,8 +50,8 @@
 
 <div class="well">
 	<h2>Quick Links</h2>
-		        <ul class="nav">
-		<%= link_to image_tag("Follow-us-Twitter-icon.jpg", :alt => "rss feed"), "https://twitter.com/#!/terlimws" %>
+		        <ul class="nav" align="center"><br>
+		<%= link_to image_tag("twitter.png", :alt => "rss feed"), "https://twitter.com/#!/terlimws" %>
 		<%= link_to image_tag("facebook.png", :alt => "rss feed"), "http://www.facebook.com/islandcreamery" %>
 		        </ul>
 </div>

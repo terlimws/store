@@ -670,7 +670,9 @@
         null,
         null,
         null,
+        null,
         1,
+        0,
         0,
         null,
         null,
@@ -782,10 +784,10 @@
         null,
         null,
         null,
-        6,
+        4,
         null,
         null,
-        3,
+        5,
         null,
         null,
         1,
@@ -1014,7 +1016,8 @@
       ],
       "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/users_controller.rb": [
         1,
-        null,
+        1,
+        1,
         1,
         0,
         null,
@@ -1167,6 +1170,8 @@
         0,
         0,
         0,
+        null,
+        0,
         0,
         0,
         null,
@@ -1177,6 +1182,9 @@
         null,
         0,
         0,
+        0,
+        0,
+        null,
         0,
         null,
         null,
@@ -1199,7 +1207,7 @@
         null
       ]
     },
-    "timestamp": 1334373378
+    "timestamp": 1334502581
   },
   "Functional Tests": {
     "coverage": {

@@ -25,8 +25,12 @@
   <%= @shift.notes %>
 </p>
 
+
+
+
 <div class="form-actions">
-  <%= link_to 'Back', shifts_path, :class => 'btn'  %>
+  <% if cannot? :manage, Shift %><%= link_to_function 'Back', "history.back()", :class => 'btn'  %>
+<% else %><%= link_to 'Back', shifts_path, :class => 'btn'  %><% end %>
   <% if can? :manage, Shift %>
   <%= link_to 'Edit', edit_shift_path(@shift), :class => 'btn' %>
   <%= link_to 'Delete', shift_path(@shift), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
