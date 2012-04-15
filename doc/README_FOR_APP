@@ -1,10 +1,21 @@
+Dear TAs:
+
 This website is optimised for 1440 X 900 and 1024 X 768 screen resolutions. 
 
-Login for accounts:
+I changed the schema for the User table for the password reset. Please do a rake db:reset, db:populate, and a db:migrate :) 
 
-1) Administrator. Email: admin@creamery.com, Password: 1234
-2) Manager. Email: manager@creamery.com, Password: 1234
-3) Employee. Email: employee@creamery.com, Password: 1234
+You might need to use console to create a User first. i.e.
+User.new(:email => "admin@creamery.com", :password => "1234", :employee_id => 1)
+Employee id: 1 is an Admin. Upon Login, you can create more user accounts!
+
+Also, because I'm using the 'less' gem, After cloning the project, you might also face this issue and obtain this error:
+Cannot call method 'charAt' of undefined
+... app/assets/stylesheets/bootstrap_and_overrides.css.less
+
+The solution can be found here:
+https://github.com/cloudhead/less.js/issues/592
+
+It worked perfectly fine on my computer :)
 
 Extra Stuff/Extra Credits:
 1) Greets the log in user with the appropriate greeting depending on the time of the day in the dashboard.
