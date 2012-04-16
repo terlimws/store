@@ -133,5 +133,9 @@ namespace :db do
         asn2.save!
       end
     end
+    
+    a = User.new(:email => "admin@creamery.com", :password => "1234", :employee_id => 1)
+    a.save!
+    
   end
 end      
