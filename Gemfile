@@ -13,7 +13,7 @@ gem 'geokit'
 gem 'jquery-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "nested_form", :git => "git://github.com/ryanb/nested_form.git"
-gem 'less-rails-bootstrap'
+#gem 'less-rails-bootstrap'
 
 # Gems used only in development
 group :development do
