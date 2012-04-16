@@ -6,7 +6,7 @@ I changed the schema for the User table for the password reset. Kindly do a bund
 
 Please log in as an admin using the following credentials:
 Email: admin@creamery.com
-Password: secret
+Password: 1234
 
 Once logged in as an Admin, you can go to User to create new accounts for Managers and Employees.
 
