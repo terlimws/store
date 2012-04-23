@@ -1,0 +1,5 @@
+You have 4 pending migrations:
+  20120407195950 AddDefaultAdministrator
+  20120408220431 AddGeoLocation
+  20120412210345 AddAuthTokenToUsers
+  20120412210421 AddPasswordResetToUsers
