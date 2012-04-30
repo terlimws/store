@@ -16,4 +16,24 @@ class ActiveSupport::TestCase
     # a simple transformation to increase readability IMO
     assert !condition
   end
+  
+  def setup
+    GeoKit::Geocoders::MultiGeocoder.stubs(:geocode).raises(RuntimeError,
+      'Use mock_geocoding_success! or mock_geocoding_failure! in your test')
+  end
+
+  def mock_geocoding_success!
+    geocode_payload = GeoKit::GeoLoc.new(:lat => 123.456, :lng => 123.456)
+    geocode_payload.success = true
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).returns(geocode_payload)
+  end
+
+  def mock_geocoding_failure!
+    geocode_payload = GeoKit::GeoLoc.new
+    geocode_payload.success = false
+    GeoKit::Geocoders::MultiGeocoder.expects(:geocode).returns(geocode_payload)
+  end
+  
+  
+  
 end

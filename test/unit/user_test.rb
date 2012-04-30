@@ -66,10 +66,10 @@ class UserTest < ActiveSupport::TestCase
     end
     
     # test the send_password_reset method
-#    should "show that the send_password_reset method works" do
-#      a = @eduser.send_password_reset
-#      assert_not_equal nil, a
-#    end
+    should "show that the send_password_reset method works" do
+      a = @eduser.send_password_reset
+      assert_not_equal nil, a
+    end
     
     
   end
