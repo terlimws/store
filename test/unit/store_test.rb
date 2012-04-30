@@ -47,9 +47,9 @@ class StoreTest < ActiveSupport::TestCase
   context "Creating three stores" do
     # create the objects I want with factories
     setup do
-      @cmu = Factory.create(:store, :latitude => 40.4435037, :longitude => -79.9415706)
-      @upitt = Factory.create(:store, :name => "UPitts", :street => "5002 Fifth Avenue", :city => "Pittsburgh", :state => "PA", :zip => "15210", :phone => "1234567289", :active => true)
-      @chartham = Factory.create(:store, :name => "Chartham", :street => "5020 Fifth Avenue", :city => "Pittsburgh", :state => "PA", :zip => "15223", :phone => "193-553-2235", :active => false)
+      @cmu = FactoryGirl.create(:store, :latitude => 40.4435037, :longitude => -79.9415706)
+      @upitt = FactoryGirl.create(:store, :name => "UPitts", :street => "5002 Fifth Avenue", :city => "Pittsburgh", :state => "PA", :zip => "15210", :phone => "1234567289", :active => true)
+      @chartham = FactoryGirl.create(:store, :name => "Chartham", :street => "5020 Fifth Avenue", :city => "Pittsburgh", :state => "PA", :zip => "15223", :phone => "193-553-2235", :active => false)
     end
     
     # and provide a teardown method as well

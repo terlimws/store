@@ -13,9 +13,9 @@ class JobTest < ActiveSupport::TestCase
   context "Creating three jobs" do
     # create the objects I want with factories
     setup do
-      @mop_floor = Factory.create(:job, :name => "Mop the floor", :description => "Take a mop and move it", :active => false)
-      @serve_icecream = Factory.create(:job, :name => "Serve Ice Cream", :description => "Give customers more ice cream", :active => true)
-      @cash_register = Factory.create(:job, :name => "Work Cash Register", :description => "Work the Cash Resister", :active => true)
+      @mop_floor = FactoryGirl.create(:job, :name => "Mop the floor", :description => "Take a mop and move it", :active => false)
+      @serve_icecream = FactoryGirl.create(:job, :name => "Serve Ice Cream", :description => "Give customers more ice cream", :active => true)
+      @cash_register = FactoryGirl.create(:job, :name => "Work Cash Register", :description => "Work the Cash Resister", :active => true)
     end
     
     # and provide a teardown method as well

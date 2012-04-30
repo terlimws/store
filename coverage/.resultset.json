@@ -1,7 +1,7 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/application_controller.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/application_controller.rb": [
         1,
         1,
         null,
@@ -32,79 +32,79 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/application_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/assignment_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/assignment_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/assignments_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/assignments_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/employee_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/employee_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/employees_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/employees_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/home_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/home_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/job_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/job_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/jobs_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/jobs_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/password_resets_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/password_resets_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/sessions_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/sessions_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/shift_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/shift_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/shift_jobs_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/shift_jobs_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/shiftjob_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/shiftjob_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/shifts_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/shifts_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/store_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/store_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/stores_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/stores_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/user_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/user_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/helpers/users_helper.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/helpers/users_helper.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/assignments_controller.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/assignments_controller.rb": [
         1,
         null,
         1,
@@ -173,7 +173,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/models/assignment.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/models/assignment.rb": [
         1,
         null,
         1,
@@ -246,7 +246,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/employees_controller.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/employees_controller.rb": [
         1,
         null,
         1,
@@ -331,7 +331,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/models/employee.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/models/employee.rb": [
         1,
         null,
         1,
@@ -435,11 +435,11 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/hift_jobs_controller.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/hift_jobs_controller.rb": [
         1,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/models/shift_job.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/models/shift_job.rb": [
         1,
         null,
         1,
@@ -459,7 +459,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/home_controller.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/home_controller.rb": [
         1,
         null,
         1,
@@ -503,7 +503,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/jobs_controller.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/jobs_controller.rb": [
         1,
         null,
         1,
@@ -573,7 +573,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/models/job.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/models/job.rb": [
         1,
         null,
         null,
@@ -603,7 +603,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/password_resets_controller.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/password_resets_controller.rb": [
         1,
         1,
         null,
@@ -632,7 +632,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/sessions_controller.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/sessions_controller.rb": [
         1,
         null,
         1,
@@ -656,7 +656,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/shifts_controller.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/shifts_controller.rb": [
         1,
         null,
         1,
@@ -724,7 +724,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/models/shift.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/models/shift.rb": [
         1,
         null,
         1,
@@ -787,7 +787,7 @@
         4,
         null,
         null,
-        5,
+        4,
         null,
         null,
         1,
@@ -853,7 +853,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/stores_controller.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/stores_controller.rb": [
         1,
         null,
         1,
@@ -924,14 +924,14 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/models/store.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/models/store.rb": [
         1,
         null,
         1,
         null,
         null,
         1,
-        null,
+        1,
         null,
         null,
         1,
@@ -943,11 +943,6 @@
         null,
         null,
         1,
-        null,
-        null,
-        null,
-        1,
-        null,
         null,
         null,
         null,
@@ -959,6 +954,11 @@
         1,
         null,
         null,
+        null,
+        null,
+        1,
+        null,
+        null,
         1,
         null,
         null,
@@ -975,38 +975,38 @@
         null,
         1,
         1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        2,
-        2,
-        null,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        1,
-        131,
-        131,
-        131,
         null,
         null,
         1,
         0,
         0,
         0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        123,
+        123,
+        123,
+        null,
+        null,
+        1,
+        123,
+        118,
+        118,
         null,
         0,
         null,
@@ -1014,7 +1014,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/controllers/users_controller.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/users_controller.rb": [
         1,
         1,
         1,
@@ -1074,7 +1074,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/models/user.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/models/user.rb": [
         1,
         null,
         1,
@@ -1134,7 +1134,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/mailers/user_mailer.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/mailers/user_mailer.rb": [
         1,
         1,
         null,
@@ -1149,7 +1149,7 @@
         null,
         null
       ],
-      "/Users/terencelim/Desktop/Phase 3/Creamery/app/models/ability.rb": [
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/models/ability.rb": [
         1,
         1,
         null,
@@ -1207,7 +1207,7 @@
         null
       ]
     },
-    "timestamp": 1334502581
+    "timestamp": 1335669396
   },
   "Functional Tests": {
     "coverage": {
