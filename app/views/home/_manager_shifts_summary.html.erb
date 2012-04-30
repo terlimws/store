@@ -11,14 +11,14 @@
     
     <% if @shifts.size == 0 %>
       
-      <tr><td colspan="4">No Shifts For Today Found</td></tr>
+      <tr><td colspan="4">No Shifts Found For Today</td></tr>
     
     <% else %>
       
       <% @shifts.each do |shift| %>
         <tr>
           <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
-          <td><%=  shift.start_time.strftime('%I:%M %p') %></td>
+          <td><%= l shift.start_time, :format => :shifttime %></td>
           <td>
             <%= link_to 'Edit Shift', edit_shift_path(shift), :class => 'btn btn-mini' %>
           </td>
@@ -52,7 +52,7 @@
       <% @incomplete_shifts.each do |incomplete_shift| %>
         <tr>
           <td><%= link_to incomplete_shift.assignment.employee.name, employee_path(incomplete_shift.assignment.employee) %></td>
-          <td><%=  incomplete_shift.date.strftime('%d %b %Y') %></td>
+          <td><%= l incomplete_shift.date %></td>
           <td>
             <%= link_to 'Edit Shift', edit_shift_path(incomplete_shift), :class => 'btn btn-mini' %> <%= link_to 'Delete', shift_path(incomplete_shift), :method => 'delete', :confirm => 'Are you sure you want to delete this shift?', :class => 'btn btn-mini btn btn-danger' %>
           </td>

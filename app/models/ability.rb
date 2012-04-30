@@ -17,8 +17,13 @@ class Ability
           
         elsif user.employee.role? :manager
           can :manage, Shift do |shift|
-            shift.assignment.store_id == user.employee.current_assignment.store_id
+            if shift.assignment != nil
+              user.employee.current_assignment.store_id == shift.assignment.store_id 
+            else
+              true
+            end
           end
+          
           can :read, Store
           can :update, Employee do |employee|
             employee.current_assignment.store_id == user.employee.current_assignment.store_id

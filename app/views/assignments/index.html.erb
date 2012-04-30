@@ -23,7 +23,7 @@ if @assignments.empty? %>
         <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
         <td><%= link_to assignment.store.name, store_path(assignment.store) %></td>
         <td><%= assignment.pay_level %></td>
-        <td><%= assignment.start_date.strftime('%d %b %Y') %></td>
+        <td><%= l assignment.start_date %></td>
         <td>
           <%= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini' %>
         </td>

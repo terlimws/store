@@ -12,12 +12,12 @@
 
 <p>
   <b>Start date</b><br>
-  <%= @assignment.start_date.strftime('%d %b %Y') %>
+  <%= l @assignment.start_date %>
 </p>
 
 <p>
   <b>End date</b><br>
-  <% if @assignment.end_date != nil %><%= @assignment.end_date.strftime('%d %b %Y') %><% else %> <span class="label">N.A.</span><% end %>
+  <% if @assignment.end_date != nil %><%= l @assignment.end_date %><% else %> <span class="label">N.A.</span><% end %>
 </p>
 
 <p>

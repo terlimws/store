@@ -15,7 +15,7 @@
   </tr>
   <tr>
     <td><b>Date of Birth:</b></td>
-    <td><%= @employee.date_of_birth.strftime('%d %b %Y') %></td>
+    <td><%= l @employee.date_of_birth %></td>
   </tr>
   <tr>
     <td><b>Phone:</b></td>
@@ -27,7 +27,7 @@
   </tr>	
   <tr>
     <td><b>Joined Date:</b></td>
-    <td><%= @employee.created_at.strftime('%d %b %Y') %></td>
+    <td><%= l @employee.created_at %></td>
   </tr>
   <tr>
     <td><b>Status:</b></td>
@@ -55,8 +55,8 @@
 <% @employee.assignments.each do |assignment| %>
   <tr>
     <td><%= link_to assignment.store.name, store_path(assignment.store) %></td>
-    <td><%= assignment.start_date.strftime('%d %b %Y') %></td>
-    <td><% if assignment.end_date != nil %><%= assignment.end_date.strftime('%d %b %Y') %><% else %> <span class="label">N.A.</span><% end %></td>
+    <td><%= l assignment.start_date %></td>
+    <td><% if assignment.end_date != nil %><%= l assignment.end_date %><% else %> <span class="label">N.A.</span><% end %></td>
     <td><%= assignment.pay_level %></td>
     <% if current_user.employee.role?(:admin) %><td><%= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'  %></td><% end %>
   </tr>

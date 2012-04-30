@@ -3,3 +3,7 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 Creamery2012::Application.initialize!
+
+# Date of birth format
+Time::DATE_FORMATS[:dob] = "%d %b %Y"
+

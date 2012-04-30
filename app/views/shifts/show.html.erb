@@ -12,9 +12,9 @@
     <tbody>
         <tr>
           <td><%= @shift.employee.name %></td>
-          <td><%= @shift.date.strftime('%d %b %Y') %></td>
-          <td><%= @shift.start_time.strftime('%I:%M %p') %></td>
-          <td><%= @shift.end_time.nil? ? "Ongoing" : @shift.end_time.strftime("%I:%M %p") %></td>
+          <td><%= l @shift.date %></td>
+          <td><%= l @shift.start_time, :format => :shifttime %></td>
+          <td><%= @shift.end_time.nil? ? "Has not ended" : (l @shift.end_time, :format => :shifttime) %></td>
         </tr>
   
     </tbody>

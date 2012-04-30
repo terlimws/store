@@ -20,7 +20,7 @@
          <td>N.A.</td>
         
         <% else %>
-        <td><%= employee.shifts.past.last.date.strftime('%d %b %Y') %></td>
+        <td><%= l employee.shifts.past.last.date %></td>
       <% end %>
         <td>
     <%= link_to 'New Shift', new_shift_path(:assignment_id => employee.current_assignment), :class => 'btn btn-mini' %>
