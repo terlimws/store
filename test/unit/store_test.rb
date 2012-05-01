@@ -1,4 +1,6 @@
 require 'test_helper'
+require 'test/unit'
+require 'mocha'
 
 class StoreTest < ActiveSupport::TestCase
   # Relationship macros...

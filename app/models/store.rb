@@ -4,7 +4,7 @@ class Store < ActiveRecord::Base
   
   # Callbacks
   before_save :reformat_phone
-  #before_save :find_store_coordinates
+  before_save :find_store_coordinates
   
   # Relationships
   has_many :assignments
@@ -77,11 +77,13 @@ class Store < ActiveRecord::Base
    end
    
   def find_store_coordinates
-    coord = Geokit::Geocoders::GoogleGeocoder.geocode "#{street}, #{city}, #{state}, #{zip}"
-    if coord.success
-      self.latitude, self.longitude = coord.ll.split(',')
-    else
-      errors.add :base, "Error with geocoding"
+    unless Rails.env.test?
+      coord = Geokit::Geocoders::GoogleGeocoder.geocode "#{street}, #{city}, #{state}, #{zip}"
+      if coord.success
+        self.latitude, self.longitude = coord.ll.split(',')
+      else
+        errors.add :base, "Error with geocoding"
+      end
     end
   end
 

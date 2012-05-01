@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Creamery2012 :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+  <title>A & M Creamery</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -73,11 +73,11 @@
 		<div class="container">
 			<!-- flash messages -->
 			<% flash.each do |name, msg| %>
-				<div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-					<a class="close" data-dismiss="alert">&times;</a>
-					<%= msg %>
-				</div>
-	    <% end %>
+			  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+			    <a class="close" data-dismiss="alert">×</a>
+			    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+			  </div>
+			<% end %>
 			<div class="row">
 				<!-- main content placed here -->
 				<div class="span9">

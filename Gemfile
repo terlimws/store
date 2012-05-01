@@ -37,6 +37,7 @@ group :test do
 	gem 'nokogiri'
 	gem 'simplecov'
 	gem 'tconsole', '1.1.1'
+	gem 'mocha'
 end
 
 

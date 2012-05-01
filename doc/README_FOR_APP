@@ -1,8 +1,6 @@
 Dear TAs:
 
-This website is optimised for 1440 X 900 and 1024 X 768 screen resolutions. 
-
-I changed the schema for the User table for the password reset. Kindly do a bundle install, as well as rake db:reset, db:populate, a db:migrate. :) 
+This website is optimised for 1024 X 768 screen resolution. 
 
 Please log in as an admin using the following credentials:
 Email: admin@creamery.com

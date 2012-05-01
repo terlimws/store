@@ -33,7 +33,7 @@ class ActiveSupport::TestCase
     geocode_payload.success = false
     GeoKit::Geocoders::MultiGeocoder.expects(:geocode).returns(geocode_payload)
   end
-  
-  
-  
+
 end
+
+require 'mocha'
