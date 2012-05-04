@@ -23,14 +23,14 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-04-30T18:12:19-04:00">2012-04-30T18:12:19-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-05-04T00:35:37-04:00">2012-05-04T00:35:37-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">59.48%</span></span>
+    (<span class="covered_percent"><span class="red">59.52%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -41,9 +41,9 @@
   <a name="AllFiles"></a>
   <div>
     <b>38</b> files in total.
-    <b>575</b> relevant lines. 
-    <span class="green"><b>342</b> lines covered</span> and
-    <span class="red"><b>233</b> lines missed </span>
+    <b>578</b> relevant lines. 
+    <span class="green"><b>344</b> lines covered</span> and
+    <span class="red"><b>234</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -401,12 +401,12 @@
       
       <tr>
         <td class="strong"><a href="#0da3769286700c8f2a7a0a50479f620544b25ddc" class="src_link" title="app/models/shift.rb">app/models/shift.rb</a></td>
-        <td class="green strong">100.0 %</td>
-        <td>127</td>
-        <td>51</td>
-        <td>51</td>
-        <td>0</td>
-        <td>13.9</td>
+        <td class="green strong">98.15 %</td>
+        <td>133</td>
+        <td>54</td>
+        <td>53</td>
+        <td>1</td>
+        <td>13.7</td>
       </tr>
       
       <tr>
@@ -595,20 +595,20 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="yellow">89.84%</span></span>
+    (<span class="covered_percent"><span class="yellow">89.58%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         22.26
+         22.24
        </span>
     </span> hits/line)
   </h2>
   <a name="Models"></a>
   <div>
     <b>8</b> files in total.
-    <b>256</b> relevant lines. 
-    <span class="green"><b>230</b> lines covered</span> and
-    <span class="red"><b>26</b> lines missed </span>
+    <b>259</b> relevant lines. 
+    <span class="green"><b>232</b> lines covered</span> and
+    <span class="red"><b>27</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -666,12 +666,12 @@
       
       <tr>
         <td class="strong"><a href="#0da3769286700c8f2a7a0a50479f620544b25ddc" class="src_link" title="app/models/shift.rb">app/models/shift.rb</a></td>
-        <td class="green strong">100.0 %</td>
-        <td>127</td>
-        <td>51</td>
-        <td>51</td>
-        <td>0</td>
-        <td>13.9</td>
+        <td class="green strong">98.15 %</td>
+        <td>133</td>
+        <td>54</td>
+        <td>53</td>
+        <td>1</td>
+        <td>13.7</td>
       </tr>
       
       <tr>
@@ -6730,11 +6730,11 @@
         <div class="source_table" id="0da3769286700c8f2a7a0a50479f620544b25ddc">
   <div class="header">
     <h3>app/models/shift.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h4><span class="green">98.15 %</span> covered</h4>
     <div>
-      <b>51</b> relevant lines. 
-      <span class="green"><b>51</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>54</b> relevant lines. 
+      <span class="green"><b>53</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
     </div>
   </div>
   
@@ -7488,16 +7488,52 @@
         <li class="covered" data-hits="70" data-linenumber="125">
           <span class="hits">70</span>
           
-          <code class="ruby">    self.end_time = self.start_time + 3.hours if self.end_time.blank?</code>
+          <code class="ruby">    if self.end_time.blank?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="126">
+        <li class="covered" data-hits="15" data-linenumber="126">
+          <span class="hits">15</span>
+          
+          <code class="ruby">      if self.start_time.hour &lt; 21</code>
+        </li>
+      
+        <li class="covered" data-hits="15" data-linenumber="127">
+          <span class="hits">15</span>
+          
+          <code class="ruby">        self.end_time = self.start_time + 3.hours</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="128">
+          
+          
+          <code class="ruby">      else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="129">
+          
+          
+          <code class="ruby">        self.end_time = self.start_time.end_of_day</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="130">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="131">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="132">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="127">
+        <li class="never" data-hits="" data-linenumber="133">
           
           
           <code class="ruby">end</code>

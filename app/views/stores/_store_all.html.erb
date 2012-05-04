@@ -2,6 +2,11 @@
 <% if can? :manage, Store %>
 <h1>Current Stores</h1>
 <table class="table table-striped">
+	
+	<% if @stores.empty? %>
+		<tr>There are no active stores currently.</tr></table>
+	<% else %>
+	
   <thead>
     <tr>
 		<th width=12%>Map Label</th>
@@ -34,7 +39,18 @@
 </span>
 <br />
 
+ <p><br><b>Map of our stores: </b><br>
+<p align="center">
+
+	  <%= raw Cartographer::Header.new.to_s %>
+	  <%= raw @map.to_html %>
+	<div style="width:600px;height:400px;" id="map" > [Map]</div>
+
+<% end %>
+</p>
 <%= link_to 'Add New Store', new_store_path, :class => 'btn btn-primary' %>
+
+
 
 <% else
 # Shows what Managers, Employees and Guests see
@@ -42,6 +58,10 @@
   
 <h1>Current Stores</h1>
 <table class="table table-striped">
+	<% if @stores.empty? %>
+		<tr>There are no active stores.</tr></table>
+	<% else %>
+	
   <thead>
     <tr>
 	<th>Map Label</th>
@@ -67,10 +87,12 @@
 </span>
 <br />
 
-<% end %>  <p><br><b>Map of our stores: </b><br>
+ <p><br><b>Map of our stores: </b><br>
 <p align="center">
 
-  <%= image_tag Store.create_active_stores_map_link(zoom=12,width=800,height=300)
-  %>
-
+	  <%= raw Cartographer::Header.new.to_s %>
+	  <%= raw @map.to_html %>
+	<div style="width:600px;height:400px;" id="map" > [Map]</div>
+	
+<% end %><% end %> 
 </p>

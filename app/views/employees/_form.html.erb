@@ -40,7 +40,7 @@
     <div class="control-group">
       <%= f.label :date_of_birth, :class => 'control-label' %>
       <div class="controls">
-        <%= f.date_select :date_of_birth, :class => 'date_select', :start_year => 1980, :end_year => (14.years.ago.year) %>
+        <%= f.date_select :date_of_birth, :class => 'date_select', :start_year => 1980, :end_year => (14.years.ago.year), :order => [:day, :month, :year] %>
       </div>
     </div>
   

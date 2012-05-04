@@ -29,3 +29,11 @@
 	      $(this).delay(3700).fadeOut();
 	   });
 	});
+	
+
+// Datepicker code
+	$(function() {
+		$(".datepicker").datepicker({
+			dateFormat: 'yy-mm-dd'
+		});
+	});

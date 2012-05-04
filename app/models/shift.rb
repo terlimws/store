@@ -122,6 +122,12 @@ class Shift < ActiveRecord::Base
 
   
   def generate_end_time
-    self.end_time = self.start_time + 3.hours if self.end_time.blank?
+    if self.end_time.blank?
+      if self.start_time.hour < 21
+        self.end_time = self.start_time + 3.hours
+      else
+        self.end_time = self.start_time.end_of_day
+      end
+    end
   end
 end

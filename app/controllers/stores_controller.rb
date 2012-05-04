@@ -5,6 +5,18 @@ class StoresController < ApplicationController
 
   def index
     @stores = Store.active.alphabetical.paginate(:page => params[:page]).per_page(10)
+    @map = Cartographer::Gmap.new( 'map' )
+    @map.zoom = :bound
+    @icon = Cartographer::Gicon.new()
+    @map.icons <<  @icon
+    
+    marker_index = 1
+    
+    @stores.each { |store| marker = Cartographer::Gmarker.new(:name=> "store",
+                 :position => [store.latitude, store.longitude],
+                :icon => @icon, :click => "alert('#{store.name}');")
+      @map.markers << marker
+    }
   end
 
   def show

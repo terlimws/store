@@ -1,10 +1,8 @@
 <% if logged_in? %>
   
-  <h1>Welcome to Creamery</h1><p>
-  
   <% if current_user.employee.role == 'admin' %>
     
-  <h3>Administrator Dashboard</h3>
+  <h2>Administrator Dashboard</h2>
   Good <% if (0..11).include?(Time.now.hour) %> morning,
   <% elsif (12..17).include?(Time.now.hour) %> afternoon,
   <% elsif (18..23).include?(Time.now.hour) %> evening,
@@ -18,7 +16,7 @@
   <!-- ends admin view -->
   <% elsif current_user.employee.role == 'manager' %>
   
-  <h3>Manager Dashboard</h3>
+  <h2>Manager Dashboard</h2>
   Good day, <%= current_user.employee.first_name + "." %>
   <%= "You have no current assignment." if current_user.employee.current_assignment == nil %>
   <%= "You are currently assigned Store Manager of #{current_user.employee.current_assignment.store.name}." if current_user.employee.current_assignment != nil %>
@@ -31,7 +29,7 @@
   <!-- ends manager view -->
   <% elsif current_user.employee.role == 'employee' %>
   
-  <h3>Employee Dashboard</h3>
+  <h2>Employee Dashboard</h2>
   Good day, <%= current_user.employee.first_name + "." %>
   <%= "You have no current assignment." if current_user.employee.current_assignment == nil %>
   <%= "You are currently assigned an Employee of #{current_user.employee.current_assignment.store.name}." if current_user.employee.current_assignment != nil %>

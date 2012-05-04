@@ -16,3 +16,4 @@ Extra Stuff/Extra Credits:
 5) For Employees created, if the employee has never worked a shift, he can be deleted. If he has worked any, he can only be deactivated.
 6) Managers can only search for employees, view shifts for employees that are assigned to his/her store, while administrators can search for all, and both active/inactive employees.
 7) Included a favicon.
+8) Used Datepicker for dates

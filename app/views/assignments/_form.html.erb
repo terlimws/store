@@ -34,16 +34,18 @@
     <div class="control-group">
       <%= f.label :start_date, :class => 'control-label' %>
       <div class="controls">
-        <%= f.date_select :start_date, :class => 'date_select' %>
+        <%= f.text_field :start_date, :class => 'datepicker' %>
       </div>
     </div>
 
+	<% if controller.action_name != 'new' and controller.action_name != 'create' %>
     <div class="control-group">
       <%= f.label :end_date, :class => 'control-label' %>
       <div class="controls">
-        <%= f.date_select :end_date, :class => 'date_select', :default => {:day => nil, :month => nil, :year => nil}, :include_blank => true %>
+        <%= f.text_field :end_date, :class => 'datepicker', :default => {:day => nil, :month => nil, :year => nil}, :include_blank => true %>
       </div>
     </div>
+	<% end %>
 
     <div class="control-group">
       <%= f.label :pay_level, :class => 'control-label' %>

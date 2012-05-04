@@ -14,7 +14,7 @@
     <div class="control-group">
       <%= f.label :date, :class => 'control-label' %>
       <div class="controls">
-        <%= f.date_select :date, :class => 'date_select' %>
+        <%= f.text_field :date, :class => 'datepicker' %>
       </div>
     </div>
 
@@ -26,7 +26,7 @@
     </div>
 
   
-    <% if controller.action_name != 'new' %>
+    <% if controller.action_name != 'new' and controller.action_name != 'create' %>
     <div class="control-group">
       <%= f.label :end_time, :class => 'control-label' %>
       <div class="controls">
