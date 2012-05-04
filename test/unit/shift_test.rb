@@ -47,6 +47,7 @@ class ShiftTest < ActiveSupport::TestCase
       @shift2 = FactoryGirl.create(:shift, :assignment => @assignment2, :date => 4.days.from_now.to_date, :end_time => Time.local(2000,1,1,11,0,1))
       @shift3 = FactoryGirl.create(:shift, :assignment => @assignment3, :date => 1.day.ago.to_date)
       @shift4 = FactoryGirl.create(:shift, :assignment => @assignment4, :date => Date.today, :end_time => nil)
+      @shift5 = FactoryGirl.create(:shift, :assignment => @assignment4, :date => 1.day.ago.to_date, :start_time => Time.local(2000,1,1,22,0,1), :end_time => nil)
       @sweepfloor = FactoryGirl.create(:job)
       @mopfloor = FactoryGirl.create(:job, :name => "Mopped the floor")
       @shiftjob1 = FactoryGirl.create(:shift_job, :shift => @shift2, :job => @sweepfloor)
@@ -68,6 +69,7 @@ class ShiftTest < ActiveSupport::TestCase
       @shift2.destroy
       @shift3.destroy
       @shift4.destroy
+      @shift5.destroy
       @sweepfloor.destroy
       @mopfloor.destroy
       @shiftjob1.destroy
@@ -101,8 +103,8 @@ class ShiftTest < ActiveSupport::TestCase
     # test scope incomplete
     should "return shifts with no jobs linked to it" do
       assert_equal 0, @shift1.jobs.count
-      assert_equal 3, Shift.incomplete.size
-      assert_equal [1,3, 4], Shift.incomplete.map{|s| s.id}
+      assert_equal 4, Shift.incomplete.size
+      assert_equal [1,3, 4, 5], Shift.incomplete.map{|s| s.id}
     end  
 
     # test scope for store
@@ -128,8 +130,8 @@ class ShiftTest < ActiveSupport::TestCase
     
     #test scope for past
     should "return shifts that have a date in the past" do
-      assert_equal 2, Shift.past.size
-      assert_equal [1,3], Shift.past.chronological.map{|s| s.id}
+      assert_equal 3, Shift.past.size
+      assert_equal [1,3, 5], Shift.past.chronological.map{|s| s.id}
     end 
     
     #test scope for upcoming
@@ -147,13 +149,13 @@ class ShiftTest < ActiveSupport::TestCase
 
     #test scope for the past * days
     should "return shifts that were in the past x days" do
-      assert_equal 2, Shift.for_past_days(10).size
-      assert_equal [1,3], Shift.for_past_days(3).map{|s| s.id}
+      assert_equal 3, Shift.for_past_days(10).size
+      assert_equal [1,3, 5], Shift.for_past_days(3).map{|s| s.id}
     end
 
     #test scope for chronological
     should "return shifts in chronological order" do
-      assert_equal [1,3, 4, 2], Shift.chronological.map{|s| s.id}
+      assert_equal [1,3, 5, 4, 2], Shift.chronological.map{|s| s.id}
     end
     
     #tests the completed? method
@@ -176,6 +178,7 @@ class ShiftTest < ActiveSupport::TestCase
     #test callback method for 
     should "have end time 3 hours after start time" do
       assert_equal(@shift4.end_time, @shift4.start_time + 3.hours)
+      assert_equal(@shift5.end_time, @shift5.start_time.end_of_day)
     end
 
 

@@ -14,7 +14,7 @@ class StoresController < ApplicationController
     
     @stores.each { |store| marker = Cartographer::Gmarker.new(:name=> "store",
                  :position => [store.latitude, store.longitude],
-                :icon => @icon, :click => "alert('#{store.name}');")
+                :icon => @icon, :click => "alert('Store Name: #{store.name}');")
       @map.markers << marker
     }
   end
@@ -22,6 +22,20 @@ class StoresController < ApplicationController
   def show
     @store = Store.find(params[:id])
     authorize! :read, @store
+    
+    @map = Cartographer::Gmap.new( 'map' )
+    @icon = Cartographer::Gicon.new()
+    @map.icons <<  @icon
+    
+    marker_index = 1
+    
+    marker = Cartographer::Gmarker.new(:name=> "store",
+                 :position => [@store.latitude, @store.longitude],
+                :icon => @icon, :click => "alert('#{@store.name}');")
+    
+    @map.markers << marker
+    @map.zoom = :bound
+    
   end
   
   def inactive

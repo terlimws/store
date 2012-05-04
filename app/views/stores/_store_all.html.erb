@@ -9,7 +9,6 @@
 	
   <thead>
     <tr>
-		<th width=12%>Map Label</th>
       <th>Store</th>
       <th>Phone Number</th>
       <th>Staff Count</th>
@@ -19,7 +18,6 @@
   <tbody><% marker = 1 %>
     <% @stores.each do |store| %>
       <tr>
-		<td width = 12%><%= marker %></td>
         <td><%= link_to store.name, store_path(store) %></td>
         <td><%= store.phone.insert(3,"-").insert(7,"-") %></td>
         <td><%= Assignment.current.for_store(store.id).count %></td>
@@ -44,7 +42,7 @@
 
 	  <%= raw Cartographer::Header.new.to_s %>
 	  <%= raw @map.to_html %>
-	<div style="width:600px;height:400px;" id="map" > [Map]</div>
+	<div style="width:100%;height:400px;" id="map" > [Map]</div>
 
 <% end %>
 </p>
@@ -64,7 +62,6 @@
 	
   <thead>
     <tr>
-	<th>Map Label</th>
       <th>Store Name</th>
       <th>Store Phone</th>
 		<th>Store Address</th>
@@ -73,7 +70,6 @@
   <tbody><% marker = 1 %>
     <% @stores.each do |store| %>
       <tr>
-		<td width = 12%><%= marker %></td>
         <td><%= link_to store.name, store_path(store) %></td>
         <td><%= store.phone.insert(3,"-").insert(7,"-") %></td>
 		<td><%= store.street %>, <%= store.city %>, <%= store.state %></td>
@@ -88,11 +84,12 @@
 <br />
 
  <p><br><b>Map of our stores: </b><br>
+	Click on markers to view name of each store<br>
 <p align="center">
 
 	  <%= raw Cartographer::Header.new.to_s %>
 	  <%= raw @map.to_html %>
-	<div style="width:600px;height:400px;" id="map" > [Map]</div>
+	<div style="width:100%;height:400px;" id="map" > [Map]</div>
 	
 <% end %><% end %> 
 </p>

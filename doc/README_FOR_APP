@@ -8,7 +8,14 @@ Password: 1234
 
 Once logged in as an Admin, you can go to User to create new accounts for Managers and Employees.
 
-Extra Stuff/Extra Credits:
+Extra Credits:
+
+1) Full javascript-enabled Google Map - I used Cartographer to implement the maps. Not only does it allow users to click for more information, it also allows satellite and terrain views. It also automatically binds the map view to show the best zoom level for all markers.
+I tried to put labels on the map, but I failed despite trying for many hours. I also tried to make the javascript pop up more informative, but it doesn't allow new line and it looked ugly, so I decided to just put in the store name.
+2) Reset Passwords - User can reset his/her password if it is lost during login. Reset requests expire in one hour and user is notified by email of the request.
+
+
+Other extra stuff (perhaps for more extra credit points?):
 1) Greets the log in user with the appropriate greeting depending on the time of the day in the dashboard.
 2) Shows lowest employee-hours in the dashboard for Admins.
 3) For Stores created, if there are no shifts and employees yet assigned to store, stores can be deleted.
