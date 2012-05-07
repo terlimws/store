@@ -76,8 +76,8 @@ class Store < ActiveRecord::Base
      self.phone = phone       # reset self.phone to new string
    end
    
-  def find_store_coordinates
-    unless Rails.env.test?
+  def find_store_coordinates(bypass=false)
+    if not Rails.env.test? or bypass == true
       coord = Geokit::Geocoders::GoogleGeocoder.geocode "#{street}, #{city}, #{state}, #{zip}"
       if coord.success
         self.latitude, self.longitude = coord.ll.split(',')

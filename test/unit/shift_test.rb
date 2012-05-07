@@ -181,15 +181,6 @@ class ShiftTest < ActiveSupport::TestCase
       assert_equal(@shift5.end_time, @shift5.start_time.end_of_day)
     end
 
-
   end
 
-  ## orders values by store  
-  #scope :by_store, joins(:store).order('name')
-  #
-  ## orders values by employee's last, first names
-  #scope :by_employee, joins(:employee).order('last_name, first_name')
-  #
-  ## return all shifts that has ended
-  #scope :ended_shifts, where('end_time < ?', Time.now)
 end

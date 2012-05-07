@@ -55,8 +55,12 @@ class StoreTest < ActiveSupport::TestCase
     end
     
     # and provide a teardown method as well
-
-  
+    teardown do  
+      @cmu.destroy
+      @upitt.destroy
+      @chartham.destroy
+    end
+    
     # now run the tests:
     # test one of each factory (not really required, but not a bad idea)
     should "show that all factories are properly created" do
@@ -106,12 +110,14 @@ class StoreTest < ActiveSupport::TestCase
     # test the method create_map_link'
     should "shows that the map link is given" do
       #assert_equal "http://maps.google.com/maps/api/staticmap?center=40.4435037,-79.9415706&zoom=13&size=400x400&maptype=roadmap&markers=color:red%7Ccolor:red%7C40.4435037,-79.9415706&sensor=false", @cmu.create_map_link(13,400,400)
+      assert_match /maps.google.com\/maps\/api\/staticmap\?center=(.+)/, @cmu.create_map_link(13,400,400)
       assert_not_nil @cmu.create_map_link(13,400,400)
     end
     
     # test the method create_active_stores_map_link'
     should "shows that the full stores map link is given" do
       #assert_equal "http://maps.google.com/maps/api/staticmap?zoom=13&size=400x400&maptype=roadmap&markers=color:red%7Ccolor:red%7Clabel:1%7C40.4446594,-79.9429914&markers=color:red%7Ccolor:red%7Clabel:2%7C40.4475073,-79.9414668&sensor=false", Store.create_active_stores_map_link(13,400,400)
+      assert_match /maps.google.com\/maps\/api\/staticmap\?/, Store.create_active_stores_map_link(13,400,400)
       assert_not_nil Store.create_active_stores_map_link(13,400,400)
     end
     
@@ -120,6 +126,19 @@ class StoreTest < ActiveSupport::TestCase
       assert_equal "1935532235", @chartham.phone
     end
     
+    # tests the Geokit code
+    should "show that Geokit works correctly" do
+      store = FactoryGirl.build(:store, :name => "Store1", :street => "5002 Fifth Avenue", :city => "Pittsburgh", :state => "PA", :zip => "15210")
+      store.send(:find_store_coordinates, true)
+      assert_equal 40.4475073, store.latitude
+      assert_equal -79.9414668, store.longitude
+    end
+    
+    should "show that Geokit sends the Error with Geocoding error" do
+      store2 = FactoryGirl.build(:store, :name => "Store2", :street => nil, :city => nil, :state => nil, :zip => nil)
+      store2.send(:find_store_coordinates, true)
+      assert store2.errors.full_messages.include?("Error with geocoding")
+    end
 
   
   end

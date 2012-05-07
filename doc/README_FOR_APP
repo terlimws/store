@@ -3,8 +3,10 @@ Dearest TAs:
 CARTOGRAPHER PLUGIN
 
 I used the Cartographer Plugin in vendor/plugins, which should automatically already be installed when you clone into my repository.
-I cloned into my submission and verified this. In the event that it does not install by itself, please run "git clone git://github.com/parolkar/cartographer.git vendor/plugins/cartographer" to install. This is required to view the javascript map of the stores. 
-The Only small thing about this plugin is that it gives a DEPRECATION WARNING in terminal, which I was told by the TA to simply ignore.
+I cloned into my submission and verified this. In the event that it does not install by itself, please run: 
+"git clone git://github.com/parolkar/cartographer.git vendor/plugins/cartographer" 
+to install. This is required to view the javascript map of the stores. 
+The only small thing about this plugin is that it gives a DEPRECATION WARNING in terminal, which I was told by the TA to simply ignore.
 
 MY REMEDIES SINCE PREVIOUS SUBMISSION
 
@@ -18,8 +20,7 @@ However, it did not really work, so I just restricted the test from running the 
 Previously, I did not test the generate_token and send_password_reset methods in the User model, as I did not know how to do so then. 
 I added in tests for these two methods in this submission.
 
-For this submission, I have 100% tests coverage for all models, except for Store (90.24%), due to the restriction of the tests from testing the Geokit code. 
-I spoke to both Prof H and Seth about it, and they said it's okie.
+For this submission, I have 100% tests coverage for all models. I also wrote my own test for testing the GeoKit code, where it only tests for the code if I send in a bypass variable during the test environment.
 
 2) -5 Used phone but didn't validate presence
 Validated presence for phone in Store and Employee model. Added an option allow_blank => false to validates_format_of :phone and validates_format_of :store
