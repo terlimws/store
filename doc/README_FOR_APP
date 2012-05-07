@@ -1,5 +1,11 @@
 Dearest TAs:
 
+INSTALLATION OF CARTOGRAPHER
+
+Please run git clone git://github.com/parolkar/cartographer.git vendor/plugins/cartographer
+to install the Cartographer Plugin where necessary
+
+
 REMEDIES SINCE PREVIOUS SUBMISSION
 
 To ease your grading process, here is a list of items which I lost points for during my previous submission, and my remedies (reference to page1.jpg and page2.jpg). I had no problems with CRUD, but were mainly due to testing.
@@ -65,6 +71,7 @@ A separate page/link is created for inactive Employees, Stores, Jobs and Past As
 
 
 OTHER EXTRA STUFF I DID (perhaps for extra credit points):
+
 1) Used Datepicker for dates
 2) For Stores created, if there are no shifts and employees yet assigned to store, stores can be deleted.
 3 For Jobs created and are not assigned to any shifts, they can be deleted.
