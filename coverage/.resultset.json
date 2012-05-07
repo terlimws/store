@@ -800,6 +800,17 @@
         0,
         null,
         null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
         1,
         0,
         0,
@@ -1092,30 +1103,6 @@
         null,
         1,
         321,
-        null,
-        null
-      ],
-      "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/hift_jobs_controller.rb": [
-        1,
-        null
-      ],
-      "/Users/terencelim/Desktop/weishanl_phase_4/app/models/shift_job.rb": [
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        1,
-        1,
-        194,
-        36,
-        3,
-        null,
-        null,
         null,
         null
       ],
@@ -1519,6 +1506,26 @@
         null,
         null
       ],
+      "/Users/terencelim/Desktop/weishanl_phase_4/app/models/shift_job.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        194,
+        36,
+        3,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/terencelim/Desktop/weishanl_phase_4/app/controllers/stores_controller.rb": [
         1,
         null,
@@ -1906,7 +1913,7 @@
         null
       ]
     },
-    "timestamp": 1336354741
+    "timestamp": 1336369956
   },
   "Functional Tests": {
     "coverage": {

@@ -64,4 +64,4 @@
 </tbody>
 </table>
 <br /><% if current_user.employee.role?(:admin) %>
-<p><%= link_to 'New Assignment', new_assignment_path, :class => 'btn btn-primary' %></p><% end %>
+<p><%= link_to 'New Assignment', new_assignment_path(:employee_id => @employee.id), :class => 'btn btn-primary' %></p><% end %>

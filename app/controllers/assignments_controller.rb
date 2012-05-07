@@ -23,6 +23,8 @@ class AssignmentsController < ApplicationController
   def new
     if params[:store_id]
       @assignment = Assignment.new(:store_id => params[:store_id])
+    elsif params[:employee_id]
+      @assignment = Assignment.new(:employee_id => params[:employee_id])
     else
       @assignment = Assignment.new
     end

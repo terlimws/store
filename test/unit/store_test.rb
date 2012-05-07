@@ -10,7 +10,7 @@ class StoreTest < ActiveSupport::TestCase
   # Validation macros...
   should validate_presence_of(:name)
   should validate_presence_of(:street)
-  should validate_presence_of(:zip)
+  should validate_presence_of(:city)
   
   
   # Validating zip...

@@ -11,6 +11,7 @@
     </tr>
   </thead>
   <tbody>
+	<% unless @employees.nil? %>
     <% @employees.each do |employee| %>
       <tr>
         <td><%= link_to employee.name, employee_path(employee) %></td>
@@ -21,16 +22,22 @@
         
         <% else %>
         <td><%= l employee.shifts.past.last.date %></td>
-      <% end %>
+      	<% end %>
+
+	
         <td>
     <%= link_to 'New Shift', new_shift_path(:assignment_id => employee.current_assignment), :class => 'btn btn-mini' %>
-        </td>
+        </td><% end %>
       </tr>
+	<% else %>
+	<td colspan=4>No employees in your store</td>
     <% end %>
   </tbody>
 </table>
 <!-- Add the pagination using will_paginate gem -->
+<% unless @employees.nil? %>
 <span class="smtext">
 <%= will_paginate @employees, :previous_label => "&larr;&nbsp;Previous&nbsp;", :next_label => "&nbsp;Next&nbsp;&rarr;" %>
 </span>
 <br />
+<% end %>

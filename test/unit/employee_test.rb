@@ -13,7 +13,7 @@ class EmployeeTest < ActiveSupport::TestCase
   should allow_value("412-268-3259").for(:phone)
   should allow_value("412.268.3259").for(:phone)
   should allow_value("(412) 268-3259").for(:phone)
-  should allow_value(nil).for(:phone)
+  should_not allow_value(nil).for(:phone)
   should_not allow_value("2683259").for(:phone)
   should_not allow_value("14122683259").for(:phone)
   should_not allow_value("4122683259x224").for(:phone)

@@ -1,26 +1,75 @@
-Dear TAs:
+Dearest TAs:
 
-This website is optimised for 1024 X 768 screen resolution. 
+REMEDIES SINCE PREVIOUS SUBMISSION
+
+To ease your grading process, here is a list of items which I lost points for during my previous submission, and my remedies (reference to page1.jpg and page2.jpg). I had no problems with CRUD, but were mainly due to testing.
+
+1) -20 for Unit Testing (2 failures and 15 errors)
+The main failures were due to the geokit code, where Google blocked the geolocation requests during the tests. I tried doing stubbing using these instructions:
+http://www.pervasivecode.com/blog/2009/07/23/fancier-stubbing-of-geokit-for-rails-unit-tests/ (According to Seth's recommendation)
+However, it did not really work, so I just restricted the test from running the Geokit code during rake test:units.
+
+Previously, I did not test the generate_token and send_password_reset methods in the User model, as I did not know how to do so then. 
+I added in tests for these two methods in this submission.
+
+For this submission, I have 100% tests coverage for all models, except for Store (90.24%), due to the restriction of the tests from testing the Geokit code. 
+I spoke to both Prof H and Seth about it, and they said it's okie.
+
+2) -5 Used phone but didn't validate presence
+Validated presence for phone in Store and Employee model. Added an option allow_blank => false to validates_format_of :phone and validates_format_of :store
+
+3) -2 Doesn't give error messages
+Specifically added in code in Views to provide user with error messages for Job and Store if form is incomplete or filled with error input, which I missed out in the previous submission.
+
+4) -1 Use password field!
+Changed to the respective password field during Create New User.
+
+5) -10 for "Don't need to parse_date every time"
+Added a rails custom time format using instructions from http://stackoverflow.com/questions/3654974/where-to-put-time-format-rules-in-rails-3 (According to Seth's recommendation)
+
+6) -10 Validation fail on db:migrate
+Solved problem by git removing the migration file xxx_add_default_administrator.rb. In the previous submission, it tried to link to an employee that is not active in the system.
+That caused it to fail on db:migrate.
+
+7) -10 Cannot write unknown attr auth_token on db:migrate
+Solved by ensuring rake db:migrate passes, by solving the Validation fail on db:migrate due to incorrect add_default_administrator migration file.
+
+
+LOGIN INSTRUCTIONS
+
+I edited the populate file to create the following accounts:
 
 Please log in as an admin using the following credentials:
 Email: admin@creamery.com
-Password: 1234
+Password: secret
 
-Once logged in as an Admin, you can go to User to create new accounts for Managers and Employees.
-
-Extra Credits:
-
-1) Full javascript-enabled Google Map - I used Cartographer to implement the maps. Not only does it allow users to click for more information, it also allows satellite and terrain views. It also automatically binds the map view to show the best zoom level for all markers.
-I tried to put labels on the map, but I failed despite trying for many hours. I also tried to make the javascript pop up more informative, but it doesn't allow new line and it looked ugly, so I decided to just put in the store name.
-2) Reset Passwords - User can reset his/her password if it is lost during login. Reset requests expire in one hour and user is notified by email of the request.
+Please log in as a manager using the following credentials:
+Email: manager@creamery.com
+Password: secret
 
 
-Other extra stuff (perhaps for more extra credit points?):
-1) Greets the log in user with the appropriate greeting depending on the time of the day in the dashboard.
-2) Shows lowest employee-hours in the dashboard for Admins.
-3) For Stores created, if there are no shifts and employees yet assigned to store, stores can be deleted.
-4) For Jobs created and are not assigned to any shifts, they can be deleted.
-5) For Employees created, if the employee has never worked a shift, he can be deleted. If he has worked any, he can only be deactivated.
-6) Managers can only search for employees, view shifts for employees that are assigned to his/her store, while administrators can search for all, and both active/inactive employees.
-7) Included a favicon.
-8) Used Datepicker for dates
+EXTRA CREDITS
+
+1) Full javascript-enabled Google Map (Extra credit 0.5 course points)
+I used Cartographer to implement the maps successfully. I also went beyond the stated requirements by allowing satellite and terrain views. It also automatically binds the map view to show the best zoom level for all markers.
+I tried to put labels on the map to show the name of the stores, but I failed to find a way despite trying for many hours. Hence, I used javascript to show the name of the respective stores. I also tried to make the javascript pop up more informative by showing more information, but it doesn't allow new line and it looked ugly, so I decided to just show the store name.
+
+2) Reset Passwords (Extra credit 1 course points)
+User can reset his/her password if it is lost during login. Reset requests expire in one hour and user is notified by email of the request.
+
+3) Toogling active/inactive entities (Extra credit 1 course points)
+Managers may only toggle between active and inactive Employees that are assigned to their store.
+Admins may toggle between active and inactive Employees, Stores and Jobs. 
+As for Assignments, Admins can toggle a current assignment to be ended (as past assignment). Once toggled/triggled, an assignment will take end date to be Date.today.
+A separate page/link is created for inactive Employees, Stores, Jobs and Past Assignments, which is easily accessed via the Control Panel.
+
+
+OTHER EXTRA STUFF I DID (perhaps for extra credit points):
+1) Used Datepicker for dates
+2) For Stores created, if there are no shifts and employees yet assigned to store, stores can be deleted.
+3 For Jobs created and are not assigned to any shifts, they can be deleted.
+4) For Employees created, if the employee has never worked a shift, he can be deleted. If he has worked any, he can only be deactivated.
+5) Managers can only search for employees, view shifts for employees that are assigned to his/her store, while administrators can search for all, and both active/inactive employees.
+6) Included a Favicon (the logo beside the URL bar in the browser), Twitter and Facebook like button.
+7) Greets the log in user with the appropriate greeting depending on the time of the day in the dashboard.
+8) Shows lowest employee-hours in the dashboard for Admins.
