@@ -23,7 +23,7 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-05-07T14:16:52-04:00">2012-05-07T14:16:52-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-05-07T15:34:32-04:00">2012-05-07T15:34:32-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -412,7 +412,7 @@
       <tr>
         <td class="strong"><a href="#20d932184c12cef90ffb629213469fec187ba7bb" class="src_link" title="app/models/store.rb">app/models/store.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>90</td>
+        <td>93</td>
         <td>41</td>
         <td>41</td>
         <td>0</td>
@@ -757,7 +757,7 @@
       <tr>
         <td class="strong"><a href="#20d932184c12cef90ffb629213469fec187ba7bb" class="src_link" title="app/models/store.rb">app/models/store.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>90</td>
+        <td>93</td>
         <td>41</td>
         <td>41</td>
         <td>0</td>
@@ -8611,67 +8611,85 @@
           <code class="ruby">  def find_store_coordinates(bypass=false)</code>
         </li>
       
-        <li class="covered" data-hits="139" data-linenumber="80">
-          <span class="hits">139</span>
+        <li class="never" data-hits="" data-linenumber="80">
           
-          <code class="ruby">    if not Rails.env.test? or bypass == true</code>
+          
+          <code class="ruby">    # only runs Geokit if it's not in test environment OR</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="81">
+        <li class="never" data-hits="" data-linenumber="81">
+          
+          
+          <code class="ruby">    # if it's in test environment, only runs the code when specified</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="82">
+          
+          
+          <code class="ruby">    # this prevents google from blocking due to too many test requests</code>
+        </li>
+      
+        <li class="covered" data-hits="139" data-linenumber="83">
+          <span class="hits">139</span>
+          
+          <code class="ruby">    if (bypass == true or (not Rails.env.test?))</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="84">
           <span class="hits">2</span>
           
           <code class="ruby">      coord = Geokit::Geocoders::GoogleGeocoder.geocode &quot;#{street}, #{city}, #{state}, #{zip}&quot;</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="82">
+        <li class="covered" data-hits="2" data-linenumber="85">
           <span class="hits">2</span>
           
           <code class="ruby">      if coord.success</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="83">
+        <li class="covered" data-hits="1" data-linenumber="86">
           <span class="hits">1</span>
           
           <code class="ruby">        self.latitude, self.longitude = coord.ll.split(',')</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="84">
+        <li class="never" data-hits="" data-linenumber="87">
           
           
           <code class="ruby">      else</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="85">
+        <li class="covered" data-hits="1" data-linenumber="88">
           <span class="hits">1</span>
           
           <code class="ruby">        errors.add :base, &quot;Error with geocoding&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="86">
+        <li class="never" data-hits="" data-linenumber="89">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="87">
+        <li class="never" data-hits="" data-linenumber="90">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="88">
+        <li class="never" data-hits="" data-linenumber="91">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="89">
+        <li class="never" data-hits="" data-linenumber="92">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="90">
+        <li class="never" data-hits="" data-linenumber="93">
           
           
           <code class="ruby">end</code>

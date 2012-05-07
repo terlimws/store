@@ -77,7 +77,10 @@ class Store < ActiveRecord::Base
    end
    
   def find_store_coordinates(bypass=false)
-    if not Rails.env.test? or bypass == true
+    # only runs Geokit if it's not in test environment OR
+    # if it's in test environment, only runs the code when specified
+    # this prevents google from blocking due to too many test requests
+    if ((not Rails.env.test?) or bypass == true)
       coord = Geokit::Geocoders::GoogleGeocoder.geocode "#{street}, #{city}, #{state}, #{zip}"
       if coord.success
         self.latitude, self.longitude = coord.ll.split(',')
