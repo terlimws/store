@@ -1,19 +1,19 @@
 Dearest TAs:
 
-INSTALLATION OF CARTOGRAPHER
+CARTOGRAPHER PLUGIN
 
-Please run "git clone git://github.com/parolkar/cartographer.git vendor/plugins/cartographer"
-to install the Cartographer Plugin. This is required to view the javascript map of the stores.
+I used the Cartographer Plugin in vendor/plugins, which should automatically already be installed when you clone into my repository.
+I cloned into my submission and verified this. In the event that it does not install by itself, please run "git clone git://github.com/parolkar/cartographer.git vendor/plugins/cartographer" to install. This is required to view the javascript map of the stores. 
+The Only small thing about this plugin is that it gives a DEPRECATION WARNING in terminal, which I was told by the TA to simply ignore.
 
+MY REMEDIES SINCE PREVIOUS SUBMISSION
 
-REMEDIES SINCE PREVIOUS SUBMISSION
-
-To ease your grading process, here is a list of items which I lost points for during my previous submission, and my remedies (reference to page1.jpg and page2.jpg). I had no problems with CRUD, but were mainly due to testing.
+To ease your grading process, here is a list of items which I lost points for during my previous submission, and my remedies (reference to page1.jpg and page2.jpg). There were no problems with CRUD.
 
 1) -20 for Unit Testing (2 failures and 15 errors)
 The main failures were due to the geokit code, where Google blocked the geolocation requests during the tests. I tried doing stubbing using these instructions:
 http://www.pervasivecode.com/blog/2009/07/23/fancier-stubbing-of-geokit-for-rails-unit-tests/ (According to Seth's recommendation)
-However, it did not really work, so I just restricted the test from running the Geokit code during rake test:units.
+However, it did not really work, so I just restricted the test from running the Geokit code during rake test:units as per Seth's recommendation.
 
 Previously, I did not test the generate_token and send_password_reset methods in the User model, as I did not know how to do so then. 
 I added in tests for these two methods in this submission.
