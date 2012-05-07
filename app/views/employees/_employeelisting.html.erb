@@ -19,7 +19,7 @@
         <td>
           <%= link_to 'Edit', edit_employee_path(employee), :class => 'btn btn-mini' %>
           <%= link_to raw("<i class='icon-user icon-white'></i> Make Inactive"), edit_employee_path(employee, :status => 'deactivate_employee'), :class => 'btn btn-mini btn-warning' %>
-		<% if employee.shifts.empty? and employee.user == nil %>       
+		<% if employee.shifts.empty? and employee.user == nil and current_user.employee.role == 'admin' %>       
 		<%= link_to raw("<i class='icon-trash icon-white'></i> Delete"), employee_path(employee), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %><% end %>
         </td>
       </tr>

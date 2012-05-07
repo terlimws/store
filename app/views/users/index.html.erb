@@ -3,6 +3,8 @@
   <thead>
     <tr>
       <th>Email</th>
+	<th>Employee</th>
+	<th>Role</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -10,10 +12,11 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.email, user_path(user) %></td>
+		<td><%= link_to user.employee.name, employee_path(user.employee) %></td>
+		<td><%= user.employee.role.capitalize %></td>
         <td>
           <%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', user_path(user), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
-        </td>
+			<%= link_to raw("<i class='icon-user icon-white'></i> Delete User"), user_path(user), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>        </td>
       </tr>
     <% end %>
   </tbody>
@@ -21,3 +24,4 @@
 
 
 <%= link_to 'Add New User', new_user_path, :class => 'btn btn-primary' %>
+

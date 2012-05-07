@@ -26,6 +26,7 @@ if @assignments.empty? %>
         <td><%= l assignment.start_date %></td>
         <td>
           <%= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini' %>
+<%= link_to raw("<i class='icon-calendar icon-white'></i> End Assignment"), edit_assignment_path(assignment, :status => 'end_assignment'), :class => 'btn btn-mini btn-warning' %>
         </td>
       </tr>
     <% end %>

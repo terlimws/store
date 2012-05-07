@@ -31,6 +31,17 @@ class AssignmentsController < ApplicationController
 
   def edit
     @assignment = Assignment.find(params[:id])
+
+    # Handle shortcut end assignments
+    unless params[:status].nil?
+      if params[:status].match(/end/) 
+        @assignment.update_attribute(:end_date, Date.today)
+        flash[:notice] = "#{@assignment.name} has ended."
+      end
+      redirect_to assignments_path
+    end
+    
+    
   end
 
   def create
