@@ -240,6 +240,7 @@ DEPENDENCIES
   simplecov
   sqlite3
   tconsole (= 1.1.1)
+  therubyracer
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   validates_timeliness
