@@ -2,8 +2,8 @@ Dearest TAs:
 
 INSTALLATION OF CARTOGRAPHER
 
-Please run git clone git://github.com/parolkar/cartographer.git vendor/plugins/cartographer
-to install the Cartographer Plugin where necessary
+Please run "git clone git://github.com/parolkar/cartographer.git vendor/plugins/cartographer"
+to install the Cartographer Plugin. This is required to view the javascript map of the stores.
 
 
 REMEDIES SINCE PREVIOUS SUBMISSION
@@ -47,10 +47,6 @@ I edited the populate file to create the following accounts:
 
 Please log in as an admin using the following credentials:
 Email: admin@creamery.com
-Password: secret
-
-Please log in as a manager using the following credentials:
-Email: manager@creamery.com
 Password: secret
 
 
