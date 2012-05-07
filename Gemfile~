@@ -13,7 +13,8 @@ gem 'geokit'
 gem 'jquery-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "nested_form", :git => "git://github.com/ryanb/nested_form.git"
-gem 'less-rails-bootstrap'
+gem "cartographer", "~> 1.2.0"
+#gem 'less-rails-bootstrap'
 
 # Gems used only in development
 group :development do
@@ -37,6 +38,7 @@ group :test do
 	gem 'nokogiri'
 	gem 'simplecov'
 	gem 'tconsole', '1.1.1'
+	gem 'mocha'
 end
 
 
@@ -48,7 +50,7 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 	
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
+  gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
 end
