@@ -47,8 +47,6 @@ namespace :db do
     # mu.password_confirmation = "creamery"
     # mu.employee_id = me.id
     # mu.save!
-    b = User.new(:email => "manager@creamery.com", :password => "secret", :employee_id => me.id)
-    b.save!
     
     # Step 2: Add some stores
     stores = {"Carnegie Mellon" => "5000 Forbes Avenue;15213", "Convention Center" => "1000 Fort Duquesne Blvd;15222", "Point State Park" => "101 Commonwealth Place;15222"}
