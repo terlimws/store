@@ -12,12 +12,12 @@ class UserTest < ActiveSupport::TestCase
   should validate_presence_of(:password_digest)
 
   # Test format of email
-  should allow_value("wanxint@andrew.cmu.edu").for(:email)
-  should allow_value("teo.wan.xin@gmail.com").for(:email)
-  should allow_value("jzf@yahoo.com.sg").for(:email)
+  should allow_value("weishanl@andrew.cmu.edu").for(:email)
+  should allow_value("terlimws@gmail.com").for(:email)
+  should allow_value("abc@google.com").for(:email)
   should_not allow_value("bad").for(:email)  
   should_not allow_value("bad@yahoo,com").for(:email)
-  should_not allow_value("twitter.com").for(:email)
+  should_not allow_value("silvernotez.com").for(:email)
 
   context "Creating 1 user" do
     # create the objects I want with factories
