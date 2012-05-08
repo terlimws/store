@@ -9,7 +9,7 @@
   </thead>
   <tbody>
     
-    <% if @shifts.nil? %>
+    <% if @shifts.size == 0 %>
       
       <tr><td colspan="4">No Shifts Found For Today</td></tr>
     
@@ -44,7 +44,7 @@
   </thead>
   <tbody>
     
-    <% if @incomplete_shifts.nil? %>
+    <% if @incomplete_shifts.size == 0 %>
       <tr><td colspan="4">No Incomplete Shifts Found</td></tr>
     
     <% else %>
