@@ -42,19 +42,18 @@ class UserTest < ActiveSupport::TestCase
       assert @ed.active
       deny @cindy.active
       assert @ralph.active
-      #assert_equal "wanxint@andrew.cmu.edu", @eduser.email
-    end
-    
-    # test employees must have unique email
-    should "force employees to have unique email" do
-      repeat_email = FactoryGirl.build(:user, :employee => @ralph, :email => "weishanl@andrew.cmu.edu")
-      deny repeat_email.valid?
     end
     
     # test employees must be active
-    should "force employees to be active" do
-      inactive_cindy = FactoryGirl.build(:user, :employee => @cindy, :email => "jzf@andrew.cmu.edu", :password_digest => "werwer")
+    should "check that employees are active" do
+      inactive_cindy = FactoryGirl.build(:user, :employee => @cindy, :email => "cindy@andrew.cmu.edu", :password => "secret")
       deny inactive_cindy.valid?
+    end
+    
+    # test employees must have unique email
+    should "check that employees have unique emails" do
+      repeat_email = FactoryGirl.build(:user, :employee => @ralph, :email => "weishanl@andrew.cmu.edu")
+      deny repeat_email.valid?
     end
     
     # test the self.authentication method
